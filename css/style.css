@@ -14,10 +14,9 @@ a{
 .topdashboard{
 	display: flex;
 	align-items: center;
-	background-image: linear-gradient(to right, #5d7ecd, #0c91e6);
 }
 .topdashboard img{
-	border: 3px solid #ffc107; 
+	border: 2px solid #ffc107; 
 	border-radius: 50%;
 }
 .topdashboard h4{
@@ -96,6 +95,7 @@ form.example button {
 	box-shadow: none;
 	outline: none;
 	border: none;
+	background-color: darkred !important;
 }
 ::placeholder {
 	font-size: 10px;
