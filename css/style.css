@@ -7,10 +7,23 @@
 	font-family: "Montserrat", sans-serif;
 }
 body {
-	padding: 10px;
+	background-color: rgba(35,43,85,0.15) !important;
+}
+.topdashboard{
+	display: flex;
+	align-items: center;
+	background-image: linear-gradient(to right, #5d7ecd, #0c91e6);
+}
+.topdashboard img{
+	border: 3px solid #ffc107; 
+	border-radius: 50%;
+}
+.topdashboard h4{
+	margin-left: 20px;
+	color:#ffc107 ;
 }
 .topnav {
-	background-color: #ffff;
+	background-color: rgb(167, 14, 14);
 	overflow: hidden;
 }
 .far.fa-user-circle {
@@ -136,8 +149,8 @@ form.example::after {
 	width: 80%;
 }
 #navbar-items {
-	width: 20%;
-	height: 500px;
+	width: 15%;
+	height: 90vh;
 	background-color: #4f4f8a;
 }
 ul#navbar-items li {
@@ -161,6 +174,7 @@ ul li:hover .fas {
 }
 #topnavbar {
 	width: 80%;
+	height: 90vh;
 }
 .fs13 {
 	font-size: 13px;
