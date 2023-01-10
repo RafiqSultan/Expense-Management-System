@@ -24,8 +24,11 @@ a{
 	color:#ffc107 ;
 }
 .topnav {
-	background-color:#fff;
+	background-color:rgb(15, 70, 107);
 	overflow: hidden;
+}
+.balance span{
+	color: #1183b8;
 }
 .far.fa-user-circle {
 	font-size: 29px;
@@ -61,8 +64,9 @@ a{
 	border-bottom: 3px solid red;
 }
 .topnav .active {
-	background-color: lightsalmon;
-	color: black;
+	background-color: #1183b8;
+	color: #fff;
+	font-weight: 500;
 	border-bottom: 3px solid red;
 }
 form.example input[type="text"] {
@@ -376,9 +380,14 @@ ul#navbar-items li:hover {
     }
 }
 /* _________________________________________ */
- #icons_section .fa-signal{
+ #icons_section .fa-signal,
+ #icons_section .fa-money-bill-transfer,
+ #icons_section .fa-sack-dollar,
+ #icons_section .fa-people-group
+
+ {
 	font-size: 40px !important;
-	color: #eeb406 !important;
+	color: #a07b0d !important;
 	line-height: 50px;
 }
 .card-body{
