@@ -1,13 +1,12 @@
 body {
 	margin: 0;
 	padding: 0;
-    /* background-color: #4c4c96 !important; */
     background-color: rgba(35,43,85,0.15) !important;
 	font-family: sans-serif;
 }
 .loginbox {
-	width: 320px;
-	height: 460px;
+	width: 380px;
+	height: 660px;
     background:
     linear-gradient(
     rgba(35,43,85,0.85),
@@ -18,13 +17,13 @@ body {
 	position: absolute;
 	transform: translate(-50%, -50%);
 	box-sizing: border-box;
-	padding: 50px 30px;
+	padding: 30px 30px;
     border-radius: 15px;
 }
 .title{
     text-align: center;
-    margin-top: 90px;
-    color: #2121ee !important;
+    margin-top: 50px;
+    color: #2121ee;
     font-weight: bold;
 }
 h2 {
@@ -32,7 +31,7 @@ h2 {
 	padding: 0 0 20px;
 	text-align: center;
 	font-size: 22px;
-	color: #ffc107 !important;
+    color: #ffc107 !important;
 }
 .loginbox p {
 	margin: 0;
@@ -62,6 +61,23 @@ input[type="password"] {
 	font-size: 18px;
 	border-radius: 20px;
 }
+.gender {
+	color: #fff;
+    display: flex !important;
+    align-items: flex-start;
+    padding: 2px 0;
+}
+.gender label {
+	margin-left: 10px;
+}
+.gender .inp2 {
+	margin-left: 40px;
+}
+.gender input[type="radio"] {
+	width: 15px;
+    height: 15px;
+    margin: auto;
+}
 .loginbox input[type="submit"]:hover {
 	cursor: pointer;
 	background: #ffc107;
@@ -70,8 +86,8 @@ input[type="password"] {
 .loginbox a {
 	text-decoration: none;
 	font-size: 13px;
-    margin-left:70px;
-	line-height: 30px;
+    margin-left:120px;
+	line-height:10px;
 	color: darkgrey;
 }
 .loginbox a:hover {
