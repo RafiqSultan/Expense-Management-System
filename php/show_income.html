@@ -10,39 +10,25 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <style>
         .h2{
-    color: #444;
+    color: #111;
     font-family: 'PT Sans', sans-serif;
 }
-thead{
+th{
     font-family: 'Poppins', sans-serif;
-    font-weight: bolder;
-    font-size: 20px;
-    color: #666;
+    font-weight: bold;
+    font-size: 14px !important;
+    color: #121286 !important;
+    border-bottom: 2px solid #121286 !important;
 }
-img{
-    width: 40px;
-    height: 40px;
-}
-.name{
-    display: inline-block;
-}
-.bg-blue{
-    background-color: #EBF5FB;
+
+tbody .bg-blue{
+    background-color: #d6ebf7;
     border-radius: 8px;
 }
-.fa-check,.fa-minus{
-    color: blue;
+#spacing-row{
+    height: 8px;
 }
-.bg-blue:hover{
-    background-color: #3e64ff;
-    color: #eee;
-    cursor: pointer;
-}
-.bg-blue:hover .fa-check,
-.bg-blue:hover .fa-minus{
-    background-color: #3e64ff;
-    color: #eee;
-}
+
 
 .table thead th,.table td{
     border: none;
@@ -56,8 +42,30 @@ img{
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
 }
-#spacing-row{
-    height: 10px;
+.update{
+    background-color: rgb(45, 218, 88);
+    padding: 5px 15px;
+    line-height: 30px;
+    color: #fff;
+    font-weight: 500;
+}
+.update:hover{
+    background-color: rgb(23, 141, 53);
+    color: #fff;
+    font-weight: 500;
+}
+.delete:hover{
+    background-color: rgb(146, 37, 37);
+    color: #fff;
+    font-weight: 500;
+}
+.delete{
+    background-color: rgb(224, 45, 45);
+    padding: 5px 15px;
+    line-height: 30px;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 10px;
 }
 @media(max-width:575px){
     .container{
@@ -79,8 +87,8 @@ img{
         <div class="d-md-flex">
             <ul id="navbar-items" class="p-0">
                 <a href="user_dashbord.html"><li  > <span class="ps-3 name ">Dashboard</span> </li></a>
-                <a href="add_income.html"> <li class="active" > <span class="ps-3 name">ADD Incom</span> </li></a>
-                <a href="show_income.html"><li>  <span class="ps-3 name">View Income</span> </li></a>
+                <a href="add_income.html"> <li  > <span class="ps-3 name">ADD Incom</span> </li></a>
+                <a href="show_income.html"><li class="active">  <span class="ps-3 name">View Income</span> </li></a>
                 <a href="add_expense.html"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
                 <a href="show_expense.html"><li>  <span class="ps-3 name">View Expense</span> </li></a>
                 <a href="user_profile.html"><li> <span class="ps-3 name">Profile</span> </li></a>
@@ -93,67 +101,57 @@ img{
 
                 <!-- *************************** Start Main****************************************** -->
                 <div class="container rounded mt-5 bg-white p-md-5">
-                    <div class="h2 font-weight-bold">Meetings</div>
+                    
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Name</th>                    
-                                    <th scope="col">Date</th>                    
-                                    <th scope="col">Time</th>                    
-                                    <th scope="col">Status</th>                    
+                                    <th scope="col">Item</th>                    
+                                    <th scope="col">Describe</th>                    
+                                    <th scope="col">Amount</th>                    
+                                    <th scope="col">Data</th> 
+                                    <th scope="col">Group</th> 
+                                    <th scope="col">Action</th>                   
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr class="bg-blue rs">            
+                                    <td class="pt-3 mt-1">salary</td>
+                                    <td class="pt-3 mt-1">my salary</td>
+                                    <td class="pt-3">6000.0</td>
+                                    <td class="pt-3 mt-1">01/10/2023</td>
+                                    <td class="pt-3">GA</td>
+                                    <td> <a href="" class="update">Update</a><a href="" class="delete">Delete</a></td>
+                                    
+                                    
+                                </tr>
+                                <tr id="spacing-row">
+                                    <td></td>
+                                </tr>
+                                <tr class="bg-blue rs">            
+                                    <td class="pt-3 mt-1">salary</td>
+                                    <td class="pt-3 mt-1">my salary</td>
+                                    <td class="pt-3">6000.0</td>
+                                    <td class="pt-3 mt-1">01/10/2023</td>
+                                    <td class="pt-3">GA</td>
+                                    <td> <a href="" class="update">Update</a><a href="" class="delete">Delete</a></td>
+                                    
+                                    
+                                </tr>
+                                <tr id="spacing-row">
+                                    <td></td>
+                                </tr>
                                 <tr class="bg-blue">            
-                                    <td class="pt-2">
-                                        <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="rounded-circle" alt=""> 
-                                        <div class="pl-lg-5 pl-md-3 pl-1 name">Emilia Kollette</div>
-                                    </td>                
-                                    <td class="pt-3 mt-1">25 Sep 2020</td>
-                                    <td class="pt-3">11:00 AM</td>
-                                    <td class="pt-3"><span class="fa fa-check pl-3"></span></td>
-                                    <td class="pt-3"><span class="fa fa-ellipsis-v btn"></span></td>
+                                    <td class="pt-3 mt-1">salary</td>
+                                    <td class="pt-3 mt-1">my salary</td>
+                                    <td class="pt-3">6000.0</td>
+                                    <td class="pt-3 mt-1">01/10/2023</td>
+                                    <td class="pt-3">GA</td>
+                                    <td> <a href="" class="update">Update</a><a href="" class="delete">Delete</a></td>
+                                    
+                                    
                                 </tr>
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                                <tr class="bg-blue">
-                                    <td class="pt-2">
-                                        <img src="https://images.pexels.com/photos/3765114/pexels-photo-3765114.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="rounded-circle" alt=""> 
-                                        <div class="pl-lg-5 pl-md-3 pl-1 name">Anny Adams</div>
-                                    </td>
-                                    <td class="pt-3">26 Sep 2020</td>
-                                    <td class="pt-3">11:00 AM</td>
-                                    <td class="pt-3"><span class="fa fa-check pl-3"></span></td>
-                                    <td class="pt-3"><span class="fa fa-ellipsis-v btn"></span></td>
-                                </tr>
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                                <tr class="bg-blue">
-                                    <td class="pt-2">
-                                        <img src="https://images.pexels.com/photos/3779448/pexels-photo-3779448.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="rounded-circle" alt=""> 
-                                        <div class="pl-lg-5 pl-md-3 pl-1 name">Arnold Linn</div>
-                                    </td>
-                                    <td class="pt-3">26 Sep 2020</td>
-                                    <td class="pt-3">02:00 PM</td>
-                                    <td class="pt-3"><span class="fa fa-check pl-3"></span></td>
-                                    <td class="pt-3"><span class="fa fa-ellipsis-v btn"></span></td>
-                                </tr>
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                                <tr class="bg-blue">
-                                    <td class="pt-2">
-                                        <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="rounded-circle" alt=""> 
-                                        <div class="pl-lg-5 pl-md-3 pl-1 name">Josh Limosel</div>
-                                    </td>
-                                    <td class="pt-3">26 Sep 2020</td>
-                                    <td class="pt-3">04:00 PM</td>
-                                    <td class="pt-3"><span class="fa fa-minus pl-3"></span></td>
-                                    <td class="pt-3"><span class="fa fa-ellipsis-v btn"></span></td>
-                                </tr>
+                                
                             </tbody>
                         </table>
                    
