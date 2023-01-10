@@ -180,6 +180,15 @@ ul#navbar-items li:hover {
 	background-color: #ffc107;
 	color: white;
 }
+.dropdown-menu ,.dropdown-menu li
+ {
+	background-color: #21214e !important;
+}
+.dropdown-menu a:hover{
+	background-color: #eeb406;
+	font-weight: bold !important;
+}
+
 
 #topnavbar {
 	width: 80%;
@@ -260,4 +269,126 @@ ul#navbar-items li:hover {
 	}
 }
 
-/* ------------------- login ------------------------------- */
+/* ------------------- dashbord  ------------------------------- */
+
+.card {
+    background-color: white !important;
+    border: none !important;
+    border-radius: 0px !important;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important
+}
+
+.card:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important
+}
+
+.card>a {
+    text-decoration: none !important;
+    color: black !important
+}
+
+#blockitems {
+    margin-right: 0px !important;
+    margin-left: 0px !important
+}
+
+#icons_section {
+    width: 30%;
+    text-align: center;
+    padding: 0% !important
+}
+
+#icons_section>i {
+    font-size: 25px;
+    color: black !important
+}
+
+#heading_section {
+    width: 70%
+}
+
+#heading_section>h6 {
+    margin-bottom: 0px !important;
+    color: #990ae3 !important
+}
+
+#heading_section>p {
+    font-size: 14px !important
+}
+
+.cssanimation {
+    animation-duration: 1s;
+    animation-fill-mode: both
+}
+
+.fadeInBottom {
+    animation-name: fadeInBottom
+}
+
+@keyframes fadeInBottom {
+    from {
+        opacity: 0;
+        transform: translateY(100%)
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.cssanimation2 {
+    animation-duration: 2s;
+    animation-fill-mode: both
+}
+
+.fadeInBottom2 {
+    animation-name: fadeInBottom
+}
+
+@keyframes fadeInBottom2 {
+    from {
+        opacity: 0;
+        transform: translateY(100%)
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.cssanimation3 {
+    animation-duration: 3s;
+    animation-fill-mode: both
+}
+
+.fadeInBottom3 {
+    animation-name: fadeInBottom
+}
+
+@keyframes fadeInBottom3 {
+    from {
+        opacity: 0;
+        transform: translateY(100%)
+    }
+
+    to {
+        opacity: 1
+    }
+}
+/* _________________________________________ */
+ #icons_section .fa-signal{
+	font-size: 40px !important;
+	color: #eeb406 !important;
+	line-height: 50px;
+}
+.card-body{
+	box-shadow: 0 5px 2px #ffc107;
+}
+.card-body h6{
+	font-size: 25px;
+}
+.card-body p{
+	font-size: 22px;
+	margin-top: 10px;
+	
+}
