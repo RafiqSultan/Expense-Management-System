@@ -11,6 +11,20 @@ body {
 a{
 	text-decoration: none !important;
 }
+.addincome_btn {
+	border: none;
+	outline: none;
+	height: 40px;
+	background: #6b6bf0;
+	color: #fff;
+	font-size: 18px;
+	border-radius: 20px;
+}
+.addincome_btn:hover {
+	cursor: pointer;
+	background: #ffc107;
+	color: #000;
+}
 .topdashboard{
 	display: flex;
 	align-items: center;

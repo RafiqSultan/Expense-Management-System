@@ -63,11 +63,10 @@
                     $result = mysqli_query($connect, $sql); 
                     $row = mysqli_fetch_array($result);
                     $user_id =  $row['id'];
-                    
                     $_SESSION['user_id']=$user_id;    
-                $_SESSION['logged'] = 'yes';
-                $_SESSION['full_name'] = $full_name;
-                header("location:user_dashbord.php");
+                    $_SESSION['logged'] = 'yes';
+                    $_SESSION['full_name'] = $full_name;
+                    header("location:user_dashbord.php");
         }
         else{
             echo "thats problem is select $query.".mysqli_error($connect)."<br>";

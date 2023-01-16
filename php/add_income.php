@@ -14,8 +14,12 @@
     <div class="px-0 bg-light">
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
-                <img src="../userimg.png" width="40" height="40">
-                <h4>Anas Qahtan</h4>
+                <img src="../img/user.png" width="40" height="40">
+                <h4>  <?php
+                    session_start();
+                    echo $_SESSION['full_name'];
+                   
+                    ?></h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>
@@ -46,53 +50,48 @@
                 </div>
 
                 <!-- *************************** Start Main****************************************** -->
-                <div class="container">
-                    <div class="card p-4 mt-5">
-                        <div class="row g-3">
-                            <div class="col-12 mb-4">
-                                <h4>ADD INCOME</h4>
-                               
-                            </div>
-                            <div class="col-lg-6 col-md-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" placeholder="FLYING FROM">
-                                    <label>Item</label>
+                <div class="card signup_v4 mb-30">
+                        <div class="card-body">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                                    <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;">ADD INCOME</h4>
+                                    <form method="post" action="../crud/insert_income.php">
+                                        <div class="row">
+                                            <div class="form-group col-md-12 mb-3">
+                                                <label for="inputName">Name of Income</label>
+                                                <input type="text" class="form-control" id="inputEmail4" name="name_inc" placeholder="Enter Name of Income" required="">
+                                            </div>
+                                            <div class="form-group col-md-12  mb-3">
+                                                <label for="inputName">Describe</label>
+                                                <input type="text" class="form-control" name="describe" id="inputEmail4" placeholder="Describe Income">
+                                            </div>
+                                            <div class="form-group col-md-12  mb-3">
+                                                <label for="inputName">Amount</label>
+                                                <input type="number" class="form-control" name="amount" id="inputEmail4" placeholder="Amount" required="">
+                                            </div>
+                                            <div class="form-group col-md-12  mb-3">
+                                                <label for="inputName">Group</label><br>
+                                                <select name="" id="" style="width=;">
+                                                    <option value="">Income in Group</option>
+                                                    <option value="">G102</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-12  mb-3">
+                                                <label for="inputName">Date</label>
+                                                <input type="date" class="form-control" name="date_inc" id="inputEmail4" placeholder="Date" required="">
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 mb-3">
+                                        <input type="submit" class="btn btn-primary" name="submit" value="Add Income">
+                                        <button type="button" class="btn btn-secondary">Reset</button>
+                                        </div>
+                                    </form>
+                                    
                                 </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" placeholder="FLYING FROM">
-                                    <label>Describe</label>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" placeholder="FLYING FROM">
-                                    <label>Group</label>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" placeholder="FLYING TO">
-                                    <label>Amount</label>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12">
-                                <div class="form-floating">
-                                    <input type="date" class="form-control" placeholder="DEPARTING">
-                                    <label>Date Start</label>
-                                </div>
-                            </div>
-                            
-                        
-                            <div class="col-12 mt-4">
-                               
-                                <button class="btn btn-primary text-uppercase" type="button">Add Income</button>
-                                <button class="btn btn-secondary text-uppercase" type="button">Reset</button>
+                                
                             </div>
                         </div>
                     </div>
-                </div>
 
                  <!-- *************************** End Main****************************************** -->
                 
@@ -101,8 +100,8 @@
             </div>
         </div>
     </div>
+   
  
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
