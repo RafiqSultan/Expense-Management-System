@@ -16,13 +16,35 @@
     <div class="loginbox">
         <h2>Login</h2>
         <form method="post" action="">
-            <p>Email</p> <input type="text" name="" placeholder="Enter Email" required>
-            <p>Password</p> <input type="password" name="" placeholder="Enter Password" required>
-             <input type="submit" name="" value="Login"> <a href="#">Lost your password?</a><br>
+            <p>Email</p> <input type="text" name="email" placeholder="Enter Email" required>
+            <p>Password</p> <input type="password" name="password" placeholder="Enter Password" required>
+             <input type="submit" name="submit" value="Login"> <a href="#">Lost your password?</a><br>
           <a href="php/register.php">Don't have an account?</a>
         </form>
     </div>
+    <?php
+session_start();
+if(isset($_POST['submit']))
+{
+ $email =($_POST['email']);
+ $password =($_POST['password']);
 
+include("database/connect.php");
+
+
+$sql="SELECT * FROM users  WHERE email='$email' AND password='$Password'";
+ $sqli_reuslt=mysqli_query($connect,$sql) or die('Sql Not Execution');
+
+ $sqli_reuslt_array=mysqli_fetch_assoc($sqli_reuslt);
+ $id =$sqli_reuslt_array ['id'];
+ $_SESSION['logged'] = 'yes';
+ $_SESSION['full_name'] = $full_name;
+ $_SESSION['user_id'] = $id;
+}
+ else {
+    echo "erorr in  username or password !";
+}
+?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>    
 </body>
 </html>

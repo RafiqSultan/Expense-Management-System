@@ -16,7 +16,13 @@
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
                 <img src="../userimg.png" width="40" height="40">
-                <h4>Anas Qahtan</h4>
+                <h4>
+                    <?php
+                    session_start();
+                    echo $_SESSION['full_name'];
+
+                    ?>
+                </h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>
