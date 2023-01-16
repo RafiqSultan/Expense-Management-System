@@ -29,7 +29,7 @@
             <p>Password</p> <input type="password" name="" placeholder="Enter Password" required>
             <p>Repeat Password</p> <input type="password" name="" placeholder="Repeat Password" required>
              <input type="submit" name="" value="Register">
-               <a href="../index.html">have an account?</a>
+               <a href="../index.php">have an account?</a>
         </form>
     </div>
 

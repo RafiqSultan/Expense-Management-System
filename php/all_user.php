@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Income</title>
+    <title>All user</title>
     <link rel="stylesheet" href="../css/style.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
@@ -86,17 +86,17 @@ tbody .bg-blue{
         </div>
         <div class="d-md-flex">
             <ul id="navbar-items" class="p-0">
-                <a href="admin_dashboard.html"><li > <span class="ps-3 name ">Dashboard</span> </li></a>
-                <a href="all_user.html"> <li  > <span class="ps-3 name">All USER</span> </li></a>
-                <a href="all_income.html"><li class="active">  <span class="ps-3 name">ALL INCOME</span> </li></a>
-                <a href="all_expense.html"><li>  <span class="ps-3 name">ALL EXPENSE</span> </li></a>
-                <a href="all_group.html"><li>  <span class="ps-3 name">ALL GROUP</span> </li></a>      
-                <a href="add_group.html"><li> <span class="ps-3 name">ADD GROUP</span> </li></a>
-                <a href="../index.html"><li> <span class="ps-3 name">Logout</span> </li></a>
+                <a href="admin_dashboard.php"><li > <span class="ps-3 name ">Dashboard</span> </li></a>
+                <a href="all_user.php"> <li class="active" > <span class="ps-3 name">All USER</span> </li></a>
+                <a href="all_income.php"><li>  <span class="ps-3 name">ALL INCOME</span> </li></a>
+                <a href="all_expense.php"><li>  <span class="ps-3 name">ALL EXPENSE</span> </li></a>
+                <a href="all_group.php"><li>  <span class="ps-3 name">ALL GROUP</span> </li></a>      
+                <a href="add_group.php"><li> <span class="ps-3 name">ADD GROUP</span> </li></a>
+                <a href="../index.php"><li> <span class="ps-3 name">Logout</span> </li></a>
             </ul>
             <div id="topnavbar">
                 <div class="topnav mb-3">
-                    <div class="d-flex px-1"> <a href="#home" class="active">All Income</a>  </div>
+                    <div class="d-flex px-1"> <a href="#home" class="active">All Users</a>  </div>
                 </div>
 
                 <!-- *************************** Start Main****************************************** -->
@@ -108,11 +108,11 @@ tbody .bg-blue{
                                 <tr>
                                     <th scope="col">#</th>                    
                                     <th scope="col">ID</th>                    
-                                    <th scope="col">User Name</th>                    
-                                    <th scope="col">Inc_name</th> 
-                                    <th scope="col">Amount</th>    
-                                    <th scope="col">Group</th> 
-                                    <th scope="col">data</th>               
+                                    <th scope="col">Name</th>                    
+                                    <th scope="col">Email</th> 
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Type</th> 
+                                    <th scope="col">Action</th>                   
                                 </tr>
                             </thead>
                             <tbody>
@@ -120,25 +120,24 @@ tbody .bg-blue{
                                     <td class="pt-3 mt-1">1</td>
                                     <td class="pt-3 mt-1">17</td>
                                     <td class="pt-3">Anas alQahtan</td>
-                                    <td class="pt-3 mt-1">salary</td>
-                                    <td class="pt-3">1400</td>
-                                    <td class="pt-3"></td>
-                                    <td class="pt-3">10/1/2023</td>
-                                   
+                                    <td class="pt-3 mt-1">anas@gmail.com</td>
+                                    <td class="pt-3">5587227828</td>
+                                    <td class="pt-3">user</td>
+                                    <td><a href="" class="delete">Delete</a></td>
                                     
                                 </tr>
                                 <tr id="spacing-row">
                                     <td></td>
                                 </tr>
                                 <tr class="bg-blue rs">            
-                                    <td class="pt-3 mt-1">1</td>
-                                    <td class="pt-3 mt-1">17</td>
-                                    <td class="pt-3">fahd</td>
-                                    <td class="pt-3 mt-1">salary</td>
-                                    <td class="pt-3">1400</td>
-                                    <td class="pt-3">G101</td>
-                                    <td class="pt-3">10/1/2023</td>
-
+                                    <td class="pt-3 mt-1">2</td>
+                                    <td class="pt-3 mt-1">13</td>
+                                    <td class="pt-3">Fahd  fahd</td>
+                                    <td class="pt-3 mt-1">fhad@gmail.com</td>
+                                    <td class="pt-3">5587227828</td>
+                                    <td class="pt-3">user</td>
+                                    <td><a href="" class="delete">Delete</a></td>
+                                    
                                 </tr>
                                 
                             </tbody>

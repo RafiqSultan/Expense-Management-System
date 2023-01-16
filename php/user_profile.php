@@ -51,24 +51,24 @@
         </div>
         <div class="d-md-flex">
             <ul id="navbar-items" class="p-0">
-                <a href="user_dashbord.html"><li  > <span class="ps-3 name ">Dashboard</span> </li></a>
-                <a href="add_income.html"> <li  > <span class="ps-3 name">ADD Incom</span> </li></a>
-                <a href="show_income.html"><li>  <span class="ps-3 name">View Income</span> </li></a>
-                <a href="add_expense.html"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
-                <a href="show_expense.html"><li>  <span class="ps-3 name">View Expense</span> </li></a>
-                <a href="show_expense.html"><li>  <span class="ps-3 name"><div class="dropdown">
+                <a href="user_dashbord.php"><li  > <span class="ps-3 name ">Dashboard</span> </li></a>
+                <a href="add_income.php"> <li  > <span class="ps-3 name">ADD Incom</span> </li></a>
+                <a href="show_income.php"><li>  <span class="ps-3 name">View Income</span> </li></a>
+                <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
+                <a href="show_expense.php"><li>  <span class="ps-3 name">View Expense</span> </li></a>
+                <a href="show_expense.php"><li>  <span class="ps-3 name"><div class="dropdown">
                     <a class=" dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                       Group
                     </a>
                   
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="add_user_group.html">ADD MEMBER</a></li>
-                      <li><a class="dropdown-item" href="show_group_user.html">View MEMBERS</a></li>
-                      <li><a class="dropdown-item" href="user_all_group.html">All Group</a></li>
+                      <li><a class="dropdown-item" href="add_user_group.php">ADD MEMBER</a></li>
+                      <li><a class="dropdown-item" href="show_group_user.php">View MEMBERS</a></li>
+                      <li><a class="dropdown-item" href="user_all_group.php">All Group</a></li>
                     </ul>
                   </div></span> </li></a>
-                <a href="user_profile.html"><li class="active"> <span class="ps-3 name">Profile</span> </li></a>
-                <a href="../index.html"><li> <span class="ps-3 name">Logout</span> </li></a>
+                <a href="user_profile.php"><li class="active"> <span class="ps-3 name">Profile</span> </li></a>
+                <a href="../index.php"><li> <span class="ps-3 name">Logout</span> </li></a>
             </ul>
             <div id="topnavbar">
                 <div class="topnav mb-3">

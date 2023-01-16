@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Expense</title>
+    <title>All Income</title>
     <link rel="stylesheet" href="../css/style.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <style>
         .h2{
     color: #111;
@@ -29,9 +28,7 @@ tbody .bg-blue{
 #spacing-row{
     height: 8px;
 }
-.fa-check,.fa-minus{
-    color: blue;
-}
+
 
 .table thead th,.table td{
     border: none;
@@ -83,34 +80,23 @@ tbody .bg-blue{
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
                 <img src="../userimg.png" width="40" height="40">
-                <h4>Anas Qahtan</h4>
+                <h4>Admin</h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>
         <div class="d-md-flex">
             <ul id="navbar-items" class="p-0">
-                <a href="user_dashbord.html"><li  > <span class="ps-3 name ">Dashboard</span> </li></a>
-                <a href="add_income.html"> <li  > <span class="ps-3 name">ADD Incom</span> </li></a>
-                <a href="show_income.html"><li >  <span class="ps-3 name">View Income</span> </li></a>
-                <a href="add_expense.html"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
-                <a href="show_expense.html"><li class="active">  <span class="ps-3 name">View Expense</span> </li></a>
-                <a href="show_expense.html"><li>  <span class="ps-3 name"><div class="dropdown">
-                    <a class=" dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                      Group
-                    </a>
-                  
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="add_user_group.html">ADD MEMBER</a></li>
-                      <li><a class="dropdown-item" href="show_group_user.html">View MEMBERS</a></li>
-                      <li><a class="dropdown-item" href="user_all_group.html">All Group</a></li>
-                    </ul>
-                  </div></span> </li></a>
-                <a href="user_profile.html"><li> <span class="ps-3 name">Profile</span> </li></a>
-                <a href="../index.html"><li> <span class="ps-3 name">Logout</span> </li></a>
+                <a href="admin_dashboard.php"><li > <span class="ps-3 name ">Dashboard</span> </li></a>
+                <a href="all_user.php"> <li  > <span class="ps-3 name">All USER</span> </li></a>
+                <a href="all_income.php"><li class="active">  <span class="ps-3 name">ALL INCOME</span> </li></a>
+                <a href="all_expense.php"><li>  <span class="ps-3 name">ALL EXPENSE</span> </li></a>
+                <a href="all_group.php"><li>  <span class="ps-3 name">ALL GROUP</span> </li></a>      
+                <a href="add_group.php"><li> <span class="ps-3 name">ADD GROUP</span> </li></a>
+                <a href="../index.php"><li> <span class="ps-3 name">Logout</span> </li></a>
             </ul>
             <div id="topnavbar">
                 <div class="topnav mb-3">
-                    <div class="d-flex px-1"> <a href="#home" class="active">Show MEMBERS</a>  </div>
+                    <div class="d-flex px-1"> <a href="#home" class="active">All Income</a>  </div>
                 </div>
 
                 <!-- *************************** Start Main****************************************** -->
@@ -120,51 +106,45 @@ tbody .bg-blue{
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>                                    
+                                    <th scope="col">#</th>                    
                                     <th scope="col">ID</th>                    
-                                    <th scope="col">User Name</th>
-                                    <th scope="col">Amount</th> 
-                                    <th scope="col">Group</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Action</th>                   
+                                    <th scope="col">User Name</th>                    
+                                    <th scope="col">Inc_name</th> 
+                                    <th scope="col">Amount</th>    
+                                    <th scope="col">Group</th> 
+                                    <th scope="col">data</th>               
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="bg-blue">            
+                                <tr class="bg-blue rs">            
                                     <td class="pt-3 mt-1">1</td>
-                                    <td class="pt-3">16</td>
-                                    <td class="pt-3 mt-1">Anas qahtan</td>
-                                    <td class="pt-3 mt-1">100</td>
-                                    <td class="pt-3 mt-1">G101</td>
-                                    <td class="pt-3 mt-1"><i class="far fa-circle-check" style="color:rgb(10, 167, 18) ; font-size: 24px;"></i></td>
-                                    <td><a href="" class="delete">Delete</a></td>
-                                    
+                                    <td class="pt-3 mt-1">17</td>
+                                    <td class="pt-3">Anas alQahtan</td>
+                                    <td class="pt-3 mt-1">salary</td>
+                                    <td class="pt-3">1400</td>
+                                    <td class="pt-3"></td>
+                                    <td class="pt-3">10/1/2023</td>
+                                   
                                     
                                 </tr>
                                 <tr id="spacing-row">
                                     <td></td>
                                 </tr>
-                               
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                                <tr class="bg-blue">            
+                                <tr class="bg-blue rs">            
                                     <td class="pt-3 mt-1">1</td>
-                                    <td class="pt-3">16</td>
-                                    <td class="pt-3 mt-1">Anas qahtan</td>
-                                    <td class="pt-3 mt-1">100</td>
-                                    <td class="pt-3 mt-1">G101</td>
-                                    <td class="pt-3 mt-1"><i class="far fa-circle-check" style="color:rgb(10, 167, 18) ; font-size: 24px;"></i></td>
-                                    <td><a href="" class="delete">Delete</a></td>
-                                    
-                                    
+                                    <td class="pt-3 mt-1">17</td>
+                                    <td class="pt-3">fahd</td>
+                                    <td class="pt-3 mt-1">salary</td>
+                                    <td class="pt-3">1400</td>
+                                    <td class="pt-3">G101</td>
+                                    <td class="pt-3">10/1/2023</td>
+
                                 </tr>
                                 
                             </tbody>
                         </table>
                    
                 </div>
-        
 
                  <!-- *************************** End Main****************************************** -->
                 
@@ -173,7 +153,6 @@ tbody .bg-blue{
             </div>
         </div>
     </div>
- 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
