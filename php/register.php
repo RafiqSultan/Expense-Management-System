@@ -59,9 +59,15 @@
         ('$full_name' , '$email' , '$pass' , '$phone' ,'$gender','../img/user.png',1)";
         if($result=mysqli_query($connect,$query))
         {
-        $_SESSION['logged'] = 'yes';
-        $_SESSION['full_name'] = $full_name;
-         header("location:user_dashbord.php");
+            $sql = "SELECT id from users where email = '$email'";
+                    $result = mysqli_query($connect, $sql); 
+                    $row = mysqli_fetch_array($result);
+                    $user_id =  $row['id'];
+                    
+                    $_SESSION['user_id']=$user_id;    
+                $_SESSION['logged'] = 'yes';
+                $_SESSION['full_name'] = $full_name;
+                header("location:user_dashbord.php");
         }
         else{
             echo "thats problem is select $query.".mysqli_error($connect)."<br>";

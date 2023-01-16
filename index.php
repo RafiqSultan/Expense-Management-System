@@ -31,23 +31,6 @@ if(isset($_POST['submit']))
    
    include('database/connect.php');
    
-//    $sql_query = "SELECT * FROM users  WHERE email='$email' and password='$password'";
-//    $result = mysqli_query($connect, $sql_query);
-  
-//    if(mysqli_num_rows($result) > 0 ){
-   
-//    $row = mysqli_fetch_assoc($result);
-//    echo $row;
-//    $name = $row["full_name"]; 
-//    $user_id =  $row['id'];
-//    echo $user_id;
-//    echo $name;
-//    header("location:php/user_dashbord.php");
-   
-//    }
-//    else{
-//     echo "errrrrrrrrrro";
-//    }
 $sql = "SELECT * from users where email = '$email' and password='$pass'";
 echo $sql;  
         $result = mysqli_query($connect, $sql); 
