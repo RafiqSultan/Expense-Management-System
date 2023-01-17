@@ -48,33 +48,52 @@
                 <!-- *************************** Start Main****************************************** -->
                 <div class="container">
                     <div class="card p-4 mt-5">
+                    <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;">ADD Expense</h4>
                         <div class="row g-3">
                             <div class="col-12 mb-4 balance">
-                                <h4>Your Current Balance is : <span>490</span></h4>
+                                <?php
+                                    include("../database/connect.php");
+                                    session_start();
+                                    $userid = $_SESSION['user_id'];
+                                    
+                                    $query="SELECT SUM(amount) FROM income AS total  where user_id='$userid'";
+                                    $result = mysqli_query($connect,$query);
+                                    $row = mysqli_fetch_array($result);
+                                    $sum = $row['SUM(amount)'];
+                                    // -------------------------
+                                    $query="SELECT SUM(amount) FROM income AS total  where user_id='$userid'";
+                                    $result = mysqli_query($connect,$query);
+                                    $row = mysqli_fetch_array($result);
+                                    $sum = $row['SUM(amount)'];
+                                    echo " <h4>Your Current Balance is : <span>$sum</span></h4> ";
+                                ?>
+                               
                                
                             </div>
-                            <div class="col-lg-6 col-md-12">
+                            <form  method="post" action="../crud/insert_expense.php">
+                            <div class="row">
+                            <div class="col-lg-6 col-md-12 mb-3">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" placeholder="FLYING FROM">
+                                    <input type="text" class="form-control" name="item" placeholder="FLYING FROM">
                                     <label>Item</label>
                                 </div>
                             </div>
                            
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-6 col-md-12 mb-3">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" placeholder="FLYING TO">
+                                    <input type="text" class="form-control" name="amount" placeholder="FLYING TO">
                                     <label>Amount</label>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <div class="form-floating">
-                                    <input type="date" class="form-control" placeholder="DEPARTING">
+                                    <input type="date" class="form-control" name="start_date" placeholder="DEPARTING">
                                     <label>Date Start</label>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <div class="form-floating">
-                                    <input type="date" class="form-control" placeholder="DEPARTING">
+                                    <input type="date" class="form-control"name="end_date" placeholder="DEPARTING">
                                     <label>Date End</label>
                                 </div>
                             </div>
@@ -82,9 +101,13 @@
                         
                             <div class="col-12 mt-4">
                                
-                                <button class="btn btn-primary text-uppercase" type="button">Add Expense</button>
+                                <button class="btn btn-primary text-uppercase" type="submit" name="submit">Add Expense</button>
                                 <button class="btn btn-secondary text-uppercase" type="button">Reset</button>
                             </div>
+                            </div>
+                            
+                            
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -96,8 +119,7 @@
             </div>
         </div>
     </div>
- 
-
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

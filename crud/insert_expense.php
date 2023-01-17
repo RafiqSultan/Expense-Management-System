@@ -1,15 +1,16 @@
 <?php
+    
         include("../database/connect.php");
         session_start();
-        $name_inc=$_POST['name_inc'] ;
-        $describe=$_POST['describe'] ;
+        $item=$_POST['item'] ;
         $amount=$_POST['amount'] ;
-        $date_inc=$_POST['date_inc'] ;
+        $start_date=$_POST['start_date'] ;
+        $end_date=$_POST['end_date'] ;
         $userid=$_SESSION['user_id'];
        
-        $query= "INSERT INTO  income (name, descrption, date, amount, user_id)
+        $query= "INSERT INTO  expense (item, amount, start_date,end_date, user_id)
         VALUES
-        ('$name_inc' , '$describe' , '$date_inc' , $amount ,$userid)";
+        ('$item' , '$amount' , '$start_date' ,' $end_date' ,$userid)";
         if($result=mysqli_query($connect,$query))
         {
                    
@@ -18,11 +19,12 @@
                     echo "<div class='$class' role='$role'>
                    ADD Successful
                   </div>";
-                   header("location:../php/add_income.php");
+                   header("location:../php/add_expense.php");
         }
         else{
             echo "thats problem in insert $query.".mysqli_error($connect)."<br>";
         }
+         
            
  
         
