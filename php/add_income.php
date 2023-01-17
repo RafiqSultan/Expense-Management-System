@@ -50,48 +50,61 @@
                 </div>
 
                 <!-- *************************** Start Main****************************************** -->
-                <div class="card signup_v4 mb-30">
-                        <div class="card-body">
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-                                    <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;">ADD INCOME</h4>
-                                    <form method="post" action="../crud/insert_income.php">
-                                        <div class="row">
-                                            <div class="form-group col-md-12 mb-3">
-                                                <label for="inputName">Name of Income</label>
-                                                <input type="text" class="form-control" id="inputEmail4" name="name_inc" placeholder="Enter Name of Income" required="">
-                                            </div>
-                                            <div class="form-group col-md-12  mb-3">
-                                                <label for="inputName">Describe</label>
-                                                <input type="text" class="form-control" name="describe" id="inputEmail4" placeholder="Describe Income">
-                                            </div>
-                                            <div class="form-group col-md-12  mb-3">
-                                                <label for="inputName">Amount</label>
-                                                <input type="number" class="form-control" name="amount" id="inputEmail4" placeholder="Amount" required="">
-                                            </div>
-                                            <div class="form-group col-md-12  mb-3">
-                                                <label for="inputName">Group</label><br>
-                                                <select name="" id="" style="width=;">
-                                                    <option value="">Income in Group</option>
-                                                    <option value="">G102</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-12  mb-3">
-                                                <label for="inputName">Date</label>
-                                                <input type="date" class="form-control" name="date_inc" id="inputEmail4" placeholder="Date" required="">
-                                            </div>
-                                        </div>
-                                        <div class="mt-2 mb-3">
-                                        <input type="submit" class="btn btn-primary" name="submit" value="Add Income">
-                                        <button type="button" class="btn btn-secondary">Reset</button>
-                                        </div>
-                                    </form>
-                                    
-                                </div>
-                                
+                <div class="container">
+                    <div class="card p-4 mt-5">
+                    <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;">ADD INCOME</h4>
+                        <div class="row g-3">
+                            <div class="col-12 mb-4 balance">
+                            
                             </div>
+                            <form  method="post" action="../crud/insert_income.php">
+                            <div class="row">
+                            <div class="col-lg-6 col-md-12 mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="name_inc" placeholder="FLYING FROM">
+                                    <label>Name</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="describe" placeholder="FLYING FROM">
+                                    <label>Describe</label>
+                                </div>
+                            </div>
+                           
+                            <div class="col-lg-6 col-md-12 mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="amount" placeholder="FLYING TO">
+                                    <label>Amount</label>
+                                </div>
+                            </div>
+                           
+                            <div class="col-lg-6 col-md-12" >
+                                <select style="width:100%; padding:15px 0;border-radius: 8px;">
+                                    <option value="">Income into Group</option>
+                                    <option value="">G101</option>
+                                    <option value="">G102</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control" name="date_inc" placeholder="DEPARTING">
+                                    <label>Date</label>
+                                </div>
+                            </div>
+                        
+                            <div class="col-12 mt-4">
+                               
+                                <button class="btn btn-primary text-uppercase" type="submit" name="submit">Add Income</button>
+                                <button class="btn btn-secondary text-uppercase" type="button">Reset</button>
+                            </div>
+                            </div>
+                            
+                            
+                        </form>
                         </div>
                     </div>
+                </div>
 
                  <!-- *************************** End Main****************************************** -->
                 
