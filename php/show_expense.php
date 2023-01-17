@@ -119,6 +119,7 @@ tbody .bg-blue{
                         <table class="table">
                             <thead>
                                 <tr>
+                                <th scope="col">#</th>  
                                     <th scope="col">Item</th>                                    
                                     <th scope="col">Amount</th>                    
                                     <th scope="col">Start Data</th> 
@@ -127,7 +128,7 @@ tbody .bg-blue{
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="bg-blue">            
+                                <!-- <tr class="bg-blue">            
                                     <td class="pt-3 mt-1">food</td>
                                     <td class="pt-3">50.0</td>
                                     <td class="pt-3 mt-1">01/10/2023</td>
@@ -159,7 +160,49 @@ tbody .bg-blue{
                                     <td> <a href="" class="update">Update</a><a href="" class="delete">Delete</a></td>
                                     
                                     
-                                </tr>
+                                </tr> -->
+                                <?php
+                                $c1="bg-blue";
+                                $pt="pt-3";
+                                $c_update="update";
+                                $c_delete="delete";
+                                $space="spacing-row";
+
+                                include('../database/connect.php');
+                                  $query="SELECT * FROM expense";
+                                  if($result=mysqli_query($connect,$query))
+                                     {
+                                      if(mysqli_num_rows($result)>0)
+                                        {
+                    
+                                         while($row=mysqli_fetch_array($result))
+                                                        {
+                                                            echo"<tr class='$c1'>";
+                                                            echo"<td class='$pt'>".$row['id']."</td>";
+                                                            echo"<td class='$pt'>".$row['item']."</td>";
+                                                            echo"<td class='$pt'>".$row['amount']."</td>";
+                                                            echo"<td class='$pt'>".$row['start_date']."</td>";
+                                                            echo"<td class='$pt'>".$row['end_date']."</td>";
+                                                            echo "<td> <a class='$c_update'>Update</a><a  class='$c_delete'>Delete</a></td>";
+                                                        
+                                                        echo "</tr>";
+                                                        echo "<tr id='$space'>";
+                                                        echo "<td></td>";
+                                                        echo "</tr>";
+                                                        }
+                                                        // echo"</table>";
+                                                        // mysqli_free_result($result);
+                                                    }
+                                                    else
+                                                    {
+                                                    echo "null record";    
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    echo "thats problem is select $query.".mysqli_error($connect)."<br>";
+                                                }
+                                                ?>
                                 
                             </tbody>
                         </table>

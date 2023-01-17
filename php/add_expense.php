@@ -56,10 +56,14 @@
                                     session_start();
                                     $userid = $_SESSION['user_id'];
                                     
-                                    $query="SELECT SUM(amount) FROM income AS total  where user_id='$userid'";
-                                    $result = mysqli_query($connect,$query);
-                                    $row = mysqli_fetch_array($result);
-                                    $sum = $row['SUM(amount)'];
+                                    // $query="SELECT income.SUM(amount),expense.SUM(amount) FROM income
+                                    // INNER JOIN expense 
+                                    // ON expense.user_id=income.user_id
+                                    // where user_id='$userid'";
+                                    // $result = mysqli_query($connect,$query);
+                                    // $row = mysqli_fetch_array($result);
+                                    // print_r($row);
+                                    // $sum = $row['SUM(amount)'];
                                     // -------------------------
                                     $query="SELECT SUM(amount) FROM income AS total  where user_id='$userid'";
                                     $result = mysqli_query($connect,$query);
