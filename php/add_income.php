@@ -28,6 +28,7 @@
                 <a href="user_dashbord.php"><li  > <span class="ps-3 name ">Dashboard</span> </li></a>
                 <a href="add_income.php"> <li class="active" > <span class="ps-3 name">ADD Incom</span> </li></a>
                 <a href="show_income.php"><li>  <span class="ps-3 name">View Income</span> </li></a>
+                <a href="show_saving.php"><li>  <span class="ps-3 name">View Saving</span> </li></a>
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name">View Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name"><div class="dropdown">
@@ -78,7 +79,6 @@
                                     <label>Amount</label>
                                 </div>
                             </div>
-                           
                             <div class="col-lg-6 col-md-12" >
                                 <select style="width:100%; padding:15px 0;border-radius: 8px;">
                                     <option value="">Income into Group</option>
@@ -86,6 +86,15 @@
                                     <option value="">G102</option>
                                 </select>
                             </div>
+                            <div class="col-lg-6 col-md-12" >
+                                <select name="type_inc" style="width:100%; padding:15px 0;border-radius: 8px;">
+                                    <option value="income">Income</option>
+                                    <option value="saving">Saving</option>
+                                   
+                                </select>
+                            </div>
+                           
+                            
                             <div class="col-lg-6 col-md-12">
                                 <div class="form-floating">
                                     <input type="date" class="form-control" name="date_inc" placeholder="DEPARTING">

@@ -6,10 +6,11 @@
         $amount=$_POST['amount'] ;
         $date_inc=$_POST['date_inc'] ;
         $userid=$_SESSION['user_id'];
+        $type=$_POST['type_inc'];
        
-        $query= "INSERT INTO  income (name, descrption, date, amount, user_id)
+        $query= "INSERT INTO  income (name, descrption, date, amount,type, user_id)
         VALUES
-        ('$name_inc' , '$describe' , '$date_inc' , $amount ,$userid)";
+        ('$name_inc' , '$describe' , '$date_inc' , $amount , '$type' ,$userid)";
         if($result=mysqli_query($connect,$query))
         {
                    

@@ -54,6 +54,7 @@
                 <a href="user_dashbord.php"><li  > <span class="ps-3 name ">Dashboard</span> </li></a>
                 <a href="add_income.php"> <li  > <span class="ps-3 name">ADD Incom</span> </li></a>
                 <a href="show_income.php"><li>  <span class="ps-3 name">View Income</span> </li></a>
+                <a href="show_saving.php"><li>  <span class="ps-3 name">View Saving</span> </li></a>
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name">View Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name"><div class="dropdown">

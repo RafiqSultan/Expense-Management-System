@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Income</title>
+    <title>Show Saving</title>
     <link rel="stylesheet" href="../css/style.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
@@ -95,7 +95,6 @@ tbody .bg-blue{
                 <a href="user_dashbord.php"><li  > <span class="ps-3 name ">Dashboard</span> </li></a>
                 <a href="add_income.php"> <li  > <span class="ps-3 name">ADD Incom</span> </li></a>
                 <a href="show_income.php"><li class="active">  <span class="ps-3 name">View Income</span> </li></a>
-                <a href="show_saving.php"><li>  <span class="ps-3 name">View Saving</span> </li></a>
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name">View Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name"><div class="dropdown">
@@ -114,7 +113,7 @@ tbody .bg-blue{
             </ul>
             <div id="topnavbar">
                 <div class="topnav mb-3">
-                    <div class="d-flex px-1"> <a href="#home" class="active">Show INCOME</a>  </div>
+                    <div class="d-flex px-1"> <a href="#home" class="active">Show Saving</a>  </div>
                 </div>
 
                 <!-- *************************** Start Main****************************************** -->

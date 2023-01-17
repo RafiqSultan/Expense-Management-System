@@ -31,6 +31,7 @@
                 <a href="user_dashbord.php"><li class="active"> <span class="ps-3 name ">Dashboard</span> </li></a>
                 <a href="add_income.php"> <li  > <span class="ps-3 name">ADD Incom</span> </li></a>
                 <a href="show_income.php"><li>  <span class="ps-3 name">View Income</span> </li></a>
+                <a href="show_saving.php"><li>  <span class="ps-3 name">View Saving</span> </li></a>
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name">View Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name"><div class="dropdown">
@@ -106,6 +107,23 @@
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fas fa-sack-dollar"></i> </div>
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6>Total Income</h6>
+                                                        <h1><span>SAR </span>1280</h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                            <div class="row" style="padding: 10px;">
+                                <div class="col-md-12">
+                                    <div class="card cssanimation2 fadeInBottom2"> <a href="#" target="_blank">
+                                            <div class="card-body">
+                                                <div class="row" id="blockitems">
+                                                    <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fas fa-sack-dollar"></i> </div>
+                                                    <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
+                                                        <h6>Total Saving</h6>
                                                         <h1><span>SAR </span>1280</h1>
                                                     </div>
                                                 </div>

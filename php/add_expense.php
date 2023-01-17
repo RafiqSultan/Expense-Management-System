@@ -29,6 +29,7 @@
                 <a href="user_dashbord.php"><li  > <span class="ps-3 name ">Dashboard</span> </li></a>
                 <a href="add_income.php"> <li  > <span class="ps-3 name">ADD Incom</span> </li></a>
                 <a href="show_income.php"><li>  <span class="ps-3 name">View Income</span> </li></a>
+                <a href="show_saving.php"><li>  <span class="ps-3 name">View Saving</span> </li></a>
                 <a href="add_expense.php"><li class="active">  <span class="ps-3 name">ADD Expense</span> </li></a>
                 <a href="show_expense.php"><li >  <span class="ps-3 name">View Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name"><div class="dropdown">
@@ -59,21 +60,6 @@
                                 <?php
                                     include("../database/connect.php");
                                     $userid = $_SESSION['user_id'];
-                                    
-                                    // $query="SELECT income.SUM(amount),expense.SUM(amount) FROM income
-                                    // INNER JOIN expense 
-                                    // ON expense.user_id=income.user_id
-                                    // where user_id='$userid'";
-                                    // $result = mysqli_query($connect,$query);
-                                    // $row = mysqli_fetch_array($result);
-                                    // print_r($row);
-                                    // $sum = $row['SUM(amount)'];
-                                    // -------------------------
-                                    $query="SELECT SUM(amount) FROM income AS total  where user_id='$userid'";
-                                    $result = mysqli_query($connect,$query);
-                                    $row = mysqli_fetch_array($result);
-                                    $sum = $row['SUM(amount)'];
-                                    echo " <h4>Your Current Balance is : <span>$sum</span></h4> ";
                                 ?>
                                
                                
