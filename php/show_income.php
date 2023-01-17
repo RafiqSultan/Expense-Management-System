@@ -79,8 +79,14 @@ tbody .bg-blue{
     <div class="px-0 bg-light">
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
-                <img src="../userimg.png" width="40" height="40">
-                <h4>Anas Qahtan</h4>
+            <img src="../img/user.png" width="40" height="40">
+                <h4>
+                    <?php
+                    session_start();
+                    echo $_SESSION['full_name'];
+                    
+                    ?>
+                </h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>
@@ -117,16 +123,17 @@ tbody .bg-blue{
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Item</th>                    
+                                <th scope="col">#</th> 
+                                    <th scope="col">Name</th>                    
                                     <th scope="col">Describe</th>                    
                                     <th scope="col">Amount</th>                    
-                                    <th scope="col">Data</th> 
+                                    <th scope="col">Date</th> 
                                     <th scope="col">Group</th> 
                                     <th scope="col">Action</th>                   
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="bg-blue rs">            
+                                <!-- <tr class="bg-blue rs">            
                                     <td class="pt-3 mt-1">salary</td>
                                     <td class="pt-3 mt-1">my salary</td>
                                     <td class="pt-3">6000.0</td>
@@ -161,7 +168,52 @@ tbody .bg-blue{
                                     <td> <a href="" class="update">Update</a><a href="" class="delete">Delete</a></td>
                                     
                                     
-                                </tr>
+                                </tr> -->
+                                <?php
+                                $c1="bg-blue";
+                                $pt="pt-3";
+                                $c_update="update";
+                                $c_delete="delete";
+                                $space="spacing-row";
+                                $i=1;
+
+                                include('../database/connect.php');
+                                  $query="SELECT * FROM income";
+                                  if($result=mysqli_query($connect,$query))
+                                     {
+                                      if(mysqli_num_rows($result)>0)
+                                        {
+                                            
+                                         while($row=mysqli_fetch_array($result))
+                                                        {
+                                                            echo"<tr class='$c1'>";
+                                                            echo"<td class='$pt'>.$i</td>";
+                                                            echo"<td class='$pt'>".$row['name']."</td>";
+                                                            echo"<td class='$pt'>".$row['descrption']."</td>";
+                                                            echo"<td class='$pt'>".$row['amount']."</td>";
+                                                            echo"<td class='$pt'>".$row['date']."</td>";
+                                                            echo"<td class='$pt'>".$row['group_id']."</td>";
+                                                            echo "<td> <a class='$c_update'>Update</a><a  class='$c_delete'>Delete</a></td>";
+                                                        
+                                                        echo "</tr>";
+                                                        echo "<tr id='$space'>";
+                                                        echo "<td></td>";
+                                                        echo "</tr>";
+                                                        $i++;
+                                                        }
+                                                        // echo"</table>";
+                                                        // mysqli_free_result($result);
+                                                    }
+                                                    else
+                                                    {
+                                                    echo "null record";    
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    echo "thats problem is select $query.".mysqli_error($connect)."<br>";
+                                                }
+                                                ?>
                                 
                             </tbody>
                         </table>

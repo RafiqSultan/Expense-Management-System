@@ -18,7 +18,7 @@
                     echo "<div class='$class' role='$role'>
                    ADD Successful
                   </div>";
-                   header("location:../php/add_income.php");
+                   header("location:../php/show_income.php");
         }
         else{
             echo "thats problem in insert $query.".mysqli_error($connect)."<br>";

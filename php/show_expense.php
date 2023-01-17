@@ -81,8 +81,14 @@ tbody .bg-blue{
     <div class="px-0 bg-light">
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
-                <img src="../userimg.png" width="40" height="40">
-                <h4>Anas Qahtan</h4>
+            <img src="../img/user.png" width="40" height="40">
+                <h4>
+                    <?php
+                    session_start();
+                    echo $_SESSION['full_name'];
+                   
+                    ?>
+                </h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>
@@ -167,6 +173,7 @@ tbody .bg-blue{
                                 $c_update="update";
                                 $c_delete="delete";
                                 $space="spacing-row";
+                                $i=1;
 
                                 include('../database/connect.php');
                                   $query="SELECT * FROM expense";
@@ -174,11 +181,11 @@ tbody .bg-blue{
                                      {
                                       if(mysqli_num_rows($result)>0)
                                         {
-                    
+                                            
                                          while($row=mysqli_fetch_array($result))
                                                         {
                                                             echo"<tr class='$c1'>";
-                                                            echo"<td class='$pt'>".$row['id']."</td>";
+                                                            echo"<td class='$pt'>.$i</td>";
                                                             echo"<td class='$pt'>".$row['item']."</td>";
                                                             echo"<td class='$pt'>".$row['amount']."</td>";
                                                             echo"<td class='$pt'>".$row['start_date']."</td>";
@@ -189,6 +196,7 @@ tbody .bg-blue{
                                                         echo "<tr id='$space'>";
                                                         echo "<td></td>";
                                                         echo "</tr>";
+                                                        $i++;
                                                         }
                                                         // echo"</table>";
                                                         // mysqli_free_result($result);
