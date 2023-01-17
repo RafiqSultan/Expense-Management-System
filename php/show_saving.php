@@ -94,7 +94,8 @@ tbody .bg-blue{
             <ul id="navbar-items" class="p-0">
                 <a href="user_dashbord.php"><li  > <span class="ps-3 name ">Dashboard</span> </li></a>
                 <a href="add_income.php"> <li  > <span class="ps-3 name">ADD Incom</span> </li></a>
-                <a href="show_income.php"><li class="active">  <span class="ps-3 name">View Income</span> </li></a>
+                <a href="show_income.php"><li >  <span class="ps-3 name">View Income</span> </li></a>
+                <a href="show_saving.php"><li class="active">  <span class="ps-3 name">View Saving</span> </li></a>
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name">View Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name"><div class="dropdown">
@@ -133,42 +134,7 @@ tbody .bg-blue{
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- <tr class="bg-blue rs">            
-                                    <td class="pt-3 mt-1">salary</td>
-                                    <td class="pt-3 mt-1">my salary</td>
-                                    <td class="pt-3">6000.0</td>
-                                    <td class="pt-3 mt-1">01/10/2023</td>
-                                    <td class="pt-3">GA</td>
-                                    <td> <a href="" class="update">Update</a><a href="" class="delete">Delete</a></td>
-                                    
-                                    
-                                </tr>
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                                <tr class="bg-blue rs">            
-                                    <td class="pt-3 mt-1">salary</td>
-                                    <td class="pt-3 mt-1">my salary</td>
-                                    <td class="pt-3">6000.0</td>
-                                    <td class="pt-3 mt-1">01/10/2023</td>
-                                    <td class="pt-3">GA</td>
-                                    <td> <a href="" class="update">Update</a><a href="" class="delete">Delete</a></td>
-                                    
-                                    
-                                </tr>
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                                <tr class="bg-blue">            
-                                    <td class="pt-3 mt-1">salary</td>
-                                    <td class="pt-3 mt-1">my salary</td>
-                                    <td class="pt-3">6000.0</td>
-                                    <td class="pt-3 mt-1">01/10/2023</td>
-                                    <td class="pt-3">GA</td>
-                                    <td> <a href="" class="update">Update</a><a href="" class="delete">Delete</a></td>
-                                    
-                                    
-                                </tr> -->
+                                
                                 <?php
                                 $c1="bg-blue";
                                 $pt="pt-3";
@@ -178,7 +144,7 @@ tbody .bg-blue{
                                 $i=1;
 
                                 include('../database/connect.php');
-                                  $query="SELECT * FROM income WHERE type='income'";
+                                  $query="SELECT * FROM income WHERE type='saving'";
                                   if($result=mysqli_query($connect,$query))
                                      {
                                       if(mysqli_num_rows($result)>0)
@@ -193,7 +159,7 @@ tbody .bg-blue{
                                                             echo"<td class='$pt'>".$row['amount']."</td>";
                                                             echo"<td class='$pt'>".$row['date']."</td>";
                                                             echo"<td class='$pt'>".$row['group_id']."</td>";
-                                                            echo "<td> <a class='$c_update'>Update</a><a  class='$c_delete'>Delete</a></td>";
+                                                            echo "<td> <a  href='../crud/update_inc.php?id=$row[0]' class='$c_update'>Update</a><a  class='$c_delete'>Delete</a></td>";
                                                         
                                                         echo "</tr>";
                                                         echo "<tr id='$space'>";

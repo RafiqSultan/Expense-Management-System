@@ -134,42 +134,6 @@ tbody .bg-blue{
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- <tr class="bg-blue rs">            
-                                    <td class="pt-3 mt-1">salary</td>
-                                    <td class="pt-3 mt-1">my salary</td>
-                                    <td class="pt-3">6000.0</td>
-                                    <td class="pt-3 mt-1">01/10/2023</td>
-                                    <td class="pt-3">GA</td>
-                                    <td> <a href="" class="update">Update</a><a href="" class="delete">Delete</a></td>
-                                    
-                                    
-                                </tr>
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                                <tr class="bg-blue rs">            
-                                    <td class="pt-3 mt-1">salary</td>
-                                    <td class="pt-3 mt-1">my salary</td>
-                                    <td class="pt-3">6000.0</td>
-                                    <td class="pt-3 mt-1">01/10/2023</td>
-                                    <td class="pt-3">GA</td>
-                                    <td> <a href="" class="update">Update</a><a href="" class="delete">Delete</a></td>
-                                    
-                                    
-                                </tr>
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                                <tr class="bg-blue">            
-                                    <td class="pt-3 mt-1">salary</td>
-                                    <td class="pt-3 mt-1">my salary</td>
-                                    <td class="pt-3">6000.0</td>
-                                    <td class="pt-3 mt-1">01/10/2023</td>
-                                    <td class="pt-3">GA</td>
-                                    <td> <a href="" class="update">Update</a><a href="" class="delete">Delete</a></td>
-                                    
-                                    
-                                </tr> -->
                                 <?php
                                 $c1="bg-blue";
                                 $pt="pt-3";
@@ -177,7 +141,10 @@ tbody .bg-blue{
                                 $c_delete="delete";
                                 $space="spacing-row";
                                 $i=1;
-
+                                $data_toggle="modal";
+                               
+    
+                                  
                                 include('../database/connect.php');
                                   $query="SELECT * FROM income WHERE type='income'";
                                   if($result=mysqli_query($connect,$query))
@@ -194,8 +161,26 @@ tbody .bg-blue{
                                                             echo"<td class='$pt'>".$row['amount']."</td>";
                                                             echo"<td class='$pt'>".$row['date']."</td>";
                                                             echo"<td class='$pt'>".$row['group_id']."</td>";
-                                                            echo "<td> <a class='$c_update'>Update</a><a  class='$c_delete'>Delete</a></td>";
-                                                        
+                                                            echo "<td> <a href='../crud/update_inc.php?id=$row[0]' class='$c_update'>Update</a><a data-bs-toggle='$data_toggle' data-bs-target='#deleteModal' class='$c_delete' href='../crud/delete_inc.php?id=$row[0]'>Delete</a></td>";
+                                                            echo "<td><div class='modal fade' id='deleteModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                                                            <div class='modal-dialog'>
+                                                              <div class='modal-content'>
+                                                                <div class='modal-header'>
+                                                                  <h1 class='modal-title fs-5' id='exampleModalLabel'>Modal title</h1>
+                                                                  <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                                                                </div>
+                                                                <div class='modal-body'>
+                                                                 ".$row['id']."
+                                                                </div>
+                                                                <div class='modal-footer'>
+                                                                  <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cansel</button>
+                                                                  <a href='../crud/delete_inc.php?id=$row[0]' type='button' class='btn btn-primary'>Delete</a>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </div></td>
+                                                          ";
+                                                         
                                                         echo "</tr>";
                                                         echo "<tr id='$space'>";
                                                         echo "<td></td>";
@@ -205,6 +190,7 @@ tbody .bg-blue{
                                                         // echo"</table>";
                                                         // mysqli_free_result($result);
                                                     }
+                                                    
                                                     else
                                                     {
                                                     echo "null record";    
@@ -215,12 +201,31 @@ tbody .bg-blue{
                                                     echo "thats problem is select $query.".mysqli_error($connect)."<br>";
                                                 }
                                                 ?>
+
                                 
                             </tbody>
                         </table>
                    
                 </div>
-        
+                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <!-- 
+        // $type="button";
+        // $class="btn btn-primary";
+        // echo "<a href='../crud/delete.php?id=$row[0]' type='$type' class='$class'>Save changes</a>" -->
+      </div>
+    </div>
+  </div>
+</div>
 
                  <!-- *************************** End Main****************************************** -->
                 
