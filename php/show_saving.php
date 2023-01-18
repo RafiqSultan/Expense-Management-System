@@ -138,7 +138,8 @@ tbody .bg-blue{
                                 $i=1;
                     
                                 include('../database/connect.php');
-                                  $query="SELECT * FROM income WHERE type='saving'";
+                                $userid=$_SESSION['user_id'];
+                                  $query="SELECT * FROM income WHERE user_id=$userid and type='saving'";
                                   if($result=mysqli_query($connect,$query))
                                      {
                                       if(mysqli_num_rows($result)>0)

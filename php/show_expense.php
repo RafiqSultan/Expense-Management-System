@@ -135,49 +135,12 @@ tbody .bg-blue{
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- <tr class="bg-blue">            
-                                    <td class="pt-3 mt-1">food</td>
-                                    <td class="pt-3">50.0</td>
-                                    <td class="pt-3 mt-1">01/10/2023</td>
-                                    <td class="pt-3 mt-1">01/10/2023</td>
-                                    <td> <a href="" class="update">Update</a><a href="" class="delete">Delete</a></td>
-                                    
-                                    
-                                </tr>
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                                <tr class="bg-blue">            
-                                    <td class="pt-3 mt-1">food</td>
-                                    <td class="pt-3">50.0</td>
-                                    <td class="pt-3 mt-1">01/10/2023</td>
-                                    <td class="pt-3 mt-1">01/10/2023</td>
-                                    <td> <a href="" class="update">Update</a><a href="" class="delete">Delete</a></td>
-                                    
-                                    
-                                </tr>
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                                <tr class="bg-blue">            
-                                    <td class="pt-3 mt-1">food</td>
-                                    <td class="pt-3">50.0</td>
-                                    <td class="pt-3 mt-1">01/10/2023</td>
-                                    <td class="pt-3 mt-1">01/10/2023</td>
-                                    <td> <a href="" class="update">Update</a><a href="" class="delete">Delete</a></td>
-                                    
-                                    
-                                </tr> -->
-                                <?php
-                                $c1="bg-blue";
-                                $pt="pt-3";
-                                $c_update="update";
-                                $c_delete="delete";
-                                $space="spacing-row";
+                            <?php
                                 $i=1;
-
+                    
                                 include('../database/connect.php');
-                                  $query="SELECT * FROM expense";
+                                    $userid=$_SESSION['user_id'];
+                                  $query="SELECT * FROM expense WHERE user_id=$userid ";
                                   if($result=mysqli_query($connect,$query))
                                      {
                                       if(mysqli_num_rows($result)>0)
@@ -185,16 +148,22 @@ tbody .bg-blue{
                                             
                                          while($row=mysqli_fetch_array($result))
                                                         {
-                                                            echo"<tr class='$c1'>";
-                                                            echo"<td class='$pt'>.$i</td>";
-                                                            echo"<td class='$pt'>".$row['item']."</td>";
-                                                            echo"<td class='$pt'>".$row['amount']."</td>";
-                                                            echo"<td class='$pt'>".$row['start_date']."</td>";
-                                                            echo"<td class='$pt'>".$row['end_date']."</td>";
-                                                            echo "<td> <a class='$c_update'>Update</a><a  class='$c_delete'>Delete</a></td>";
-                                                        
-                                                        echo "</tr>";
-                                                        echo "<tr id='$space'>";
+                                                            ?>
+                                                            <tr class='bg-blue'>
+                                                            <td> <?php echo $i ?> </td>
+                                                            <td> <?php echo $row['item']; ?> </td>
+                                                            <td> <?php echo $row['amount'] ?> </td>
+                                                            <td> <?php echo $row['start_date']; ?> </td>
+                                                            <td> <?php echo $row['end_date']; ?> </td>
+                                                           
+                                                             <?php
+                                                             echo "<td> <a href='../crud/update_exp.php?id=$row[0]' class='update'>Update</a></td>";
+                                                             ?>
+                                                           <td> <a type="buttan" class='delete_btn delete'>Delete</a></td>
+                                                        </tr>
+                                                          <?php  
+                                                       
+                                                        echo "<tr id='spacing-row'>";
                                                         echo "<td></td>";
                                                         echo "</tr>";
                                                         $i++;
@@ -202,6 +171,7 @@ tbody .bg-blue{
                                                         // echo"</table>";
                                                         // mysqli_free_result($result);
                                                     }
+                                                    
                                                     else
                                                     {
                                                     echo "null record";    
@@ -212,12 +182,33 @@ tbody .bg-blue{
                                                     echo "thats problem is select $query.".mysqli_error($connect)."<br>";
                                                 }
                                                 ?>
+
                                 
                             </tbody>
                         </table>
                    
                 </div>
-        
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Do you want delete data!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="../crud/delete_exp.php" method='post'>   
+        <input type="hidden" name="delete_exp_id" id="delete_exp_id" >    
+       
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" name="delete_data" class="btn btn-danger">Delete</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 
                  <!-- *************************** End Main****************************************** -->
                 
@@ -226,9 +217,23 @@ tbody .bg-blue{
             </div>
         </div>
     </div>
- 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+        $('.delete_btn').on('click',function(){
+            $('#deleteModal').modal('show');
+
+            $tr=$(this).closest('tr');
+            var data=$tr.children("td").map(function(){
+                return $(this).text();
+            }).get();
+            console.log(data)
+            $('#delet_exp_id'),val(data[0]);
+        });
+
+    });
+</script>
 </body>
 </html>

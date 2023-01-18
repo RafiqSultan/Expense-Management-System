@@ -103,21 +103,25 @@
      </div>
      <div class="col-md-9">
          <div class="p-3 py-5">
-             
+         <div class="row mt-3">
+         <spanclass="mt-3">Name</spanclass=>
+             <div class="col-md-8"><input type="d" class="form-control"  value='.$row['id'].' readonly></div>
+         </div>
+
              <div class="row mt-3">
              <spanclass="mt-3">Name</spanclass=>
-                 <div class="col-md-8"><input type="text" class="form-control"  value='.$row['full_name'].'></div>
+                 <div class="col-md-8"><input type="text" class="form-control"  value='.$row['full_name'].' readonly></div>
              </div>
 
 
              <div class="row mt-3">
              <span class="mt-3">Email</span>
-                 <div class="col-md-8"><input type="text" class="form-control"  value='.$row['email'].'></div>
+                 <div class="col-md-8"><input type="text" class="form-control"  value='.$row['email'].' readonly></div>
              </div>
 
              <div class="row mt-3">
              <span class="mt-3">Phone</span>
-                 <div class="col-md-8"><input type="text" class="form-control"  value='.$row['phone'].'></div>
+                 <div class="col-md-8"><input type="text" class="form-control"  value='.$row['phone'].' readonly></div>
              </div>
            
     
