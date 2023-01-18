@@ -71,7 +71,23 @@
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"> <i class="fa fa-signal" aria-hidden="true"></i> </div>
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6>Today Income</h6>
-                                                        <h1><span>SAR</span> 80</h1>
+                                                        <?php
+                                                            include('../database/connect.php');
+                                                            $userid=$_SESSION['user_id'];
+                                                            date_default_timezone_set('Asia/Riyadh');
+                                                            $date = date('Y-m-d');
+    
+                                                            $query="SELECT SUM(amount) AS count FROM income WHERE user_id=$userid and type='income' and date='$date'";
+                                                            $res = mysqli_query($connect,$query); 
+                                                            $row = mysqli_fetch_assoc($res); 
+                                                            $sum = $row['count'];
+                                                            if($sum==''){
+                                                                $sum=0;
+                                                            }
+                                                            echo "<h1><span class='sar'>SAR</span>$sum</h1>";
+                                                            
+                                                        ?>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -89,7 +105,22 @@
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fa fa-money-bill-transfer"></i></div>
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6>Today Exponse</h6>
-                                                        <h1><span>SAR</span> 80</h1>
+                                                        <?php
+                                                            include('../database/connect.php');
+                                                            $userid=$_SESSION['user_id'];
+                                                            date_default_timezone_set('Asia/Riyadh');
+                                                            $date = date('Y-m-d');
+
+                                                            $query="SELECT SUM(amount) AS count FROM expense WHERE user_id=$userid and start_date='$date'";
+                                                            $res = mysqli_query($connect,$query); 
+                                                            $row = mysqli_fetch_assoc($res); 
+                                                            $sum = $row['count'];
+                                                            if($sum==''){
+                                                                $sum=0;
+                                                            }
+                                                            echo "<h1><span class='sar'>SAR</span>$sum</h1>";
+                                                            
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -107,7 +138,19 @@
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fas fa-sack-dollar"></i> </div>
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6>Total Income</h6>
-                                                        <h1><span>SAR </span>1280</h1>
+                                                        <?php
+                                                            include('../database/connect.php');
+                                                            $userid=$_SESSION['user_id'];
+                                                            $query="SELECT SUM(amount) AS count FROM income WHERE user_id=$userid and type='income'";
+                                                            $res = mysqli_query($connect,$query); 
+                                                            $row = mysqli_fetch_assoc($res); 
+                                                            $sum = $row['count'];
+                                                            if($sum==''){
+                                                                $sum=0;
+                                                            }
+                                                            echo "<h1><span class='sar'>SAR</span>$sum</h1>";
+                                                            
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -124,7 +167,19 @@
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fas fa-sack-dollar"></i> </div>
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6>Total Saving</h6>
-                                                        <h1><span>SAR </span>1280</h1>
+                                                        <?php
+                                                            include('../database/connect.php');
+                                                            $userid=$_SESSION['user_id'];
+                                                            $query="SELECT SUM(amount) AS count FROM income WHERE user_id=$userid and type='saving'";
+                                                            $res = mysqli_query($connect,$query); 
+                                                            $row = mysqli_fetch_assoc($res); 
+                                                            $sum = $row['count'];
+                                                            if($sum==''){
+                                                                $sum=0;
+                                                            }
+                                                            echo "<h1><span class='sar'>SAR</span>$sum</h1>";
+                                                            
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -142,7 +197,19 @@
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fa fa-money-bill-transfer"></i> </div>
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6>Total Expense</h6>
-                                                        <h1><span>SAR </span>1280</h1>
+                                                        <?php
+                                                            include('../database/connect.php');
+                                                            $userid=$_SESSION['user_id'];
+                                                            $query="SELECT SUM(amount) AS count FROM expense WHERE user_id=$userid";
+                                                            $res = mysqli_query($connect,$query); 
+                                                            $row = mysqli_fetch_assoc($res); 
+                                                            $sum = $row['count'];
+                                                            if($sum==''){
+                                                                $sum=0;
+                                                            }
+                                                            echo '<h1><span style="color=#f00;">SAR</span>$sum</h1>';
+                                                            
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -160,7 +227,19 @@
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fa-sharp fa-solid fa-people-group"></i> </div>
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6>Groups </h6>
-                                                        <h1>2</h1>
+                                                        <?php
+                                                            include('../database/connect.php');
+                                                            $userid=$_SESSION['user_id'];
+                                                            $query="SELECT SUM(group_id) AS count FROM  user_group WHERE user_id=$userid";
+                                                            $res = mysqli_query($connect,$query); 
+                                                            $row = mysqli_fetch_assoc($res); 
+                                                            $sum = $row['count'];
+                                                            if($sum==0){
+                                                                $sum=0;
+                                                            }
+                                                            echo "<h1>$sum</h1>";
+                                                            
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>

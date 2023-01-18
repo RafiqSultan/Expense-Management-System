@@ -159,7 +159,7 @@ tbody .bg-blue{
                                                              <?php
                                                              echo "<td> <a href='../crud/update_exp.php?id=$row[0]' class='update'>Update</a></td>";
                                                              ?>
-                                                           <td> <a type="buttan" class='delete_btn delete'>Delete</a></td>
+                                                           <td><?php echo $row['id']; ?> <a type="buttan" class='delete_exp_btn delete'>Delete</a></td>
                                                         </tr>
                                                           <?php  
                                                        
@@ -222,7 +222,7 @@ tbody .bg-blue{
 
     <script>
     $(document).ready(function(){
-        $('.delete_btn').on('click',function(){
+        $('.delete_exp_btn').on('click',function(){
             $('#deleteModal').modal('show');
 
             $tr=$(this).closest('tr');

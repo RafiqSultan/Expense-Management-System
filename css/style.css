@@ -11,6 +11,11 @@ body {
 a{
 	text-decoration: none !important;
 }
+.sar{
+	font-size: 20px;
+	color: #d1241e !important;
+	background-color: #5d7ecd !important;
+}
 .addincome_btn {
 	border: none;
 	outline: none;
