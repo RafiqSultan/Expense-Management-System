@@ -13,8 +13,8 @@ a{
 }
 .sar{
 	font-size: 20px;
-	color: #d1241e !important;
-	background-color: #5d7ecd !important;
+	color: #4444ee !important;
+	
 }
 .addincome_btn {
 	border: none;
@@ -402,7 +402,8 @@ ul#navbar-items li:hover {
  #icons_section .fa-signal,
  #icons_section .fa-money-bill-transfer,
  #icons_section .fa-sack-dollar,
- #icons_section .fa-people-group
+ #icons_section .fa-people-group,
+ #icons_section .fa-user
 
  {
 	font-size: 40px !important;

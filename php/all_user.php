@@ -116,34 +116,78 @@ tbody .bg-blue{
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="bg-blue rs">            
-                                    <td class="pt-3 mt-1">1</td>
-                                    <td class="pt-3 mt-1">17</td>
-                                    <td class="pt-3">Anas alQahtan</td>
-                                    <td class="pt-3 mt-1">anas@gmail.com</td>
-                                    <td class="pt-3">5587227828</td>
-                                    <td class="pt-3">user</td>
-                                    <td><a href="" class="delete">Delete</a></td>
-                                    
-                                </tr>
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                                <tr class="bg-blue rs">            
-                                    <td class="pt-3 mt-1">2</td>
-                                    <td class="pt-3 mt-1">13</td>
-                                    <td class="pt-3">Fahd  fahd</td>
-                                    <td class="pt-3 mt-1">fhad@gmail.com</td>
-                                    <td class="pt-3">5587227828</td>
-                                    <td class="pt-3">user</td>
-                                    <td><a href="" class="delete">Delete</a></td>
-                                    
-                                </tr>
+                            <?php
+                                $i=1;
+                    
+                                include('../database/connect.php');
+                                
+                                  $query="SELECT * FROM users";
+                                  if($result=mysqli_query($connect,$query))
+                                     {
+                                      if(mysqli_num_rows($result)>0)
+                                        {
+                                            
+                                         while($row=mysqli_fetch_array($result))
+                                                        {
+                                                            ?>
+                                                            <tr class='bg-blue'>
+                                                            <td> <?php echo $i ?> </td>
+                                                            <td> <?php echo $row['id']; ?> </td>
+                                                            <td> <?php echo $row['full_name'] ?> </td>
+                                                            <td> <?php echo $row['email']; ?> </td>
+                                                            <td> <?php echo $row['phone']; ?> </td>
+                                                            <td> <?php echo $row['type']; ?> </td>
+                                                            
+                                                           <td> <a type="buttan" class='delete_btn delete'>Delete</a></td>
+                                                        </tr>
+                                                          <?php  
+                                                       
+                                                        echo "<tr id='spacing-row'>";
+                                                        echo "<td></td>";
+                                                        echo "</tr>";
+                                                        $i++;
+                                                        }
+                                                        // echo"</table>";
+                                                        // mysqli_free_result($result);
+                                                    }
+                                                    
+                                                    else
+                                                    {
+                                                    echo "null record";    
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    echo "thats problem is select $query.".mysqli_error($connect)."<br>";
+                                                }
+                                                ?>
+
                                 
                             </tbody>
                         </table>
                    
                 </div>
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Do you want delete data!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="../crud/delete_income.php" method='post'>   
+        <input type="hidden" name="delete_inc_id" id="delete_id" >    
+       
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" name="delete_data" class="btn btn-danger">Delete</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 
                  <!-- *************************** End Main****************************************** -->
                 
@@ -152,8 +196,23 @@ tbody .bg-blue{
             </div>
         </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+        $('.delete_btn').on('click',function(){
+            $('#deleteModal').modal('show');
+
+            $tr=$(this).closest('tr');
+            var data=$tr.children("td").map(function(){
+                return $(this).text();
+            }).get();
+            console.log(data)
+            $('#delete_id'),val(data[0]);
+        });
+
+    });
+</script>
 </body>
 </html>

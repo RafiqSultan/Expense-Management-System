@@ -84,7 +84,7 @@
                                                             if($sum==''){
                                                                 $sum=0;
                                                             }
-                                                            echo "<h1><span class='sar'>SAR</span>$sum</h1>";
+                                                            echo "<h1>$sum  <span class='sar'>SAR</span></h1>";
                                                             
                                                         ?>
                                                         
@@ -118,7 +118,7 @@
                                                             if($sum==''){
                                                                 $sum=0;
                                                             }
-                                                            echo "<h1><span class='sar'>SAR</span>$sum</h1>";
+                                                            echo "<h1>$sum  <span class='sar'>SAR</span></h1>";
                                                             
                                                         ?>
                                                     </div>
@@ -148,7 +148,7 @@
                                                             if($sum==''){
                                                                 $sum=0;
                                                             }
-                                                            echo "<h1><span class='sar'>SAR</span>$sum</h1>";
+                                                            echo "<h1>$sum  <span class='sar'>SAR</span></h1>";
                                                             
                                                         ?>
                                                     </div>
@@ -177,7 +177,7 @@
                                                             if($sum==''){
                                                                 $sum=0;
                                                             }
-                                                            echo "<h1><span class='sar'>SAR</span>$sum</h1>";
+                                                            echo "<h1>$sum  <span class='sar'>SAR</span></h1>";
                                                             
                                                         ?>
                                                     </div>
@@ -207,7 +207,7 @@
                                                             if($sum==''){
                                                                 $sum=0;
                                                             }
-                                                            echo '<h1><span style="color=#f00;">SAR</span>$sum</h1>';
+                                                            echo "<h1>$sum  <span class='sar'>SAR</span></h1>";
                                                             
                                                         ?>
                                                     </div>
@@ -230,7 +230,7 @@
                                                         <?php
                                                             include('../database/connect.php');
                                                             $userid=$_SESSION['user_id'];
-                                                            $query="SELECT SUM(group_id) AS count FROM  user_group WHERE user_id=$userid";
+                                                            $query="SELECT COUNT(group_id) AS count FROM  user_group WHERE user_id=$userid";
                                                             $res = mysqli_query($connect,$query); 
                                                             $row = mysqli_fetch_assoc($res); 
                                                             $sum = $row['count'];

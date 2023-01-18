@@ -111,37 +111,69 @@ tbody .bg-blue{
                                     <th scope="col">User Name</th>                    
                                     <th scope="col">Exp_name</th> 
                                     <th scope="col">Amount</th>    
-                                    <th scope="col">data</th>               
+                                    <th scope="col">date</th>               
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="bg-blue rs">            
-                                    <td class="pt-3 mt-1">1</td>
-                                    <td class="pt-3 mt-1">17</td>
-                                    <td class="pt-3">Anas alQahtan</td>
-                                    <td class="pt-3 mt-1">salary</td>
-                                    <td class="pt-3">1400</td>
-                                    <td class="pt-3">10/1/2023</td>
-                                   
-                                    
-                                </tr>
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                                <tr class="bg-blue rs">            
-                                    <td class="pt-3 mt-1">1</td>
-                                    <td class="pt-3 mt-1">17</td>
-                                    <td class="pt-3">fahd</td>
-                                    <td class="pt-3 mt-1">salary</td>
-                                    <td class="pt-3">1400</td>
-                                    <td class="pt-3">10/1/2023</td>
+                            <?php
+                                $i=1;
+                    
+                                include('../database/connect.php');
+                                
+                                  $query="SELECT * FROM expense";
+                                  if($result=mysqli_query($connect,$query))
+                                     {
+                                      if(mysqli_num_rows($result)>0)
+                                        {
+                                            
+                                         while($row=mysqli_fetch_array($result))
+                                                        {
+                                                            ?>
+                                                            <tr class='bg-blue'>
+                                                            <td> <?php echo $i ?> </td>
+                                                            <td> <?php echo $row['user_id']; ?> </td>
+                                                            <td> <?php
+                                                            $userid=$row['user_id'];
+                                                            
+                                                             $query="SELECT full_name FROM users where id=$userid";
+                                                             $res=mysqli_query($connect,$query);
+                                                             $username=mysqli_fetch_array($res);
+                                                             echo $username['full_name'];
+                                                            ?> </td>
+                                                            <td> <?php echo $row['item']; ?> </td>
+                                                            <td> <?php echo $row['amount']; ?> </td>
+                                                            <td> <?php echo $row['start_date'] .'  ___To___  '.$row['end_date']; ?> </td>
+                                                            
+                                                        </tr>
+                                                          <?php  
+                                                       
+                                                        echo "<tr id='spacing-row'>";
+                                                        echo "<td></td>";
+                                                        echo "</tr>";
+                                                        $i++;
+                                                        }
+                                                        // echo"</table>";
+                                                        // mysqli_free_result($result);
+                                                    }
+                                                    
+                                                    else
+                                                    {
+                                                    echo "null record";    
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    echo "thats problem is select $query.".mysqli_error($connect)."<br>";
+                                                }
+                                                ?>
 
-                                </tr>
                                 
                             </tbody>
                         </table>
                    
                 </div>
+<!-- Modal -->
+
 
                  <!-- *************************** End Main****************************************** -->
                 
@@ -150,8 +182,9 @@ tbody .bg-blue{
             </div>
         </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </body>
 </html>
