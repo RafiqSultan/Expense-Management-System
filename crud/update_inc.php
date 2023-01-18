@@ -103,9 +103,10 @@
                                    </select>
                                </div>
                                <div class="col-lg-6 col-md-12" >
-                                   <select name="type_inc" style="width:100%; padding:15px 0;border-radius: 8px;" value='.$row['type'].'>
-                                       <option value="saving">income</option>
+                                   <select name="type_inc" style="width:100%; padding:15px 0;border-radius: 8px;" >
+                                       <option value='.$row['type'].'>'.$row['type'].'</option>
                                        <option value="saving">Saving</option>
+                                       <option value="income">income</option>
                                       
                                    </select>
                                </div>
@@ -132,6 +133,8 @@
                    </div>';
                                           }
             }}}
+
+
             if( isset($_POST['submit']))
          {
             $name_inc=$_POST['name_inc'] ;
@@ -143,7 +146,10 @@
             $query="UPDATE income  SET name='$name_inc',descrption='$describe',amount='$amount',date='$date_inc',type='$type' WHERE id=$income_id";
             $qq=mysqli_query($connect,$query);
             
+           
          }
+
+        
                 
                 
                 ?>

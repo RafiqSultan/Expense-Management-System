@@ -20,7 +20,7 @@
                     <?php
                     session_start();
                     echo $_SESSION['full_name'];
-                    echo $_SESSION['user_id'];
+                 
                     ?>
                 </h4>
             </div> </div>
