@@ -44,8 +44,13 @@
     <div class="px-0 bg-light">
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
-                <img src="../userimg.png" width="40" height="40">
-                <h4>Anas Qahtan</h4>
+                <img src="../img/user.png" width="40" height="40">
+                <h4>
+                    <?php
+                    session_start();
+                    echo $_SESSION['full_name'];
+                 
+                    ?>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>
@@ -77,36 +82,51 @@
                 </div>
 
                 <!-- *************************** Start Main****************************************** -->
-                <div class="container rounded bg-white mt-5">
-                    <div class="row">
-                        <div class="col-md-3 border-right">
-                            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="../userimg.png" width="90">
-                                <span class="font-weight-bold">John Doe</span><span class="text-black-50">john_doe12@bbb.com</span><span>KSA</span></div>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="p-3 py-5">
-                                
-                                <div class="row mt-2">
-                                    <div class="col-md-6"><input type="text" class="form-control" placeholder="first name" value="John"></div>
-                                    <div class="col-md-6"><input type="text" class="form-control" value="Doe" placeholder="Doe"></div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-6"><input type="text" class="form-control" placeholder="Email" value="john_doe12@bbb.com"></div>
-                                    <div class="col-md-6"><input type="text" class="form-control" value="+19685969668" placeholder="Phone number"></div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-6"><input type="text" class="form-control" placeholder="address" value="D-113, right avenue block, CA,USA"></div>
-                                    <div class="col-md-6"><input type="text" class="form-control" value="USA" placeholder="Country"></div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-6"><input type="text" class="form-control" placeholder="Bank Name" value="Bank of America"></div>
-                                    <div class="col-md-6"><input type="text" class="form-control" value="043958409584095" placeholder="Account Number"></div>
-                                </div>
-                                <div class="mt-5 text-right"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+   <?php
+     include('../database/connect.php');
+    
+         $id=$_SESSION['user_id'];
+         $query="SELECT * FROM users WHERE id=$id";
+         if($result=mysqli_query($connect,$query))
+            {
+             if(mysqli_num_rows($result)>0)
+               {
+                   
+                while($row=mysqli_fetch_array($result))
+              
+   echo '
+ <div class="container rounded bg-white mt-5">
+ <div class="row">
+     <div class="col-md-3 border-right">
+         <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="../img/user.png" width="90">
+             <span class="font-weight-bold">John Doe</span><span class="text-black-50"></span></div>
+     </div>
+     <div class="col-md-9">
+         <div class="p-3 py-5">
+             
+             <div class="row mt-3">
+             <spanclass="mt-3">Name</spanclass=>
+                 <div class="col-md-8"><input type="text" class="form-control"  value='.$row['full_name'].'></div>
+             </div>
+
+
+             <div class="row mt-3">
+             <span class="mt-3">Email</span>
+                 <div class="col-md-8"><input type="text" class="form-control"  value='.$row['email'].'></div>
+             </div>
+
+             <div class="row mt-3">
+             <span class="mt-3">Phone</span>
+                 <div class="col-md-8"><input type="text" class="form-control"  value='.$row['phone'].'></div>
+             </div>
+           
+    
+ </div>
+</div>';
+}}
+
+?>
+               
 
                  <!-- *************************** End Main****************************************** -->
                 

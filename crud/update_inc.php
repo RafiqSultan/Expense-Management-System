@@ -37,12 +37,12 @@
                     </a>
                   
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="add_user_group.php">ADD MEMBER</a></li>
-                      <li><a class="dropdown-item" href="show_group_user.php">View MEMBERS</a></li>
-                      <li><a class="dropdown-item" href="user_all_group.php">All Group</a></li>
+                      <li><a class="dropdown-item" href="../php/add_user_group.php">ADD MEMBER</a></li>
+                      <li><a class="dropdown-item" href="../php/show_group_user.php">View MEMBERS</a></li>
+                      <li><a class="dropdown-item" href="../php/user_all_group.php">All Group</a></li>
                     </ul>
                   </div></span> </li></a>
-                <a href="user_profile.php"><li> <span class="ps-3 name">Profile</span> </li></a>
+                <a href="../php/user_profile.php"><li> <span class="ps-3 name">Profile</span> </li></a>
                 <a href="../index.php"><li> <span class="ps-3 name">Logout</span> </li></a>
             </ul>
             <div id="topnavbar">
