@@ -4,9 +4,8 @@ include('../database/connect.php');
 
 if(isset($_POST['delete_data'])){
 
-  $id = $_POST['delete_inc_id'];
-
-  $query = "DELETE FROM income WHERE id='$id'";
+  $item_id = $_POST['deleteIncid'];
+  $query = "DELETE FROM income WHERE id=$item_id";
   $query_run = mysqli_query($connect, $query);
 
   if($query_run)

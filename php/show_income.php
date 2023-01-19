@@ -149,6 +149,7 @@ tbody .bg-blue{
                                                         {
                                                             ?>
                                                             <tr class='bg-blue'>
+                                                            <td style="display:none;"> <?php echo $row['id']; ?> </td>    
                                                             <td> <?php echo $i ?> </td>
                                                             <td> <?php echo $row['name']; ?> </td>
                                                             <td> <?php echo $row['descrption'] ?> </td>
@@ -158,7 +159,7 @@ tbody .bg-blue{
                                                              <?php
                                                              echo "<td> <a href='../crud/update_inc.php?id=$row[0]' class='update'>Update</a></td>";
                                                              ?>
-                                                           <td> <a type="buttan" class='delete_btn delete'>Delete</a></td>
+                                                           <td> <a type="buttan" class='deleteInc_btn delete'>Delete</a></td>
                                                         </tr>
                                                           <?php  
                                                        
@@ -188,17 +189,15 @@ tbody .bg-blue{
                    
                 </div>
 <!-- Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deletemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Do you want delete data!</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="../crud/delete_income.php" method='post'>   
-        <input type="hidden" name="delete_inc_id" id="delete_id" >    
-       
-     
+      <form method='post' action="../crud/delete_income.php" >   
+        <input type="hidden" name="deleteIncid" id="deleteInc_id" >
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         <button type="submit" name="delete_data" class="btn btn-danger">Delete</button>
@@ -221,15 +220,15 @@ tbody .bg-blue{
 
     <script>
     $(document).ready(function(){
-        $('.delete_btn').on('click',function(){
-            $('#deleteModal').modal('show');
+        $('.deleteInc_btn').on('click',function(){
+            $('#deletemodal').modal('show');
 
             $tr=$(this).closest('tr');
             var data=$tr.children("td").map(function(){
                 return $(this).text();
             }).get();
             console.log(data)
-            $('#delete_id'),val(data[0]);
+            $('#deleteInc_id').val(data[0]);
         });
 
     });

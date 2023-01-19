@@ -150,6 +150,7 @@ tbody .bg-blue{
                                                         {
                                                             ?>
                                                             <tr class='bg-blue'>
+                                                            <td style="display:none;"> <?php echo $row['id']; ?> </td> 
                                                             <td> <?php echo $i ?> </td>
                                                             <td> <?php echo $row['item']; ?> </td>
                                                             <td> <?php echo $row['amount'] ?> </td>
@@ -159,7 +160,7 @@ tbody .bg-blue{
                                                              <?php
                                                              echo "<td> <a href='../crud/update_exp.php?id=$row[0]' class='update'>Update</a></td>";
                                                              ?>
-                                                           <td><?php echo $row['id']; ?> <a type="buttan" class='delete_exp_btn delete'>Delete</a></td>
+                                                           <td> <a type="buttan" class='deleteExp_btn delete'>Delete</a></td>
                                                         </tr>
                                                           <?php  
                                                        
@@ -197,7 +198,7 @@ tbody .bg-blue{
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="../crud/delete_exp.php" method='post'>   
-        <input type="hidden" name="delete_exp_id" id="delete_exp_id" >    
+        <input type="hidden" name="deleteExpid" id="deleteExp_id" >    
        
      
       <div class="modal-footer">
@@ -222,7 +223,7 @@ tbody .bg-blue{
 
     <script>
     $(document).ready(function(){
-        $('.delete_exp_btn').on('click',function(){
+        $('.deleteExp_btn').on('click',function(){
             $('#deleteModal').modal('show');
 
             $tr=$(this).closest('tr');
@@ -230,7 +231,7 @@ tbody .bg-blue{
                 return $(this).text();
             }).get();
             console.log(data)
-            $('#delet_exp_id'),val(data[0]);
+            $('#deleteExp_id').val(data[0]);
         });
 
     });
