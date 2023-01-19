@@ -7,10 +7,11 @@
         $start_date=$_POST['start_date'] ;
         $end_date=$_POST['end_date'] ;
         $userid=$_SESSION['user_id'];
-       
+    
         $query= "INSERT INTO  expense (item, amount, start_date,end_date, user_id)
         VALUES
-        ('$item' , '$amount' , '$start_date' ,' $end_date' ,$userid)";
+        ('$item' , '$amount' , '$start_date' ,'$end_date',$userid)";
+        echo $query;
         if($result=mysqli_query($connect,$query))
         {
                    
