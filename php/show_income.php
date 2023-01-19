@@ -65,7 +65,7 @@ tbody .bg-blue{
     line-height: 30px;
     color: #fff;
     font-weight: 500;
-    margin-left: 10px;
+    margin-left: -140px;
 }
 @media(max-width:575px){
     .container{

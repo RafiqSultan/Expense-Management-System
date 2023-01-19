@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>user_dashbord</title>
+    <title>Admin</title>
     <link rel="stylesheet" href="../css/style.css">
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     
@@ -15,9 +15,20 @@
     <div class="px-0 bg-light">
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
-                <img src="../img/user.png" width="40" height="40">
+            <img src="../img/user.png" width="40" height="40">
                 <h4>Admin</h4>
             </div> </div>
+               
+            <!-- </div class="adminstyle">
+            <div>
+            <img src="../img/user.png" width="40" height="40">
+            </div>
+           <div>
+           <h4>Rafiq Sultan</h4>
+              <span>Admin</span>
+           </div>
+           
+        </div> -->
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>
         <div class="d-md-flex">
@@ -28,7 +39,7 @@
                 <a href="all_expense.php"><li>  <span class="ps-3 name">ALL EXPENSE</span> </li></a>
                 <a href="all_group.php"><li>  <span class="ps-3 name">ALL GROUP</span> </li></a>      
                 <a href="add_group.php"><li> <span class="ps-3 name">ADD GROUP</span> </li></a>
-                <a href="../index.php"><li> <span class="ps-3 name">Logout</span> </li></a>
+                <a href="index.php"><li> <span class="ps-3 name">Logout</span> </li></a>
             </ul>
             <div id="topnavbar">
                 <div class="topnav mb-3">

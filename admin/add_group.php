@@ -92,7 +92,7 @@ tbody .bg-blue{
                 <a href="all_expense.php"><li>  <span class="ps-3 name">ALL EXPENSE</span> </li></a>
                 <a href="all_group.php"><li >  <span class="ps-3 name">ALL GROUP</span> </li></a>      
                 <a href="add_group.php"><li class="active"> <span class="ps-3 name">ADD GROUP</span> </li></a>
-                <a href="../index.php"><li> <span class="ps-3 name">Logout</span> </li></a>
+                <a href="index.php"><li> <span class="ps-3 name">Logout</span> </li></a>
             </ul>
             <div id="topnavbar">
                 <div class="topnav mb-3">
