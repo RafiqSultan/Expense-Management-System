@@ -97,13 +97,42 @@
                                     <label>Amount</label>
                                 </div>
                             </div>
+                            <?php
+                             $userid=$_SESSION['user_id'];
+                             $query ="SELECT type from users WHERE id=$userid";
+                            $result = $connect->query($query);
+                            if($result->num_rows> 0){
+                                $type=$result->fetch_assoc();
+                            if( ($type['type']=='leader') || ($type['type']=='member')){
+                            
+                            ?>
                             <div class="col-lg-6 col-md-12" >
-                                <select style="width:100%; padding:15px 0;border-radius: 8px;">
-                                    <option value="">Income into Group</option>
-                                    <option value="">G101</option>
-                                    <option value="">G102</option>
+                                <select style="width:100%; padding:15px 0;border-radius: 8px;" name="group_name">
+                                <option value="">Income into Group</option>
+                                <?php
+                                include('../database/connect.php');
+                                $userid=$_SESSION['user_id'];
+                                $query ="SELECT id,name FROM  groups inner join user_group on groups.id=user_group.group_id WHERE user_group.user_id=$userid";
+                                $result = $connect->query($query);
+                                if($result->num_rows> 0){
+                                    while($optionData=$result->fetch_assoc()){
+                                    $option =$optionData['name'];
+                                    $group_id=$optionData['id'];
+                                    ?>
+                                   
+                                   <option value="<?php echo $group_id; ?>"><?php echo $option;?></option>
+                                   <?php
+                                    }}
+                                ?> 
                                 </select>
                             </div>
+                        <?php
+                            }
+                        }
+                                ?>
+                            
+                           
+
                             <div class="col-lg-6 col-md-12" >
                                 <select name="type_inc" style="width:100%; padding:15px 0;border-radius: 8px;">
                                     <option value="income">Income</option>
@@ -126,13 +155,14 @@
                                 <button class="btn btn-secondary text-uppercase" type="button">Reset</button>
                             </div>
                             </div>
-                            
+                           
                             
                         </form>
+                       
                         </div>
                     </div>
                 </div>
-
+               
                  <!-- *************************** End Main****************************************** -->
                 
                    

@@ -7,10 +7,11 @@
         $date_inc=$_POST['date_inc'] ;
         $userid=$_SESSION['user_id'];
         $type=$_POST['type_inc'];
+        $group_id=$_POST['group_name'];
        
-        $query= "INSERT INTO  income (name, descrption, date, amount,type, user_id)
+        $query= "INSERT INTO  income (name, descrption, date, amount,type, user_id,group_id)
         VALUES
-        ('$name_inc' , '$describe' , '$date_inc' , $amount , '$type' ,$userid)";
+        ('$name_inc' , '$describe' , '$date_inc' , $amount , '$type' ,$userid,$group_id)";
         if($result=mysqli_query($connect,$query))
         {
                    
