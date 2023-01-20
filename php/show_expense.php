@@ -106,9 +106,27 @@ tbody .bg-blue{
                     </a>
                   
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="add_user_group.php">ADD MEMBER</a></li>
-                      <li><a class="dropdown-item" href="show_group_user.php">View MEMBERS</a></li>
-                      <li><a class="dropdown-item" href="user_all_group.php">All Group</a></li>
+                    <?php
+                            include('../database/connect.php');
+                            $userid=$_SESSION['user_id'];
+                                  $query="SELECT type FROM users WHERE id=$userid";
+                                  if($result=mysqli_query($connect,$query))
+                                     {
+                                        
+                                        $row = mysqli_fetch_assoc($result);                                     
+                                        $type = $row['type'];
+
+                                        if($type=='leader'){
+                                            echo '<li><a class="dropdown-item" href="add_user_group.php">ADD MEMBER</a></li>';
+                                            echo '<li><a class="dropdown-item" href="show_group_user.php">View MEMBERS</a></li>';
+                                            echo '<li><a class="dropdown-item" href="user_all_group.php">All Group</a></li>';
+                                        }
+                                        else{
+                                            echo '<li><a class="dropdown-item" href="show_group_user.php">View MEMBERS</a></li>';
+                                            echo '<li><a class="dropdown-item" href="user_all_group.php">All Group</a></li>';
+                                        }
+                                     }
+                        ?>
                     </ul>
                   </div></span> </li></a>
                 <a href="user_profile.php"><li> <span class="ps-3 name">Profile</span> </li></a>

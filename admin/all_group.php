@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All user</title>
+    <title>All group</title>
     <link rel="stylesheet" href="../css/style.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
@@ -79,7 +79,7 @@ tbody .bg-blue{
     <div class="px-0 bg-light">
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
-                <img src="../userimg.png" width="40" height="40">
+                <img src="../img/user.png" width="40" height="40">
                 <h4>Admin</h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
@@ -107,7 +107,7 @@ tbody .bg-blue{
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>                    
-                                    <th scope="col">ID</th>                    
+                                    <th scope="col">Group_ID</th>                    
                                     <th scope="col">Name</th>                    
                                     <th scope="col">Capacity</th> 
                                     <th scope="col">Leader</th>
@@ -116,34 +116,80 @@ tbody .bg-blue{
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="bg-blue rs">            
-                                    <td class="pt-3 mt-1">1</td>
-                                    <td class="pt-3 mt-1">2</td>
-                                    <td class="pt-3 mt-1">G101</td>
-                                    <td class="pt-3 mt-1">25</td>
-                                    <td class="pt-3">Anas alQahtan</td>
-                                    <td class="pt-3">10</td>
-                                    <td> <a href="" class="update">Update</a><a href="" class="delete">Delete</a></td>
-                                    
-                                </tr>
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                                <tr class="bg-blue rs">            
-                                    <td class="pt-3 mt-1">1</td>
-                                    <td class="pt-3 mt-1">2</td>
-                                    <td class="pt-3 mt-1">G101</td>
-                                    <td class="pt-3 mt-1">25</td>
-                                    <td class="pt-3">Fahd</td>
-                                    <td class="pt-3">10</td>
-                                    <td> <a href="" class="update">Update</a><a href="" class="delete">Delete</a></td>
-                                    
-                                </tr>
+                            <tbody>
+                                <?php
+                                $i=1;
+                    
+                                include('../database/connect.php');
+                                
+                                  $query="SELECT * FROM income WHERE user_id=$userid and type='income'";
+                                  if($result=mysqli_query($connect,$query))
+                                     {
+                                      if(mysqli_num_rows($result)>0)
+                                        {
+                                            
+                                         while($row=mysqli_fetch_array($result))
+                                                        {
+                                                            ?>
+                                                            <tr class='bg-blue'>
+                                                            <td style="display:none;"> <?php echo $row['id']; ?> </td>    
+                                                            <td> <?php echo $i ?> </td>
+                                                            <td> <?php echo $row['name']; ?> </td>
+                                                            <td> <?php echo $row['descrption'] ?> </td>
+                                                            <td> <?php echo $row['amount']; ?> </td>
+                                                            <td> <?php echo $row['date']; ?> </td>
+                                                            <td> <?php echo $row['group_id']; ?> </td>
+                                                             <?php
+                                                             echo "<td> <a href='../crud/update_inc.php?id=$row[0]' class='update'>Update</a></td>";
+                                                             ?>
+                                                           <td> <a type="buttan" class='deleteInc_btn delete'>Delete</a></td>
+                                                        </tr>
+                                                          <?php  
+                                                       
+                                                        echo "<tr id='spacing-row'>";
+                                                        echo "<td></td>";
+                                                        echo "</tr>";
+                                                        $i++;
+                                                        }
+                                                        // echo"</table>";
+                                                        // mysqli_free_result($result);
+                                                    }
+                                                    
+                                                    else
+                                                    {
+                                                    echo "null record";    
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    echo "thats problem is select $query.".mysqli_error($connect)."<br>";
+                                                }
+                                                ?>
+
                                 
                             </tbody>
                         </table>
                    
                 </div>
+<!-- Modal -->
+<div class="modal fade" id="deletemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Do you want delete data!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method='post' action="../crud/delete_income.php" >   
+        <input type="hidden" name="deleteIncid" id="deleteInc_id" >
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" name="delete_data" class="btn btn-danger">Delete</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 
                  <!-- *************************** End Main****************************************** -->
                 
@@ -152,8 +198,23 @@ tbody .bg-blue{
             </div>
         </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+        $('.deleteInc_btn').on('click',function(){
+            $('#deletemodal').modal('show');
+
+            $tr=$(this).closest('tr');
+            var data=$tr.children("td").map(function(){
+                return $(this).text();
+            }).get();
+            console.log(data)
+            $('#deleteInc_id').val(data[0]);
+        });
+
+    });
+</script>
 </body>
 </html>

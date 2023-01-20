@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Expense</title>
+    <title>Show All Group</title>
     <link rel="stylesheet" href="../css/style.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
@@ -83,7 +83,11 @@ tbody .bg-blue{
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
                 <img src="../userimg.png" width="40" height="40">
-                <h4>Anas Qahtan</h4>
+                <h4>  <?php
+                    session_start();
+                    echo $_SESSION['full_name'];
+                   
+                    ?></h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>
@@ -94,16 +98,34 @@ tbody .bg-blue{
                 <a href="show_income.php"><li >  <span class="ps-3 name">View Income</span> </li></a>
                 <a href="show_saving.php"><li>  <span class="ps-3 name">View Saving</span> </li></a>
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
-                <a href="show_expense.php"><li class="active">  <span class="ps-3 name">View Expense</span> </li></a>
+                <a href="show_expense.php"><li>  <span class="ps-3 name">View Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name"><div class="dropdown">
-                    <a class=" dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class=" dropdown-toggle active" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                       Group
                     </a>
                   
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="add_user_group.php">ADD MEMBER</a></li>
-                      <li><a class="dropdown-item" href="show_group_user.php">View MEMBERS</a></li>
-                      <li><a class="dropdown-item" href="user_all_group.php">All Group</a></li>
+                    <?php
+                            include('../database/connect.php');
+                            $userid=$_SESSION['user_id'];
+                                  $query="SELECT type FROM users WHERE id=$userid";
+                                  if($result=mysqli_query($connect,$query))
+                                     {
+                                        
+                                        $row = mysqli_fetch_assoc($result);                                     
+                                        $type = $row['type'];
+
+                                        if($type=='leader'){
+                                            echo '<li><a class="dropdown-item" href="add_user_group.php">ADD MEMBER</a></li>';
+                                            echo '<li><a class="dropdown-item" href="show_group_user.php">View MEMBERS</a></li>';
+                                            echo '<li><a class="dropdown-item" href="user_all_group.php">All Group</a></li>';
+                                        }
+                                        else{
+                                            echo '<li><a class="dropdown-item" href="show_group_user.php">View MEMBERS</a></li>';
+                                            echo '<li><a class="dropdown-item" href="user_all_group.php">All Group</a></li>';
+                                        }
+                                     }
+                        ?>
                     </ul>
                   </div></span> </li></a>
                 <a href="user_profile.php"><li> <span class="ps-3 name">Profile</span> </li></a>
@@ -122,35 +144,78 @@ tbody .bg-blue{
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>                                    
-                                    <th scope="col">ID</th>                    
+                                    <th scope="col">Group_ID</th>                    
                                     <th scope="col">Group Name</th>
+                                    <th scope="col">Capacity</th>
+                                    <th scope="col">Member</th>
                                                  
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="bg-blue">            
-                                    <td class="pt-3 mt-1">1</td>
-                                    <td class="pt-3">16</td>
-                                    <td class="pt-3 mt-1">G101</td>
-                                </tr>
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                               
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                                <tr class="bg-blue">            
-                                    <td class="pt-3 mt-1">1</td>
-                                    <td class="pt-3">16</td>
-                                    <td class="pt-3 mt-1">G101</td>
-                                </tr>
+                            <?php
+                                $i=1;
+                    
+                                include('../database/connect.php');
+                                $userid=$_SESSION['user_id'];
+      
+                                $query ="SELECT id,name,capacity FROM  groups inner join user_group on groups.id=user_group.group_id WHERE user_group.user_id=$userid";
+                              
+                                 
+                                if($result=mysqli_query($connect,$query))
+                                     {
+                                      if(mysqli_num_rows($result)>0)
+                                        {
+                                            
+                                         while($row=mysqli_fetch_array($result))
+                                                        {
+                                                            ?>
+                                                            <tr class='bg-blue'>   
+                                                            <td> <?php echo $i ?> </td>
+                                                            <td> <?php echo $row['id']; ?> </td>
+                                                            <td> <?php echo $row['name'] ?> </td>
+                                                            <td> <?php echo $row['capacity'] ?> </td>
+                                                            <td> <?php 
+                                                            $n=$row['id'];
+                                                            $sql="SELECT COUNT(user_id) as count from user_group where group_id IN($n)";
+                                                            // echo $sql;
+                                                            $res=mysqli_query($connect,$sql);
+                                                            $number=mysqli_fetch_array($res);
+                                                            echo $number['count'];
+                                                            ?>
+                                                            
+                                                            
+                                                             </td>
+                                                            
+                                                        </tr>
+                                                          <?php  
+                                                       
+                                                        echo "<tr id='spacing-row'>";
+                                                        echo "<td></td>";
+                                                        echo "</tr>";
+                                                        $i++;
+                                                        }
+                                                        // echo"</table>";
+                                                        // mysqli_free_result($result);
+                                                    }
+                                                    
+                                                    else
+                                                    {
+                                                    echo "null record";    
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    echo "thats problem is select $query.".mysqli_error($connect)."<br>";
+                                                }
+                                                ?>
+
                                 
                             </tbody>
                         </table>
                    
                 </div>
-        
+
+
 
                  <!-- *************************** End Main****************************************** -->
                 
@@ -159,9 +224,8 @@ tbody .bg-blue{
             </div>
         </div>
     </div>
- 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

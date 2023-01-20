@@ -163,21 +163,17 @@ tbody .bg-blue{
              {
                 $q= "INSERT INTO  user_group(user_id ,group_id) VALUES ($leader,$last_group_id)";
                 mysqli_query($connect,$q);
+                header("location:admin_dashboard.php");  
               }
         }
 
 
-        header("location:admin_dashboard.php");  
+       
         }
  
     else{
         echo "thats problem is select $query.".mysqli_error($connect)."<br>";
         }
-           
-    
-    
-
-    
      ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>

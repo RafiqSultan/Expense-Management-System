@@ -83,7 +83,11 @@ tbody .bg-blue{
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
                 <img src="../userimg.png" width="40" height="40">
-                <h4>Anas Qahtan</h4>
+                <h4>  <?php
+                    session_start();
+                    echo $_SESSION['full_name'];
+                   
+                    ?></h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>
@@ -101,9 +105,27 @@ tbody .bg-blue{
                     </a>
                   
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="add_user_group.php">ADD MEMBER</a></li>
-                      <li><a class="dropdown-item" href="show_group_user.php">View MEMBERS</a></li>
-                      <li><a class="dropdown-item" href="user_all_group.php">All Group</a></li>
+                    <?php
+                            include('../database/connect.php');
+                            $userid=$_SESSION['user_id'];
+                                  $query="SELECT type FROM users WHERE id=$userid";
+                                  if($result=mysqli_query($connect,$query))
+                                     {
+                                        
+                                        $row = mysqli_fetch_assoc($result);                                     
+                                        $type = $row['type'];
+
+                                        if($type=='leader'){
+                                            echo '<li><a class="dropdown-item" href="add_user_group.php">ADD MEMBER</a></li>';
+                                            echo '<li><a class="dropdown-item" href="show_group_user.php">View MEMBERS</a></li>';
+                                            echo '<li><a class="dropdown-item" href="user_all_group.php">All Group</a></li>';
+                                        }
+                                        else{
+                                            echo '<li><a class="dropdown-item" href="show_group_user.php">View MEMBERS</a></li>';
+                                            echo '<li><a class="dropdown-item" href="user_all_group.php">All Group</a></li>';
+                                        }
+                                     }
+                        ?>
                     </ul>
                   </div></span> </li></a>
                 <a href="user_profile.php"><li> <span class="ps-3 name">Profile</span> </li></a>
