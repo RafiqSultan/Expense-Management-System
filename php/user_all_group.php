@@ -99,14 +99,24 @@ tbody .bg-blue{
                 <a href="show_saving.php"><li>  <span class="ps-3 name">View Saving</span> </li></a>
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name">View Expense</span> </li></a>
+                <?php
+                include('../database/connect.php');
+                             $userid=$_SESSION['user_id'];
+                             $query ="SELECT type from users WHERE id=$userid";
+                            $result = $connect->query($query);
+                            if($result->num_rows> 0){
+                                $type=$result->fetch_assoc();
+                            if( ($type['type']=='leader') || ($type['type']=='member')){
+                            
+                            ?>
                 <a href="show_expense.php"><li>  <span class="ps-3 name"><div class="dropdown">
-                    <a class=" dropdown-toggle active" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class=" dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                       Group
                     </a>
                   
                     <ul class="dropdown-menu">
                     <?php
-                            include('../database/connect.php');
+                            
                             $userid=$_SESSION['user_id'];
                                   $query="SELECT type FROM users WHERE id=$userid";
                                   if($result=mysqli_query($connect,$query))
@@ -128,6 +138,9 @@ tbody .bg-blue{
                         ?>
                     </ul>
                   </div></span> </li></a>
+                  <?php
+                                    }}
+                                ?> 
                 <a href="user_profile.php"><li> <span class="ps-3 name">Profile</span> </li></a>
                 <a href="../index.php"><li> <span class="ps-3 name">Logout</span> </li></a>
             </ul>
