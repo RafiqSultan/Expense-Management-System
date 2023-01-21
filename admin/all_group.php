@@ -109,7 +109,8 @@ tbody .bg-blue{
                                     <th scope="col">#</th>                    
                                     <th scope="col">Group_ID</th>                    
                                     <th scope="col">Name</th>                    
-                                    <th scope="col">Capacity</th> 
+                                    <th scope="col">Capacity</th>
+                                    <th scope="col">Date_Create</th>  
                                     <th scope="col">Leader</th>
                                     <th scope="col">Number of User</th> 
                                     <th scope="col">Action</th>                   
@@ -122,23 +123,37 @@ tbody .bg-blue{
                     
                                 include('../database/connect.php');
                                 
-                                  $query="SELECT * FROM income WHERE user_id=$userid and type='income'";
+                                  $query="SELECT groups.id,groups.name,groups.capacity,groups.date_create,users.full_name 
+                                   FROM groups
+                                  inner join user_group on user_group.group_id=groups.id
+                                  inner join users on users.id=user_group.user_id 
+                                  WHERE users.type='leader'
+                                  group by user_group.group_id";
                                   if($result=mysqli_query($connect,$query))
                                      {
                                       if(mysqli_num_rows($result)>0)
                                         {
+                                           
                                             
                                          while($row=mysqli_fetch_array($result))
                                                         {
+                                                            $groupid=$row['id'];
+                                                           
+                                                            $sql="SELECT COUNT(user_id) as count from user_group where group_id=$groupid";
+                                                                $res = mysqli_query($connect, $sql);
+                                                                $count = mysqli_fetch_assoc($res);
+                                                          
+                                                    
                                                             ?>
                                                             <tr class='bg-blue'>
-                                                            <td style="display:none;"> <?php echo $row['id']; ?> </td>    
+                                                            
                                                             <td> <?php echo $i ?> </td>
-                                                            <td> <?php echo $row['name']; ?> </td>
-                                                            <td> <?php echo $row['descrption'] ?> </td>
-                                                            <td> <?php echo $row['amount']; ?> </td>
-                                                            <td> <?php echo $row['date']; ?> </td>
-                                                            <td> <?php echo $row['group_id']; ?> </td>
+                                                            <td> <?php echo $row['id']; ?> </td>
+                                                            <td> <?php echo $row['name'] ?> </td>
+                                                            <td> <?php echo $row['capacity']; ?> </td>
+                                                            <td> <?php echo $row['date_create']; ?> </td>
+                                                            <td> <?php echo $row['full_name']; ?> </td>
+                                                            <td> <?php echo $count['count']; ?> </td>
                                                              <?php
                                                              echo "<td> <a href='../crud/update_inc.php?id=$row[0]' class='update'>Update</a></td>";
                                                              ?>
