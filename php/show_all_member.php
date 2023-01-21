@@ -159,6 +159,7 @@ tbody .bg-blue{
                                     <th scope="col">#</th>                                    
                                     <th scope="col">ID</th>                    
                                     <th scope="col">User Name</th>
+                                    <th scope="col">Type</th>
                                     <th scope="col">Amount</th> 
                                     <th scope="col">Group</th>
                                     <th scope="col">Status</th>
@@ -168,30 +169,35 @@ tbody .bg-blue{
                             <tbody>
                             <?php
                                 $i=1;
-                    
+                                    
                                 include('../database/connect.php');
                                 $userid=$_SESSION['user_id'];
-                                $query="SELECT groups.id,groups.name,users.id,users.full_name,income.amount from groups
-                                inner join users on groups.id=user_group.group_id WHERE user_group.user_id=$userid
-                                inner join user_group on users.id=user_group.user_id WHERE  user_group.group_id =groups.id
-                                inner join income on user_group.user_id=income.user_id where income.user_id=users.id";
-                    
-                                if($result=mysqli_query($connect,$query))
-                                     {
-                                      if(mysqli_num_rows($result)>0)
-                                        {
-                                            
-                                         while($row=mysqli_fetch_array($result))
-                                                        {
-                                                           
-                                                                              
+                                $query ="SELECT id FROM  groups inner join user_group on groups.id=user_group.group_id WHERE user_group.user_id=$userid";
+                                $result = $connect->query($query);
+                                if($result->num_rows> 0){
+                                    while($g_id=$result->fetch_assoc()){ 
+                                        $all_group=$g_id['id'];
+                                        $sql="SELECT ug.user_id,u.type,u.full_name,ug.group_id,g.name ,SUM(i.amount) AS amount
+                                        from user_group ug
+                                        inner join users u on ug.user_id=u.id
+                                        inner join groups g on ug.group_id=g.id
+                                        inner join income i on i.user_id=ug.user_id AND i.group_id=ug.group_id
+                                        where ug.group_id IN($all_group)
+                                        group by ug.user_id,u.full_name,ug.group_id,g.name";
+                                         $res = $connect->query($sql);
+                                         if($res->num_rows> 0){
+                                             while($row=$res->fetch_assoc()){ 
+                                                
+                                                print_r($row);
+                                                echo "</br>";
                                                             ?>
 
                                                             <tr class='bg-blue'>
                                                             <td style="display:none;"> <?php echo $row['id']; ?> </td> 
                                                             <td> <?php echo $i ?> </td>
-                                                            <td> <?php echo $row['id']; ?> </td>
+                                                            <td> <?php echo $row['user_id']; ?> </td>
                                                             <td> <?php echo $row['full_name']; ?> </td>
+                                                            <td> <?php echo $row['type']; ?> </td>
                                                             <td> <?php echo $row['amount'] ?> </td>
                                                             <td> <?php echo $row['name'] ?> </td>
                                     
@@ -207,14 +213,18 @@ tbody .bg-blue{
                                                        echo "</tr>";
                                                        $i++;
                                                       
-                                                 
-                                    }
-                                }}
-                                   
+                                                    }
+
+                                                } 
+                                               
+                                            
+                                        }}         
+                               
                                                 else
                                                 {
                                                     echo "thats problem is select $query.".mysqli_error($connect)."<br>";
                                                 }
+                            
                                                 ?>
 
                                 

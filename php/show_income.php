@@ -178,6 +178,20 @@ tbody .bg-blue{
                                             
                                          while($row=mysqli_fetch_array($result))
                                                         {
+                                                            
+                                                            $group_id=$row['group_id'];
+                                                            
+                                                            if($group_id !=null){
+                                                                $sql ="SELECT name FROM  groups  WHERE id=$group_id";
+                                                                
+                                                                $res = $connect->query($sql);
+                                                                if($res->num_rows> 0){
+                                                                    while($g_name=$res->fetch_assoc()){
+                                                                        $group_id=$g_name['name'];
+                                                                      
+                                                                }}
+                                                             }
+                                                            
                                                             ?>
                                                             <tr class='bg-blue'>
                                                             <td style="display:none;"> <?php echo $row['id']; ?> </td>    
@@ -186,7 +200,7 @@ tbody .bg-blue{
                                                             <td> <?php echo $row['descrption'] ?> </td>
                                                             <td> <?php echo $row['amount']; ?> </td>
                                                             <td> <?php echo $row['date']; ?> </td>
-                                                            <td> <?php echo $row['group_id']; ?> </td>
+                                                            <td> <?php echo $group_id; ?> </td>
                                                              <?php
                                                              echo "<td> <a href='../crud/update_inc.php?id=$row[0]' class='update'>Update</a></td>";
                                                              ?>
