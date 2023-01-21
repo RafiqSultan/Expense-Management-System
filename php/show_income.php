@@ -126,12 +126,12 @@ tbody .bg-blue{
 
                                         if($type=='leader'){
                                             echo '<li><a class="dropdown-item" href="add_user_group.php">ADD MEMBER</a></li>';
-                                            echo '<li><a class="dropdown-item" href="show_group_user.php">View MEMBERS</a></li>';
-                                            echo '<li><a class="dropdown-item" href="user_all_group.php">All Group</a></li>';
+                                            echo '<li><a class="dropdown-item" href="show_all_member.php">View MEMBERS</a></li>';
+                                            echo '<li><a class="dropdown-item" href="show_all_group.php">All Group</a></li>';
                                         }
                                         else{
-                                            echo '<li><a class="dropdown-item" href="show_group_user.php">View MEMBERS</a></li>';
-                                            echo '<li><a class="dropdown-item" href="user_all_group.php">All Group</a></li>';
+                                            echo '<li><a class="dropdown-item" href="show_all_member.php">View MEMBERS</a></li>';
+                                            echo '<li><a class="dropdown-item" href="show_all_group.php">All Group</a></li>';
                                         }
                                      }
                         ?>

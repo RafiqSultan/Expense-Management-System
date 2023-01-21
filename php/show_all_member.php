@@ -82,7 +82,7 @@ tbody .bg-blue{
     <div class="px-0 bg-light">
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
-                <img src="../userimg.png" width="40" height="40">
+                <img src="../img/user.png" width="40" height="40">
                 <h4>  <?php
                     session_start();
                     echo $_SESSION['full_name'];
@@ -98,7 +98,7 @@ tbody .bg-blue{
                 <a href="show_income.php"><li >  <span class="ps-3 name">View Income</span> </li></a>
                 <a href="show_saving.php"><li>  <span class="ps-3 name">View Saving</span> </li></a>
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
-                <a href="show_expense.php"><li class="active">  <span class="ps-3 name">View Expense</span> </li></a>
+                <a href="show_expense.php"><li >  <span class="ps-3 name">View Expense</span> </li></a>
                 <?php
                 include('../database/connect.php');
                              $userid=$_SESSION['user_id'];
@@ -109,8 +109,8 @@ tbody .bg-blue{
                             if( ($type['type']=='leader') || ($type['type']=='member')){
                             
                             ?>
-                <a href="show_expense.php"><li>  <span class="ps-3 name"><div class="dropdown">
-                    <a class=" dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                <a href="show_expense.php " class="avtive"><li >  <span class="ps-3 name"><div class="dropdown">
+                    <a class=" dropdown-toggle " href="#" data-bs-toggle="dropdown" aria-expanded="false">
                       Group
                     </a>
                   
@@ -127,12 +127,12 @@ tbody .bg-blue{
 
                                         if($type=='leader'){
                                             echo '<li><a class="dropdown-item" href="add_user_group.php">ADD MEMBER</a></li>';
-                                            echo '<li><a class="dropdown-item" href="show_group_user.php">View MEMBERS</a></li>';
-                                            echo '<li><a class="dropdown-item" href="user_all_group.php">All Group</a></li>';
+                                            echo '<li><a class="dropdown-item" href="show_all_member.php">View MEMBERS</a></li>';
+                                            echo '<li><a class="dropdown-item" href="show_all_group.php">All Group</a></li>';
                                         }
                                         else{
-                                            echo '<li><a class="dropdown-item" href="show_group_user.php">View MEMBERS</a></li>';
-                                            echo '<li><a class="dropdown-item" href="user_all_group.php">All Group</a></li>';
+                                            echo '<li><a class="dropdown-item" href="show_all_member.php">View MEMBERS</a></li>';
+                                            echo '<li><a class="dropdown-item" href="show_all_group.php">All Group</a></li>';
                                         }
                                      }
                         ?>
@@ -166,41 +166,83 @@ tbody .bg-blue{
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="bg-blue">            
-                                    <td class="pt-3 mt-1">1</td>
-                                    <td class="pt-3">16</td>
-                                    <td class="pt-3 mt-1">Anas qahtan</td>
-                                    <td class="pt-3 mt-1">100</td>
-                                    <td class="pt-3 mt-1">G101</td>
-                                    <td class="pt-3 mt-1"><i class="far fa-circle-check" style="color:rgb(10, 167, 18) ; font-size: 24px;"></i></td>
-                                    <td><a href="" class="delete">Delete</a></td>
+                            <?php
+                                $i=1;
+                    
+                                include('../database/connect.php');
+                                $userid=$_SESSION['user_id'];
+                                $query="SELECT groups.id,groups.name,users.id,users.full_name,income.amount from groups
+                                inner join users on groups.id=user_group.group_id WHERE user_group.user_id=$userid
+                                inner join user_group on users.id=user_group.user_id WHERE  user_group.group_id =groups.id
+                                inner join income on user_group.user_id=income.user_id where income.user_id=users.id";
+                    
+                                if($result=mysqli_query($connect,$query))
+                                     {
+                                      if(mysqli_num_rows($result)>0)
+                                        {
+                                            
+                                         while($row=mysqli_fetch_array($result))
+                                                        {
+                                                           
+                                                                              
+                                                            ?>
+
+                                                            <tr class='bg-blue'>
+                                                            <td style="display:none;"> <?php echo $row['id']; ?> </td> 
+                                                            <td> <?php echo $i ?> </td>
+                                                            <td> <?php echo $row['id']; ?> </td>
+                                                            <td> <?php echo $row['full_name']; ?> </td>
+                                                            <td> <?php echo $row['amount'] ?> </td>
+                                                            <td> <?php echo $row['name'] ?> </td>
                                     
-                                    
-                                </tr>
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                               
-                                <tr id="spacing-row">
-                                    <td></td>
-                                </tr>
-                                <tr class="bg-blue">            
-                                    <td class="pt-3 mt-1">1</td>
-                                    <td class="pt-3">16</td>
-                                    <td class="pt-3 mt-1">Anas qahtan</td>
-                                    <td class="pt-3 mt-1">100</td>
-                                    <td class="pt-3 mt-1">G101</td>
-                                    <td class="pt-3 mt-1"><i class="far fa-circle-check" style="color:rgb(10, 167, 18) ; font-size: 24px;"></i></td>
-                                    <td><a href="" class="delete">Delete</a></td>
-                                    
-                                    
-                                </tr>
+                                                            <td class="pt-3 mt-1"><i class="far fa-circle-check" style="color:rgb(10, 167, 18) ; font-size: 24px;"></i></td>
+                                                            <td class="pt-3 mt-1"><i class="fa fa-circle-exclamation" style="color:rgb(235, 35,20) ; font-size: 24px;"></i></td>
+                                                             
+                                                           <td> <a type="buttan" class='deleteExp_btn delete'>Delete</a></td>
+                                                        </tr>
+                                                          <?php   
+
+                                                       echo "<tr id='spacing-row'>";
+                                                       echo "<td></td>";
+                                                       echo "</tr>";
+                                                       $i++;
+                                                      
+                                                 
+                                    }
+                                }}
+                                   
+                                                else
+                                                {
+                                                    echo "thats problem is select $query.".mysqli_error($connect)."<br>";
+                                                }
+                                                ?>
+
                                 
                             </tbody>
                         </table>
                    
                 </div>
-        
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Do you want delete data!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="../crud/delete_exp.php" method='post'>   
+        <input type="hidden" name="deleteExpid" id="deleteExp_id" >    
+       
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" name="delete_data" class="btn btn-danger">Delete</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 
                  <!-- *************************** End Main****************************************** -->
                 
@@ -209,9 +251,23 @@ tbody .bg-blue{
             </div>
         </div>
     </div>
- 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- <script>
+    $(document).ready(function(){
+        $('.deleteExp_btn').on('click',function(){
+            $('#deleteModal').modal('show');
+
+            $tr=$(this).closest('tr');
+            var data=$tr.children("td").map(function(){
+                return $(this).text();
+            }).get();
+            console.log(data)
+            $('#deleteExp_id').val(data[0]);
+        });
+
+    });
+</script> -->
 </body>
 </html>
