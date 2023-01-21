@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Expense</title>
+    <title>Show All Group</title>
     <link rel="stylesheet" href="../css/style.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
@@ -82,7 +82,7 @@ tbody .bg-blue{
     <div class="px-0 bg-light">
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
-                <img src="../img/user.png" width="40" height="40">
+                <img src="../userimg.png" width="40" height="40">
                 <h4>  <?php
                     session_start();
                     echo $_SESSION['full_name'];
@@ -98,7 +98,7 @@ tbody .bg-blue{
                 <a href="show_income.php"><li >  <span class="ps-3 name">View Income</span> </li></a>
                 <a href="show_saving.php"><li>  <span class="ps-3 name">View Saving</span> </li></a>
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
-                <a href="show_expense.php"><li >  <span class="ps-3 name">View Expense</span> </li></a>
+                <a href="show_expense.php"><li>  <span class="ps-3 name">View Expense</span> </li></a>
                 <?php
                 include('../database/connect.php');
                              $userid=$_SESSION['user_id'];
@@ -109,8 +109,8 @@ tbody .bg-blue{
                             if( ($type['type']=='leader') || ($type['type']=='member')){
                             
                             ?>
-                <a href="show_expense.php " class="avtive"><li >  <span class="ps-3 name"><div class="dropdown">
-                    <a class=" dropdown-toggle " href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                <a href="show_expense.php"><li>  <span class="ps-3 name"><div class="dropdown">
+                    <a class=" dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                       Group
                     </a>
                   
@@ -146,7 +146,7 @@ tbody .bg-blue{
             </ul>
             <div id="topnavbar">
                 <div class="topnav mb-3">
-                    <div class="d-flex px-1"> <a href="#home" class="active">Show MEMBERS</a>  </div>
+                    <div class="d-flex px-1"> <a href="#home" class="active">ALL GROUPS</a>  </div>
                 </div>
 
                 <!-- *************************** Start Main****************************************** -->
@@ -157,12 +157,11 @@ tbody .bg-blue{
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>                                    
-                                    <th scope="col">ID</th>                    
-                                    <th scope="col">User Name</th>
-                                    <th scope="col">Amount</th> 
-                                    <th scope="col">Group</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Action</th>                   
+                                    <th scope="col">Group_ID</th>                    
+                                    <th scope="col">Group Name</th>
+                                    <th scope="col">Capacity</th>
+                                    <th scope="col">Member</th>
+                                                 
                                 </tr>
                             </thead>
                             <tbody>
@@ -172,7 +171,9 @@ tbody .bg-blue{
                                 include('../database/connect.php');
                                 $userid=$_SESSION['user_id'];
       
-                                $query ="SELECT id,name FROM  groups inner join user_group on groups.id=user_group.group_id WHERE user_group.user_id=$userid";
+                                $query ="SELECT id,name,capacity FROM  groups inner join user_group on groups.id=user_group.group_id WHERE user_group.user_id=$userid";
+                              
+                                 
                                 if($result=mysqli_query($connect,$query))
                                      {
                                       if(mysqli_num_rows($result)>0)
@@ -180,68 +181,41 @@ tbody .bg-blue{
                                             
                                          while($row=mysqli_fetch_array($result))
                                                         {
-                                                           
-                                                            $n=$row['id'];
-                                                            print_r($row);
-                                                            
-                                                            echo "</br>";
-                                                            echo "ALL Group";
-                                                     
-                                                            
-                                                            $sql ="SELECT id,full_name FROM  users inner join user_group on users.id=user_group.user_id WHERE  user_group.group_id =$n";
-                                                
-                                                            if($result=mysqli_query($connect,$sql))
-                                                                 {
-                                                                  if(mysqli_num_rows($result)>0)
-                                                                    {
-                                                                        
-                                                                     while($row_user=mysqli_fetch_array($result))
-                                                                     {
-                                                                        echo "</br>";
-                                                                        echo " USerrrrrr";
-                                                                        print_r($row_user);
-                                                                 
-                                                                        $user=$row_user['id'];
-                                                                        $sq ="SELECT SUM(amount) as amount  FROM  income  WHERE  income.user_id =$user and income.group_id=$n";
-                                                
-                                                                        if($result=mysqli_query($connect,$sq))
-                                                                            {
-                                                                            if(mysqli_num_rows($result)>0)
-                                                                                {
-                                                                                    
-                                                                                while($row_amount=mysqli_fetch_array($result))
-                                                                                {
-                                                                                    $amount=$row_amount['amount'];
-                                                                                   
-                                                                                }}}
-                                                                              
                                                             ?>
-
-                                                            <tr class='bg-blue'>
-                                                            <td style="display:none;"> <?php echo $row['id']; ?> </td> 
+                                                            <tr class='bg-blue'>   
                                                             <td> <?php echo $i ?> </td>
-                                                            <td> <?php echo $row_user['id']; ?> </td>
-                                                            <td> <?php echo $row_user['full_name']; ?> </td>
-                                                            <td> <?php echo $amount; ?> </td>
+                                                            <td> <?php echo $row['id']; ?> </td>
                                                             <td> <?php echo $row['name'] ?> </td>
-                                    
-                                                            <td class="pt-3 mt-1"><i class="far fa-circle-check" style="color:rgb(10, 167, 18) ; font-size: 24px;"></i></td>
-                                                            <td class="pt-3 mt-1"><i class="fa fa-circle-exclamation" style="color:rgb(235, 35,20) ; font-size: 24px;"></i></td>
-                                                             
-                                                           <td> <a type="buttan" class='deleteExp_btn delete'>Delete</a></td>
+                                                            <td> <?php echo $row['capacity'] ?> </td>
+                                                            <td> <?php 
+                                                            $n=$row['id'];
+                                                            $sql="SELECT COUNT(user_id) as count from user_group where group_id IN($n)";
+                                                            // echo $sql;
+                                                            $res=mysqli_query($connect,$sql);
+                                                            $number=mysqli_fetch_array($res);
+                                                            echo $number['count'];
+                                                            ?>
+                                                            
+                                                            
+                                                             </td>
+                                                            
                                                         </tr>
-                                                          <?php   
-                                                          
-                                                                 echo "<tr id='spacing-row'>";
-                                                                 echo "<td></td>";
-                                                                 echo "</tr>";
-                                                                 $i++;
- 
-                                                                            }}}
-                                                 
-                                    }
-                                }}
-                                   
+                                                          <?php  
+                                                       
+                                                        echo "<tr id='spacing-row'>";
+                                                        echo "<td></td>";
+                                                        echo "</tr>";
+                                                        $i++;
+                                                        }
+                                                        // echo"</table>";
+                                                        // mysqli_free_result($result);
+                                                    }
+                                                    
+                                                    else
+                                                    {
+                                                    echo "null record";    
+                                                    }
+                                                }
                                                 else
                                                 {
                                                     echo "thats problem is select $query.".mysqli_error($connect)."<br>";
@@ -253,26 +227,7 @@ tbody .bg-blue{
                         </table>
                    
                 </div>
-<!-- Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Do you want delete data!</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form action="../crud/delete_exp.php" method='post'>   
-        <input type="hidden" name="deleteExpid" id="deleteExp_id" >    
-       
-     
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" name="delete_data" class="btn btn-danger">Delete</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
+
 
 
                  <!-- *************************** End Main****************************************** -->
@@ -285,20 +240,5 @@ tbody .bg-blue{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- <script>
-    $(document).ready(function(){
-        $('.deleteExp_btn').on('click',function(){
-            $('#deleteModal').modal('show');
-
-            $tr=$(this).closest('tr');
-            var data=$tr.children("td").map(function(){
-                return $(this).text();
-            }).get();
-            console.log(data)
-            $('#deleteExp_id').val(data[0]);
-        });
-
-    });
-</script> -->
 </body>
 </html>

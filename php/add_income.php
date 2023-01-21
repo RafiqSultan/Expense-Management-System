@@ -121,7 +121,7 @@
                             ?>
                             <div class="col-lg-6 col-md-12" >
                                 <select style="width:100%; padding:15px 0;border-radius: 8px;" name="group_name">
-                                <option value="">Income into Group</option>
+                                <option value="null">Income into Group</option>
                                 <?php
                                 include('../database/connect.php');
                                 $userid=$_SESSION['user_id'];

@@ -109,7 +109,7 @@ tbody .bg-blue{
                             if( ($type['type']=='leader') || ($type['type']=='member')){
                             
                             ?>
-                <a href="show_expense.php " class="avtive"><li >  <span class="ps-3 name"><div class="dropdown">
+                <a  class="avtive"><li >  <span class="ps-3 name"><div class="dropdown">
                     <a class=" dropdown-toggle " href="#" data-bs-toggle="dropdown" aria-expanded="false">
                       Group
                     </a>
