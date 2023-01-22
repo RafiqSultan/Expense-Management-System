@@ -65,7 +65,7 @@ tbody .bg-blue{
     line-height: 30px;
     color: #fff;
     font-weight: 500;
-    margin-left: -140px;
+    margin-left: -120px;
 }
 @media(max-width:575px){
     .container{
@@ -221,15 +221,15 @@ tbody .bg-blue{
                                          while($row=mysqli_fetch_array($result))
                                             {
                                                 
-                                                $group_id=$row['group_id'];
+                                                $groupid=$row['group_id'];
                                                             
-                                                if($group_id !=null){
-                                                    $sql ="SELECT name FROM  groups  WHERE id=$group_id";
+                                                if($groupid !=null){
+                                                    $sql ="SELECT name FROM  groups  WHERE id=$groupid";
                                                     
                                                     $res = $connect->query($sql);
                                                     if($res->num_rows> 0){
                                                         while($g_name=$res->fetch_assoc()){
-                                                            $group_id=$g_name['name'];
+                                                            $groupid=$g_name['name'];
                                                           
                                                     }}
                                                  }
@@ -278,11 +278,11 @@ tbody .bg-blue{
                                                             $group_id=$row['group_id'];
                                                             
                                                             if($group_id !=null){
-                                                                $sql ="SELECT name FROM  groups  WHERE id=$group_id";
+                                                                $sq ="SELECT name FROM  groups  WHERE id=$group_id";
                                                                 
-                                                                $res = $connect->query($sql);
-                                                                if($res->num_rows> 0){
-                                                                    while($g_name=$res->fetch_assoc()){
+                                                                $re = $connect->query($sq);
+                                                                if($re->num_rows> 0){
+                                                                    while($g_name=$re->fetch_assoc()){
                                                                         $group_id=$g_name['name'];
                                                                       
                                                                 }}

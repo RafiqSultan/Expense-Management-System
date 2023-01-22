@@ -9,8 +9,5 @@ $database="mng_expense";
         die ("filed connection").mysqli_connect_error();
     }
 
-    // function redirect($url,$statusCode = 303){
-    //   header('location:'.$url,true , $statusCode);
-    //   die();
-    // }
+
 ?>

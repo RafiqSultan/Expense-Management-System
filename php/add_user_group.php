@@ -86,7 +86,7 @@
                     <div class="card p-4 mt-5">
                         <div class="row g-3">
                             <div class="col-12 mb-4">
-                            <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;">ADD member</h4>
+                            <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;color:#21214e;text-decoration: underline;">ADD INCOME MEMBER</h4>
                                
                             </div>
                             

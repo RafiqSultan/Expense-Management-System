@@ -202,6 +202,7 @@ form.example::after {
 	height: 100vh !important;
 	background-color: #21214e;
 	padding-top: 55px !important;
+	
 }
 ul#navbar-items li {
 	color: rgb(228, 228, 228);
@@ -444,3 +445,23 @@ ul#navbar-items li:hover {
 	margin-top: 10px;
 	
 }
+.fixed-top {
+    position: fixed;
+    top: 20% !important;
+    right: 0;
+    width: 502px !important;
+    left: 40% !important;
+    z-index: 1030;
+	text-align: center;
+	color: #000 !important;
+}
+/* ------------ Media Print */
+@media print { 
+	/* All your print styles go here */
+	.card-header-report {
+		text-align: center !important;
+		color: rgb(202, 36, 36);
+		margin-right:20%;
+		
+	}
+   }

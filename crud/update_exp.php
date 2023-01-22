@@ -108,14 +108,14 @@
                             <div class="row">
                             <div class="col-lg-6 col-md-12 mb-3">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="item" placeholder="FLYING FROM" value='.$row['item'].'>
+                                    <input type="text" class="form-control" name="item" placeholder="FLYING FROM" value='.$row['item'].' requird>
                                     <label>Item</label>
                                 </div>
                             </div>
                            
                             <div class="col-lg-6 col-md-12 mb-3">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="amount" placeholder="FLYING TO" value='.$row['amount'].'>
+                                    <input type="text" class="form-control" name="amount" placeholder="FLYING TO" value='.$row['amount'].' requird>
                                     <label>Amount</label>
                                 </div>
                             </div>
@@ -156,7 +156,12 @@
                                  
                                              $query="UPDATE expense SET item='$item',amount='$amount',start_date='$s_date',end_date='$e_date' WHERE id=$exp_id";
                                              $qq=mysqli_query($connect,$query);
-                                             
+                                             if($qq=mysqli_query($connect,$query)){
+                                                echo '
+                                                <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
+                                                Update Successful
+                                              </div>';
+                                             }
                                             
                                           }
                                             
@@ -172,8 +177,15 @@
             </div>
         </div>
     </div>
-   
+  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+
+   <script type="text/javascript">
+        setTimeout(function () {
+
+            $('#alert_notf').alert('close');
+        }, 3000);
+    </script>
 </body>
 </html>

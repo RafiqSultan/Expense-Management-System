@@ -175,7 +175,12 @@
             $type=$_POST['type_inc'];
 
             $query="UPDATE income  SET name='$name_inc',descrption='$describe',amount='$amount',date='$date_inc',type='$type' WHERE id=$income_id";
-            $qq=mysqli_query($connect,$query);
+            if($qq=mysqli_query($connect,$query)){
+                echo '
+                                                <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
+                                                Update Successful
+                                              </div>';
+            }
             
            
          }
@@ -198,5 +203,12 @@
  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript">
+        setTimeout(function () {
+
+            $('#alert_notf').alert('close');
+        }, 3000);
+    </script>
 </body>
 </html>

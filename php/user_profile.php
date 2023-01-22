@@ -135,7 +135,7 @@
      <div class="col-md-9">
          <div class="p-3 py-5">
          <div class="row mt-3">
-         <spanclass="mt-3">Name</spanclass=>
+         <spanclass="mt-3">ID</spanclass=>
              <div class="col-md-8"><input type="d" class="form-control"  value='.$row['id'].' readonly></div>
          </div>
 

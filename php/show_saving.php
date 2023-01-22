@@ -65,7 +65,7 @@ tbody .bg-blue{
     line-height: 30px;
     color: #fff;
     font-weight: 500;
-    margin-left: -140px;
+    margin-left: -120px;
 }
 @media(max-width:575px){
     .container{
@@ -220,7 +220,7 @@ tbody .bg-blue{
                                                            
                                                if($group_id !=null){
                                                    $sql ="SELECT name FROM  groups  WHERE id=$group_id";
-                                                   
+                                                   echo $sql;
                                                    $res = $connect->query($sql);
                                                    if($res->num_rows> 0){
                                                        while($g_name=$res->fetch_assoc()){
@@ -266,6 +266,18 @@ tbody .bg-blue{
                                             
                                          while($row=mysqli_fetch_array($result))
                                                         {
+                                                            $groupid=$row['group_id'];
+                                                           
+                                                            if($groupid !=null){
+                                                                $sq ="SELECT name FROM  groups  WHERE id=$groupid";
+                                                              
+                                                                $re = $connect->query($sq);
+                                                                if($re->num_rows> 0){
+                                                                    while($g_name=$re->fetch_assoc()){
+                                                                        $groupid=$g_name['name'];
+                                                                      
+                                                                }}
+                                                             }
                                                             ?>
                                                             <tr class='bg-blue'>
                                                             <td style="display:none;"> <?php echo $row['id']; ?> </td>    
@@ -274,7 +286,7 @@ tbody .bg-blue{
                                                             <td> <?php echo $row['descrption'] ?> </td>
                                                             <td> <?php echo $row['amount']; ?> </td>
                                                             <td> <?php echo $row['date']; ?> </td>
-                                                            <td> <?php echo $row['group_id']; ?> </td>
+                                                            <td> <?php echo $groupid; ?> </td>
                                                              <?php
                                                              echo "<td> <a href='../crud/update_inc.php?id=$row[0]' class='update'>Update</a></td>";
                                                              ?>

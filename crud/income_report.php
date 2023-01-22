@@ -84,7 +84,7 @@ tbody .bg-blue{
                                  session_start();
                                  echo $_SESSION['full_name'];
                                  ?>
-                    <div class="card-header text-uppercase text-center"> <h1>INCOME Report</h1></div>
+                    <div class="card-header card-header-report text-uppercase text-center"> <h1>INCOME Report</h1></div>
                   
           
                    
@@ -105,7 +105,7 @@ tbody .bg-blue{
                             <tbody>
                                 <?php
                                  $i=1;
-                                 
+                                 $total_amount=0;
                                  include('../database/connect.php');
                                  $userid=$_SESSION['user_id'];
                      if (isset($_POST['submit_filter'])){
@@ -151,8 +151,12 @@ tbody .bg-blue{
                                             echo "<td></td>";
                                             echo "</tr>";
                                             $i++;
+                                            $total_amount +=$row['amount'];
                                             }
+                                           
+                                          
                                         }}
+                                       
                                             else
                                             {
                                             echo "null record";    
@@ -201,7 +205,10 @@ tbody .bg-blue{
                                                         echo "<td></td>";
                                                         echo "</tr>";
                                                         $i++;
+                                                        $total_amount +=$row['amount'];
                                                         }
+
+                                                      
                                                        
                                                     }
                                                     
@@ -222,6 +229,7 @@ tbody .bg-blue{
                                 
                             </tbody>
                         </table>
+                       <div class="card-head border border-info p-2"><h5> <span style="color:#0b7dda;">Total Amount : </span> <?php echo $total_amount; ?></h5></div>;
                    
                 </div>
 

@@ -8,7 +8,8 @@
         $userid=$_SESSION['user_id'];
         $type=$_POST['type_inc'];
         $group_id=$_POST['group_name'];
-        echo $group_id;
+        
+        
         if ($group_id == 'null'){
             
             $query= "INSERT INTO  income (name, descrption, date, amount,type, user_id)
@@ -17,8 +18,14 @@
             echo $query;
             if($result=mysqli_query($connect , $query))
             {
-                
-                       header("location:../php/show_income.php");
+                if($type== 'saving')
+                {
+                    header("location:../php/show_saving.php");
+                }
+                else{
+                    header("location:../php/show_income.php");
+                }
+                     
             }
             else{
                 echo "thats problem in insert $query.".mysqli_error($connect)."<br>";
@@ -32,8 +39,14 @@
         echo $query;
         if($result=mysqli_query($connect , $query))
         {
-            
-                   header("location:../php/show_income.php");
+            if($type== 'saving')
+                {
+                    header("location:../php/show_saving.php");
+                }
+                else{
+                    header("location:../php/show_income.php");
+                }
+                 
         }
         else{
             echo "thats problem in insert $query.".mysqli_error($connect)."<br>";
