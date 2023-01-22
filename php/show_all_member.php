@@ -188,8 +188,7 @@ tbody .bg-blue{
                                          if($res->num_rows> 0){
                                              while($row=$res->fetch_assoc()){ 
                                                 
-                                                print_r($row);
-                                                echo "</br>";
+                                             
                                                             ?>
 
                                                             <tr class='bg-blue'>

@@ -102,6 +102,28 @@ tbody .bg-blue{
                 <!-- *************************** Start Main****************************************** -->
                 <div class="container rounded mt-5 bg-white p-md-5">
                     
+                        <div class="form">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>From Date</label>
+                                    <input type="date"  name="from_date" class="form-controll">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>From Date</label>
+                                    <input type="date"  name="from_date" class="form-controll">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>From Date</label>
+                                    <button class="btn btn-primary" type="submit" name="submit">Filter</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>

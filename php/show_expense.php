@@ -152,7 +152,40 @@ tbody .bg-blue{
 
                 <!-- *************************** Start Main****************************************** -->
                 <div class="container rounded mt-5 bg-white p-md-5">
+                <div class="card-body">
+
+<form class="form" action="#" method="post">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>From Date</label>
+                    <input type="date"  name="from_date" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>From Date</label>
+                    <input type="date"  name="to_date" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                <label></label>
+                    <button class="btn btn-primary form-control" type="submit" name="submit_filter">Filter</button>
                     
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label></label>
+                <button type="submit" name="close" class="btn-close form-control mt-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -171,6 +204,45 @@ tbody .bg-blue{
                     
                                 include('../database/connect.php');
                                     $userid=$_SESSION['user_id'];
+                                    if (isset($_POST['submit_filter'])){
+                                        $formDate=$_POST['from_date'];
+                                        $toDate=$_POST['to_date'];
+                                        $query="SELECT * FROM expense WHERE start_date between '$formDate' and '$toDate' and user_id= $userid";
+                                     if($result=mysqli_query($connect,$query))
+                                        {
+                                         if(mysqli_num_rows($result)>0)
+                                           {
+                                               
+                                            while($row=mysqli_fetch_array($result))
+                                               {
+                                                ?>
+                                                <tr class='bg-blue'>
+                                                <td style="display:none;"> <?php echo $row['id']; ?> </td> 
+                                                <td> <?php echo $i ?> </td>
+                                                <td> <?php echo $row['item']; ?> </td>
+                                                <td> <?php echo $row['amount'] ?> </td>
+                                                <td> <?php echo $row['start_date']; ?> </td>
+                                                <td> <?php echo $row['end_date']; ?> </td>
+                                               
+                                                 <?php
+                                                 echo "<td> <a href='../crud/update_exp.php?id=$row[0]' class='update'>Update</a></td>";
+                                                 ?>
+                                               <td> <a type="buttan" class='deleteExp_btn delete'>Delete</a></td>
+                                            </tr>
+                                              <?php  
+                                           
+                                            echo "<tr id='spacing-row'>";
+                                            echo "<td></td>";
+                                            echo "</tr>";
+                                            $i++;
+                                               }
+                                           }}
+                                               else
+                                               {
+                                               echo "null record";    
+                                               }                  
+                                            }
+                                            else if(isset($_POST['close']) or $i==1) {   
                                   $query="SELECT * FROM expense WHERE user_id=$userid ";
                                   if($result=mysqli_query($connect,$query))
                                      {
@@ -213,6 +285,7 @@ tbody .bg-blue{
                                                 {
                                                     echo "thats problem is select $query.".mysqli_error($connect)."<br>";
                                                 }
+                                            }
                                                 ?>
 
                                 

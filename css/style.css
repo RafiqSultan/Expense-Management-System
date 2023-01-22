@@ -22,6 +22,9 @@ a{
 	justify-content: center;
 	background-color: aqua !important;
 } */
+.card-body{
+	box-shadow: 0 0 5px #6e6ed8 !important;
+}
 .addincome_btn {
 	border: none;
 	outline: none;
@@ -182,7 +185,7 @@ form.example::after {
 }
 #navbar-items {
 	width: 20%;
-	height: 90vh;
+	height: 100vh !important;
 	background-color: #21214e;
 	padding-top: 55px !important;
 }
