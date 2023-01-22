@@ -25,6 +25,20 @@ a{
 .card-body{
 	box-shadow: 0 0 5px #6e6ed8 !important;
 }
+.print{
+	width: 100%;
+	height: 30px;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+
+}
+.print i{
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	color: #063453;
+}
 .addincome_btn {
 	border: none;
 	outline: none;

@@ -95,7 +95,7 @@
                                
                                
                             </div>
-                            <form  method="post" action="../crud/insert_expense.php">
+                            <form  method="post" action="../crud/insert_expense.php" id="addformreset">
                             <div class="row">
                             <div class="col-lg-6 col-md-12 mb-3">
                                 <div class="form-floating">
@@ -127,7 +127,7 @@
                             <div class="col-12 mt-4">
                                
                                 <button class="btn btn-primary text-uppercase" type="submit" name="submit">Add Expense</button>
-                                <button class="btn btn-secondary text-uppercase" type="button">Reset</button>
+                                <button class="btn btn-secondary text-uppercase" name="reset" type="reset" onclick="resetForm('addformreset'); return false;">Reset</button>
                             </div>
                             </div>
                             
