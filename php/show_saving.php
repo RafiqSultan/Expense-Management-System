@@ -98,7 +98,7 @@ tbody .bg-blue{
         <div class="d-md-flex">
             <ul id="navbar-items" class="p-0">
                 <a href="user_dashbord.php"><li  > <span class="ps-3 name ">Dashboard</span> </li></a>
-                <a href="add_income.php"> <li  > <span class="ps-3 name">ADD Incom</span> </li></a>
+                <a href="add_income.php"><li>  <span class="ps-3 name">ADD Income | Saving</span> </li></a>
                 <a href="show_income.php"><li >  <span class="ps-3 name">View Income</span> </li></a>
                 <a href="show_saving.php"><li class="active">  <span class="ps-3 name">View Saving</span> </li></a>
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
@@ -171,7 +171,7 @@ tbody .bg-blue{
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label>From Date</label>
+                <label>To Date</label>
                     <input type="date"  name="to_date" class="form-control">
                 </div>
             </div>

@@ -64,7 +64,7 @@
                     $row = mysqli_fetch_array($result);
                     $user_id =  $row['id'];
                     $_SESSION['user_id']=$user_id;    
-                    $_SESSION['logged'] = 'yes';
+                    $_SESSION['loggedIn']=true;
                     $_SESSION['full_name'] = $full_name;
                     header("location:user_dashbord.php");
         }
