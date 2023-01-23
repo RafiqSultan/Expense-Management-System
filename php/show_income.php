@@ -252,7 +252,7 @@ tbody .bg-blue{
                                                  <?php
                                                  echo "<td> <a href='../crud/update_inc.php?id=$row[0]' class='update'>Update</a></td>";
                                                  ?>
-                                               <td> <a type="buttan" class='deleteInc_btn delete'>Delete</a></td>
+                                               <td> <a type="buttan" class='delete_income delete'>Delete</a></td>
                                             </tr>
                                               <?php  
                                            
@@ -305,7 +305,7 @@ tbody .bg-blue{
                                                              <?php
                                                              echo "<td> <a href='../crud/update_inc.php?id=$row[0]' class='update'>Update</a></td>";
                                                              ?>
-                                                           <td> <a type="buttan" class='deleteInc_btn delete'>Delete</a></td>
+                                                           <td> <a type="buttan" class='delete_income delete'>Delete</a></td>
                                                         </tr>
                                                           <?php  
                                                        
@@ -344,11 +344,31 @@ tbody .bg-blue{
         <h1 class="modal-title fs-5" id="exampleModalLabel">Do you want delete data!</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method='post' action="../crud/delete_income.php" >   
-        <input type="hidden" name="deleteIncid" id="deleteInc_id" >
+      <form method='post' action="#" >   
+        <input type="hidden" name="deleteIn_id" id="delete_id" >
+       <?php
+       
+       include('../database/connect.php');
+       if(isset($_POST['delete_income'])){
+       
+         $item_id = $_POST['deleteIn_id'];
+         
+         $query = "DELETE FROM income WHERE id=$item_id";
+
+         if($query_run = mysqli_query($connect, $query))
+         {
+            header('location:show_income.php'); // 0 = seconds
+         }
+         else
+         {
+             echo '<script> alert("Data Not Deleted"); </script>';
+         }
+       }
+       ?>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" name="delete_data" class="btn btn-danger">Delete</button>
+        <button type="submit" name="delete_income" class="btn btn-danger">Delete</button>
       </div>
       </form>
     </div>
@@ -368,7 +388,7 @@ tbody .bg-blue{
 
     <script>
     $(document).ready(function(){
-        $('.deleteInc_btn').on('click',function(){
+        $('.delete_income').on('click',function(){
             $('#deletemodal').modal('show');
 
             $tr=$(this).closest('tr');
@@ -376,10 +396,13 @@ tbody .bg-blue{
                 return $(this).text();
             }).get();
             console.log(data)
-            $('#deleteInc_id').val(data[0]);
+            $('#delete_id').val(data[0]);
         });
 
+
     });
+
 </script>
+
 </body>
 </html>

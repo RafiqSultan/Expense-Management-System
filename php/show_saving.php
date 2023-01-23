@@ -337,8 +337,26 @@ tbody .bg-blue{
         <h1 class="modal-title fs-5" id="exampleModalLabel">Do you want delete data!</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method='post' action="../crud/delete_income.php" >   
-        <input type="hidden" name="deleteIncid" id="deleteInc_id" >
+      <form method='post' action="#" >   
+        <input type="" name="deleteIncid" id="deleteInc_id" >
+        <?php
+       
+       include('../database/connect.php');
+       if(isset($_POST['delete_data'])){
+       
+         $item_id = $_POST['deleteIncid'];
+         
+         $query = "DELETE FROM income WHERE id=$item_id";
+
+         if($query_run = mysqli_query($connect, $query)){
+            header('location:show_saving.php'); // 0 = seconds
+         }
+         else
+         {
+             echo '<script> alert("Data Not Deleted"); </script>';
+         }
+       }
+       ?>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         <button type="submit" name="delete_data" class="btn btn-danger">Delete</button>
