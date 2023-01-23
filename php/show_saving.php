@@ -7,7 +7,7 @@
     <title>Show Saving</title>
     <link rel="stylesheet" href="../css/style.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <style>
         .h2{
     color: #111;
@@ -150,6 +150,10 @@ tbody .bg-blue{
 
                 <!-- *************************** Start Main****************************************** -->
                 <div class="container rounded mt-5 bg-white p-md-5">
+                    
+                <div>
+                            <div class=" row" ><a href="../crud/saving_report.php" class="print" title="print"><i class="fa-solid fa-print"></i></a></div>
+                        </div>
                 <div class="card-body">
 
 <form class="form" action="#" method="post">

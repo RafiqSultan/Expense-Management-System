@@ -84,7 +84,7 @@ tbody .bg-blue{
                                  session_start();
                                  echo $_SESSION['full_name'];
                                  ?>
-                    <div class="card-header card-header-report text-uppercase text-center"> <h1>INCOME Report</h1></div>
+                    <div class="card-header card-header-report text-uppercase text-center"> <h1>saving Report</h1></div>
                   
           
                    
@@ -108,9 +108,11 @@ tbody .bg-blue{
                                  $total_amount=0;
                                  include('../database/connect.php');
                                  $userid=$_SESSION['user_id'];
-                   
+                     
+
                                
-                                  $query="SELECT * FROM income WHERE user_id=$userid and type='income'";
+                               
+                                  $query="SELECT * FROM income WHERE user_id=$userid and type='saving'";
                                   if($result=mysqli_query($connect,$query))
                                      {
                                       if(mysqli_num_rows($result)>0)
