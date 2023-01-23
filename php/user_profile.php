@@ -48,6 +48,11 @@
                 <h4>
                     <?php
                     session_start();
+                    if($_SESSION["loggedIn"] != true){
+                       
+                        header("Location:../index.php");
+                        exit;
+                    }
                     echo $_SESSION['full_name'];
                  
                     ?>
@@ -130,7 +135,7 @@
  <div class="row">
      <div class="col-md-3 border-right">
          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="../img/user.png" width="90">
-             <span class="font-weight-bold">John Doe</span><span class="text-black-50"></span></div>
+             <span class="font-weight-bold">'.$row['full_name'].'</span><span class="text-black-50"></span></div>
      </div>
      <div class="col-md-9">
          <div class="p-3 py-5">

@@ -42,6 +42,7 @@ echo $sql;
             $name = $row["full_name"]; 
             $user_id =  $row['id'];
             $_SESSION['full_name']=$name;
+            $_SESSION['loggedIn']=true;
             $_SESSION['user_id']=$user_id;
             header("location:php/user_dashbord.php");
                 }  

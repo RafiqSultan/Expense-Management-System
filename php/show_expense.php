@@ -85,6 +85,11 @@ tbody .bg-blue{
                 <h4>
                     <?php
                     session_start();
+                    if($_SESSION["loggedIn"] != true){
+                       
+                        header("Location:../index.php");
+                        exit;
+                    }
                     echo $_SESSION['full_name'];
                    
                     ?>

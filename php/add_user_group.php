@@ -14,9 +14,14 @@
     <div class="px-0 bg-light">
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
-                <img src="../userimg.png" width="40" height="40">
+                <img src="../img/user.png" width="40" height="40">
                 <h4>  <?php
                     session_start();
+                    if($_SESSION["loggedIn"] != true){
+                       
+                        header("Location:../index.php");
+                        exit;
+                    }
                     echo $_SESSION['full_name'];
                    
                     ?></h4>

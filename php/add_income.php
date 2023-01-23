@@ -17,6 +17,11 @@
                 <img src="../img/user.png" width="40" height="40">
                 <h4>  <?php
                     session_start();
+                    if($_SESSION["loggedIn"] != true){
+                       
+                        header("Location:../index.php");
+                        exit;
+                    }
                     echo $_SESSION['full_name'];
                    
                     ?></h4>
