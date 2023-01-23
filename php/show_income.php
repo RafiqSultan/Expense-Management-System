@@ -243,7 +243,7 @@ tbody .bg-blue{
                                                 <td> <?php echo $row['descrption'] ?> </td>
                                                 <td> <?php echo $row['amount']; ?> </td>
                                                 <td> <?php echo $row['date']; ?> </td>
-                                                <td> <?php echo $group_id; ?> </td>
+                                                <td> <?php echo $groupid; ?> </td>
                                                  <?php
                                                  echo "<td> <a href='../crud/update_inc.php?id=$row[0]' class='update'>Update</a></td>";
                                                  ?>

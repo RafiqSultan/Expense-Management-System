@@ -181,14 +181,13 @@ tbody .bg-blue{
                                         from user_group ug
                                         inner join users u on ug.user_id=u.id
                                         inner join groups g on ug.group_id=g.id
-                                        inner join income i on i.user_id=ug.user_id AND i.group_id=ug.group_id
+                                        left join income i on i.user_id=ug.user_id AND i.group_id=ug.group_id
                                         where ug.group_id IN($all_group)
-                                        group by ug.user_id,u.full_name,ug.group_id,g.name";
+                                        group by ug.user_id, ug.group_id";
                                          $res = $connect->query($sql);
                                          if($res->num_rows> 0){
-                                             while($row=$res->fetch_assoc()){ 
-                                                
-                                             
+                                             while($row=$res->fetch_assoc()){
+                                               
                                                             ?>
 
                                                             <tr class='bg-blue'>
@@ -199,9 +198,19 @@ tbody .bg-blue{
                                                             <td> <?php echo $row['type']; ?> </td>
                                                             <td> <?php echo $row['amount'] ?> </td>
                                                             <td> <?php echo $row['name'] ?> </td>
-                                    
-                                                            <td class="pt-3 mt-1"><i class="far fa-circle-check" style="color:rgb(10, 167, 18) ; font-size: 24px;"></i></td>
-                                                            <td class="pt-3 mt-1"><i class="fa fa-circle-exclamation" style="color:rgb(235, 35,20) ; font-size: 24px;"></i></td>
+                                                            <?php
+
+                                                            $m=$row['amount'];
+                                                            if($m ==''){
+                                                                echo ' <td class="pt-3 mt-1"><i class="fa fa-circle-exclamation" style="color:rgb(235, 35,20) ; font-size: 24px;"></i></td>';
+                                                            }
+                                                            else{
+                                                                echo '  <td class="pt-3 mt-1"><i class="far fa-circle-check" style="color:rgb(10, 167, 18) ; font-size: 24px;"></i></td>';
+                                                            }
+
+                                                            ?>
+                                                          
+                                                           
                                                              
                                                            <td> <a type="buttan" class='deleteExp_btn delete'>Delete</a></td>
                                                         </tr>
