@@ -46,7 +46,7 @@
                             if( ($type['type']=='leader') || ($type['type']=='member')){
                             
                             ?>
-                <a href="show_expense.php"><li>  <span class="ps-3 name"><div class="dropdown">
+                <a ><li class="active">  <span class="ps-3 name"><div class="dropdown">
                     <a class=" dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                       Group
                     </a>
@@ -78,7 +78,7 @@
                   <?php
                                     }}
                                 ?> 
-                <a href="user_profile.php"><li> <span class="ps-3 name">Profile</span> </li></a>
+                <a ><li > <span class="ps-3 name">Profile</span> </li></a>
                 <a href="../index.php"><li> <span class="ps-3 name">Logout</span> </li></a>
             </ul>
             <div id="topnavbar">
@@ -91,7 +91,7 @@
                     <div class="card p-4 mt-5">
                         <div class="row g-3">
                             <div class="col-12 mb-4">
-                            <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;color:#21214e;text-decoration: underline;">ADD INCOME MEMBER</h4>
+                            <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;color:#21214e;text-decoration: underline;">ADD MEMBER</h4>
                                
                             </div>
                             
