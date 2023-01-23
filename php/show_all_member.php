@@ -193,7 +193,8 @@ tbody .bg-blue{
                                                             ?>
 
                                                             <tr class='bg-blue'>
-                                                            <td style="display:none;"> <?php echo $row['id']; ?> </td> 
+                                                            <td style="display:none;"> <?php echo $row['user_id']; ?> </td> 
+                                                            <td style="display:none;"> <?php echo $row['group_id']; ?> </td> 
                                                             <td> <?php echo $i ?> </td>
                                                             <td> <?php echo $row['user_id']; ?> </td>
                                                             <td> <?php echo $row['full_name']; ?> </td>
@@ -210,11 +211,20 @@ tbody .bg-blue{
                                                                 echo '  <td class="pt-3 mt-1"><i class="far fa-circle-check" style="color:rgb(10, 167, 18) ; font-size: 24px;"></i></td>';
                                                             }
 
+                                                            $member_id=$row['user_id'];
+                                                            if($member_id != $userid ){
+                                                            echo '<td> <a type="buttan" class="deleteMember_btn delete">Delete</a></td>';
+                                                            }
+                                                            else{
+                                                                echo '<td></td>';
+                                                            }
+                                                           
+
                                                             ?>
                                                           
                                                            
                                                              
-                                                           <td> <a type="buttan" class='deleteExp_btn delete'>Delete</a></td>
+                                                           
                                                         </tr>
                                                           <?php   
 
@@ -250,8 +260,9 @@ tbody .bg-blue{
         <h1 class="modal-title fs-5" id="exampleModalLabel">Do you want delete data!</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="../crud/delete_exp.php" method='post'>   
-        <input type="hidden" name="deleteExpid" id="deleteExp_id" >    
+      <form action="../crud/delete_member.php" method='post'>   
+        <input type="hidden" name="deleteMid" id="deleteM_id" > 
+        <input type="hidden" name="deleteMGid" id="deleteMG_id" >     
        
      
       <div class="modal-footer">
@@ -274,9 +285,9 @@ tbody .bg-blue{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- <script>
+    <script>
     $(document).ready(function(){
-        $('.deleteExp_btn').on('click',function(){
+        $('.deleteMember_btn').on('click',function(){
             $('#deleteModal').modal('show');
 
             $tr=$(this).closest('tr');
@@ -284,10 +295,11 @@ tbody .bg-blue{
                 return $(this).text();
             }).get();
             console.log(data)
-            $('#deleteExp_id').val(data[0]);
+            $('#deleteM_id').val(data[0]);
+            $('#deleteMG_id').val(data[1]);
         });
 
     });
-</script> -->
+</script>
 </body>
 </html>
