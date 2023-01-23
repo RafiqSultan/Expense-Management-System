@@ -97,6 +97,18 @@
                               
                            while($row=mysqli_fetch_array($result))
                                           {
+                                            $group_id=$row['group_id'];
+                                                            
+                                                            if($group_id !=null){
+                                                                $sq ="SELECT name FROM  groups  WHERE id=$group_id";
+                                                                
+                                                                $re = $connect->query($sq);
+                                                                if($re->num_rows> 0){
+                                                                    while($g_name=$re->fetch_assoc()){
+                                                                        $group_id=$g_name['name'];
+                                                                      
+                                                                }}
+                                                             }
 
                        echo ' <div class="container">
                        <div class="card p-4 mt-5">
@@ -125,14 +137,44 @@
                                        <input type="text" class="form-control" name="amount" value='.$row['amount'].' placeholder="FLYING TO">
                                        <label>Amount</label>
                                    </div>
-                               </div>
-                               <div class="col-lg-6 col-md-12" >
-                                   <select style="width:100%; padding:15px 0;border-radius: 8px;">
-                                       <option value="">Income into Group</option>
-                                       <option value="">G101</option>
-                                       <option value="">G102</option>
-                                   </select>
-                               </div>
+                               </div>';
+                               ?>
+
+<?php
+                             $userid=$_SESSION['user_id'];
+                             $query ="SELECT type from users WHERE id=$userid";
+                            $result = $connect->query($query);
+                            if($result->num_rows> 0){
+                                $type=$result->fetch_assoc();
+                            if( ($type['type']=='leader') || ($type['type']=='member')){
+                            
+                            ?>
+                            <div class="col-lg-6 col-md-12" >
+                                <select style="width:100%; padding:15px 0;border-radius: 8px;" name="group_name">
+                                <option value="null">Income into Group</option>
+                                <?php
+                                include('../database/connect.php');
+                                $userid=$_SESSION['user_id'];
+                                $query ="SELECT id,name FROM  groups inner join user_group on groups.id=user_group.group_id WHERE user_group.user_id=$userid";
+                                $result = $connect->query($query);
+                                if($result->num_rows> 0){
+                                    while($optionData=$result->fetch_assoc()){
+                                    $option =$optionData['name'];
+                                    $group_id=$optionData['id'];
+                                    ?>
+                                   
+                                   <option value="<?php echo $group_id; ?>"><?php echo $option;?></option>
+                                   <?php
+                                    }}
+                                ?> 
+                                </select>
+                            </div>
+                        <?php
+                            }
+                        }
+                                ?>
+
+                               <?php echo '
                                <div class="col-lg-6 col-md-12" >
                                    <select name="type_inc" style="width:100%; padding:15px 0;border-radius: 8px;" >
                                        <option value='.$row['type'].'>'.$row['type'].'</option>
@@ -165,16 +207,17 @@
                                           }
             }}}
 
-
             if( isset($_POST['submit']))
          {
-            $name_inc=$_POST['name_inc'] ;
+            $nameinc=$_POST['name_inc'] ;
             $describe=$_POST['describe'] ;
             $amount=$_POST['amount'] ;
             $date_inc=$_POST['date_inc'] ;
             $type=$_POST['type_inc'];
+            $groupid=$_POST['group_name'];
 
-            $query="UPDATE income  SET name='$name_inc',descrption='$describe',amount='$amount',date='$date_inc',type='$type' WHERE id=$income_id";
+            if($groupid =='null'){
+            $query="UPDATE income  SET name='$nameinc',descrption='$describe',amount='$amount',date='$date_inc',type='$type' WHERE id=$income_id";
             if($qq=mysqli_query($connect,$query)){
                 echo '
                                                 <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
@@ -182,10 +225,19 @@
                                               </div>';
             }
             
-           
-         }
+        }
+      
+        else{
+            $q="UPDATE income  SET name='$nameinc',descrption='$describe',amount='$amount',date='$date_inc',type='$type',group_id=$groupid WHERE id=$income_id";
+            if($qu=mysqli_query($connect,$q)){
+                echo '
+                                                <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
+                                                Update Successful
+                                              </div>';
+            }
+        }
 
-        
+    }
                 
                 
                 ?>
