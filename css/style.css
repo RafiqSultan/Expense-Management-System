@@ -322,7 +322,7 @@ ul#navbar-items li:hover {
     background-color: white !important;
     border: none !important;
     border-radius: 0px !important;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important
+    box-shadow: rgba(238, 223, 13, 0.2) 0px 8px 24px !important
 }
 
 .card:hover {
@@ -435,7 +435,10 @@ ul#navbar-items li:hover {
 	line-height: 50px;
 }
 .card-body{
-	box-shadow: 0 5px 2px #ffc107;
+	box-shadow: 0 5px 2px #ffc107 !important;
+}
+.card-body:hover{
+	box-shadow: 0 5px 2px #0c91e6 !important;
 }
 .card-body h6{
 	font-size: 25px;

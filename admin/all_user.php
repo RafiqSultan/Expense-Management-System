@@ -7,7 +7,7 @@
     <title>All user</title>
     <link rel="stylesheet" href="../css/style.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <style>
         .h2{
     color: #111;
@@ -67,6 +67,37 @@ tbody .bg-blue{
     font-weight: 500;
     margin-left: 10px;
 }
+.search{
+       position: relative;
+       box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+       bottom:0 !important;
+       }
+
+    .search input{
+
+        height: 39px;
+    margin-top: 24px !important;
+    text-indent: 37px;
+    font-size:16px;
+    border: 2px solid #d6d4d4;
+   
+}
+
+       .search input:focus{
+
+        box-shadow: none;
+        border: 2px solid blue;
+
+
+       }
+
+       .search .fa-search{
+
+        position: absolute;
+        top: 12px;
+        left: 16px;
+
+       }
 @media(max-width:575px){
     .container{
         width: 125%;
@@ -79,7 +110,7 @@ tbody .bg-blue{
     <div class="px-0 bg-light">
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
-                <img src="../userimg.png" width="40" height="40">
+                <img src="../img/user.png" width="40" height="40">
                 <h4>Admin</h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
@@ -100,8 +131,43 @@ tbody .bg-blue{
                 </div>
 
                 <!-- *************************** Start Main****************************************** -->
-                <div class="container rounded mt-5 bg-white p-md-5">
+                <div class="container rounded  bg-white p-md-5">
                     
+              
+                    <div class="card-body">
+                                    
+                <form class="form" action="#" method="post">
+                        <div class="row justify-content-center">
+                          
+
+                            
+                        <div class="col-md-8 ">
+
+                            <div class=" search">
+                            <i class="fa fa-search"></i>
+                            <input type="text" class="form-control" name="search" placeholder="Search">
+                           
+                            </div>
+                            
+                        </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                <label></label>
+                                    <button class="btn btn-primary form-control" type="submit" name="submit_search">Search</button>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label></label>
+                                <button type="submit" name="close" class="btn-close form-control mt-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -120,7 +186,52 @@ tbody .bg-blue{
                                 $i=1;
                     
                                 include('../database/connect.php');
-                                
+                                if (isset($_POST['submit_search'])){
+                                    $name=$_POST['search'];
+                                    $sql="SELECT * FROM users where full_name like '%$name%'";
+                                  if($result=mysqli_query($connect,$sql))
+                                     {
+                                      if(mysqli_num_rows($result)>0)
+                                        {
+                                            
+                                         while($row=mysqli_fetch_array($result))
+                                                        {
+                                                            ?>
+                                                            <tr class='bg-blue'>
+                                                            <td> <?php echo $i ?> </td>
+                                                            <td> <?php echo $row['id']; ?> </td>
+                                                            <td> <?php echo $row['full_name'] ?> </td>
+                                                            <td> <?php echo $row['email']; ?> </td>
+                                                            <td> <?php echo $row['phone']; ?> </td>
+                                                            <td> <?php echo $row['type']; ?> </td>
+                                                            
+                                                           <td> <a type="buttan" class='delete_btn delete'>Delete</a></td>
+                                                        </tr>
+                                                          <?php  
+                                                       
+                                                        echo "<tr id='spacing-row'>";
+                                                        echo "<td></td>";
+                                                        echo "</tr>";
+                                                        $i++;
+                                                        }
+                                                        // echo"</table>";
+                                                        // mysqli_free_result($result);
+                                                    }
+                                                    
+                                                    else
+                                                    {
+                                                    echo "null record";    
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    echo "thats problem is select $query.".mysqli_error($connect)."<br>";
+                                                }
+                                    
+                                        }
+                            
+
+                              else if(isset($_POST['close']) or $i==1) {
                                   $query="SELECT * FROM users";
                                   if($result=mysqli_query($connect,$query))
                                      {
@@ -160,6 +271,7 @@ tbody .bg-blue{
                                                 {
                                                     echo "thats problem is select $query.".mysqli_error($connect)."<br>";
                                                 }
+                                            }
                                                 ?>
 
                                 
@@ -175,13 +287,13 @@ tbody .bg-blue{
         <h1 class="modal-title fs-5" id="exampleModalLabel">Do you want delete data!</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="../crud/delete_income.php" method='post'>   
-        <input type="hidden" name="delete_inc_id" id="delete_id" >    
+      <form  method="post" action="delete_user.php">   
+        <input type="hidden" name="deleteuser_id" id="delete_id" >    
        
      
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" name="delete_data" class="btn btn-danger">Delete</button>
+        <button type="submit" name="del_user" class="btn btn-danger">Delete</button>
       </div>
       </form>
     </div>
@@ -209,7 +321,7 @@ tbody .bg-blue{
                 return $(this).text();
             }).get();
             console.log(data)
-            $('#delete_id'),val(data[0]);
+            $('#delete_id').val(data[1]);
         });
 
     });

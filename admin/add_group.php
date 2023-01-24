@@ -102,24 +102,24 @@ tbody .bg-blue{
                 <!-- *************************** Start Main****************************************** -->
                 <div class="container">
                     <div class="card p-4 mt-5">
-                    <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;">add group</h4>
+                    <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;color:#21214e;text-decoration: underline;">ADD group</h4>
                         <div class="row g-3">
                             <form action="#" method="post">
                             <div class="col-lg-12 col-md-12 mb-3">
                                 <div class="form-floating">
-                                    <input type="text"  name="g_name" class="form-control" placeholder="FLYING FROM">
+                                    <input type="text"  name="g_name" class="form-control" placeholder="FLYING FROM" required>
                                     <label>Group Name</label>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12 mb-3">
                                 <div class="form-floating">
-                                    <input type="number" name="capacity" class="form-control" placeholder="FLYING FROM">
+                                    <input type="number" name="capacity" class="form-control" placeholder="FLYING FROM" required>
                                     <label>Capacity</label>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12 mb-3">
                                 <div class="form-floating">
-                                    <input type="number"  name="leader" class="form-control" placeholder="FLYING FROM">
+                                    <input type="number"  name="leader" class="form-control" placeholder="FLYING FROM" required>
                                     <label>Leader_Id</label>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@ tbody .bg-blue{
                             <div class="col-12 mt-4">
                                
                                 <button class="btn btn-primary text-uppercase" type="submit" name="submit">Add Group</button>
-                                <button class="btn btn-secondary text-uppercase" type="button">Reset</button>
+                                <button class="btn btn-secondary text-uppercase" type="reset">Reset</button>
                             </div>
                             </form>
                         </div>

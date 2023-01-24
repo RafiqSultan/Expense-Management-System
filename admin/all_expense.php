@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Income</title>
+    <title>All expense</title>
     <link rel="stylesheet" href="../css/style.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
@@ -79,7 +79,7 @@ tbody .bg-blue{
     <div class="px-0 bg-light">
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
-                <img src="../userimg.png" width="40" height="40">
+                <img src="../img/user.png" width="40" height="40">
                 <h4>Admin</h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
@@ -101,7 +101,40 @@ tbody .bg-blue{
 
                 <!-- *************************** Start Main****************************************** -->
                 <div class="container rounded mt-5 bg-white p-md-5">
-                    
+                <div class="card-body">
+                                    
+                                    <form class="form" action="#" method="post">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>From Date</label>
+                                                        <input type="date"  name="from_date" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>To Date</label>
+                                                        <input type="date"  name="to_date" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                    <label></label>
+                                                        <button class="btn btn-primary form-control" type="submit" name="submit_filter">Filter</button>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        <label></label>
+                                                    <button type="submit" name="close" class="btn-close form-control mt-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        </div>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -119,7 +152,59 @@ tbody .bg-blue{
                                 $i=1;
                     
                                 include('../database/connect.php');
-                                
+                                if (isset($_POST['submit_filter'])){
+                                    $formDate=$_POST['from_date'];
+                                    $toDate=$_POST['to_date'];
+                                    $query="SELECT * FROM expense WHERE start_date between '$formDate' and '$toDate' and  end_date between '$formDate' and '$toDate'";
+                                    if($result=mysqli_query($connect,$query))
+                                       {
+                                        if(mysqli_num_rows($result)>0)
+                                          {
+                                              
+                                           while($row=mysqli_fetch_array($result))
+                                                          {
+                                                              ?>
+                                                              <tr class='bg-blue'>
+                                                              <td> <?php echo $i ?> </td>
+                                                              <td> <?php echo $row['user_id']; ?> </td>
+                                                              <td> <?php
+                                                              $userid=$row['user_id'];
+                                                              
+                                                               $query="SELECT full_name FROM users where id=$userid";
+                                                               $res=mysqli_query($connect,$query);
+                                                               $username=mysqli_fetch_array($res);
+                                                               echo $username['full_name'];
+                                                              ?> </td>
+                                                              <td> <?php echo $row['item']; ?> </td>
+                                                              <td> <?php echo $row['amount']; ?> </td>
+                                                              <td> <?php echo $row['start_date'] .'  ___To___  '.$row['end_date']; ?> </td>
+                                                              
+                                                          </tr>
+                                                            <?php  
+                                                         
+                                                          echo "<tr id='spacing-row'>";
+                                                          echo "<td></td>";
+                                                          echo "</tr>";
+                                                          $i++;
+                                                          }
+                                                          // echo"</table>";
+                                                          // mysqli_free_result($result);
+                                                      }
+                                                      
+                                                      else
+                                                      {
+                                                      echo "null record";    
+                                                      }
+                                                  }
+                                                  else
+                                                  {
+                                                      echo "thats problem is select $query.".mysqli_error($connect)."<br>";
+                                                  }
+                                              }                 
+                                        
+                            
+
+                              else if(isset($_POST['close']) or $i==1) {
                                   $query="SELECT * FROM expense";
                                   if($result=mysqli_query($connect,$query))
                                      {
@@ -165,6 +250,7 @@ tbody .bg-blue{
                                                 {
                                                     echo "thats problem is select $query.".mysqli_error($connect)."<br>";
                                                 }
+                                            }
                                                 ?>
 
                                 
