@@ -78,6 +78,8 @@
                   <?php
                                     }}
                                 ?> 
+                                <a href="add_order.php"><li>  <span class="ps-3 name">Order</span> </li></a>
+                <a href="myorder.php"><li>  <span class="ps-3 name">View Order</span> </li></a>
                 <a href="user_profile.php"><li> <span class="ps-3 name">Profile</span> </li></a>
                 <a href="../index.php"><li> <span class="ps-3 name">Logout</span> </li></a>
             </ul>
@@ -169,7 +171,7 @@
                         
                             <div class="col-12 mt-4">
                                
-                                <button class="btn btn-primary text-uppercase" type="submit" name="submit">Add Income</button>
+                                <button class="btn btn-primary text-uppercase" type="submit" name="submit">Add Income | Saving</button>
                                 <button class="btn btn-secondary text-uppercase" name="reset" type="reset">Reset</button>
 
                             </div>

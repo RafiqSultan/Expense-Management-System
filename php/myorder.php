@@ -61,13 +61,9 @@ tbody .bg-blue{
     color: #fff;
     font-weight: 500;
 }
-.delete{
-    background-color: rgb(224, 45, 45);
-    padding: 5px 15px;
-    line-height: 30px;
-    color: #fff;
-    font-weight: 500;
-    margin-left: -140px;
+.del{
+   
+    margin-left: -140px !important;
 }
 @media(max-width:575px){
     .container{
@@ -104,7 +100,7 @@ tbody .bg-blue{
                 <a href="show_income.php"><li >  <span class="ps-3 name">View Income</span> </li></a>
                 <a href="show_saving.php"><li>  <span class="ps-3 name">View Saving</span> </li></a>
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
-                <a href="show_expense.php"><li class="active">  <span class="ps-3 name">View Expense</span> </li></a>
+                <a href="show_expense.php"><li >  <span class="ps-3 name">View Expense</span> </li></a>
                 <?php
                 include('../database/connect.php');
                              $userid=$_SESSION['user_id'];
@@ -147,65 +143,30 @@ tbody .bg-blue{
                   <?php
                                     }}
                                 ?> 
-                                <a href="add_order.php"><li>  <span class="ps-3 name">Order</span> </li></a>
-                <a href="myorder.php"><li>  <span class="ps-3 name">View Order</span> </li></a>
+                                 <a href="add_order.php"><li>  <span class="ps-3 name">Order</span> </li></a>
+                <a href="myorder.php"><li class="active">  <span class="ps-3 name">View Order</span> </li></a>
                 <a href="user_profile.php"><li> <span class="ps-3 name">Profile</span> </li></a>
                 <a href="../index.php"><li> <span class="ps-3 name">Logout</span> </li></a>
             </ul>
             <div id="topnavbar">
                 <div class="topnav mb-3">
-                    <div class="d-flex px-1"> <a href="#home" class="active">Show EXPENSE</a>  </div>
+                    <div class="d-flex px-1"> <a href="#home" class="active">Show order</a>  </div>
                 </div>
 
                 <!-- *************************** Start Main****************************************** -->
                 <div class="container rounded mt-5 bg-white p-md-5">
-                <div>
-                            <div class=" row" ><a href="../crud/expense_report.php" class="print" title="print"><i class="fa-solid fa-print"></i></a></div>
-                        </div>
-                <div class="card-body">
+              
 
-<form class="form" action="#" method="post">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>From Date</label>
-                    <input type="date"  name="from_date" class="form-control">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                <label>To Date</label>
-                    <input type="date"  name="to_date" class="form-control">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                <label></label>
-                    <button class="btn btn-primary form-control" type="submit" name="submit_filter">Filter</button>
-                    
-                </div>
-            </div>
-            <div class="col-md-1">
-                <div class="form-group">
-                    <label></label>
-                <button type="submit" name="close" class="btn-close form-control mt-1" data-bs-dismiss="modal" aria-label="Close"></button>
-                    
-                    
-                </div>
-            </div>
-        </div>
-    </form>
-    </div>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
                                 <th scope="col">#</th>  
-                                    <th scope="col">Item</th>                                    
-                                    <th scope="col">Amount</th>                    
-                                    <th scope="col">Start Data</th> 
-                                    <th scope="col">End Date</th> 
-                                    <th scope="col">Action</th>                   
+                                    <th scope="col">Order_name</th>                                    
+                                    <th scope="col">Describe</th>                    
+                                    <th scope="col">Status</th> 
+                                    <th scope="col"></th> 
+                                                   
                                 </tr>
                             </thead>
                             <tbody>
@@ -214,46 +175,7 @@ tbody .bg-blue{
                     
                                 include('../database/connect.php');
                                     $userid=$_SESSION['user_id'];
-                                    if (isset($_POST['submit_filter'])){
-                                        $formDate=$_POST['from_date'];
-                                        $toDate=$_POST['to_date'];
-                                        $query="SELECT * FROM expense WHERE start_date between '$formDate' and '$toDate' and user_id= $userid";
-                                     if($result=mysqli_query($connect,$query))
-                                        {
-                                         if(mysqli_num_rows($result)>0)
-                                           {
-                                               
-                                            while($row=mysqli_fetch_array($result))
-                                               {
-                                                ?>
-                                                <tr class='bg-blue'>
-                                                <td style="display:none;"> <?php echo $row['id']; ?> </td> 
-                                                <td> <?php echo $i ?> </td>
-                                                <td> <?php echo $row['item']; ?> </td>
-                                                <td> <?php echo $row['amount'] ?> </td>
-                                                <td> <?php echo $row['start_date']; ?> </td>
-                                                <td> <?php echo $row['end_date']; ?> </td>
-                                               
-                                                 <?php
-                                                 echo "<td> <a href='../crud/update_exp.php?id=$row[0]' class='update'>Update</a></td>";
-                                                 ?>
-                                               <td> <a type="buttan" class='deleteExp_btn delete'>Delete</a></td>
-                                            </tr>
-                                              <?php  
-                                           
-                                            echo "<tr id='spacing-row'>";
-                                            echo "<td></td>";
-                                            echo "</tr>";
-                                            $i++;
-                                               }
-                                           }}
-                                               else
-                                               {
-                                               echo "null record";    
-                                               }                  
-                                            }
-                                            else if(isset($_POST['close']) or $i==1) {   
-                                  $query="SELECT * FROM expense WHERE user_id=$userid ";
+                                    $query="SELECT * from orders where user_id=$userid";
                                   if($result=mysqli_query($connect,$query))
                                      {
                                       if(mysqli_num_rows($result)>0)
@@ -263,17 +185,26 @@ tbody .bg-blue{
                                                         {
                                                             ?>
                                                             <tr class='bg-blue'>
-                                                            <td style="display:none;"> <?php echo $row['id']; ?> </td> 
                                                             <td> <?php echo $i ?> </td>
-                                                            <td> <?php echo $row['item']; ?> </td>
-                                                            <td> <?php echo $row['amount'] ?> </td>
-                                                            <td> <?php echo $row['start_date']; ?> </td>
-                                                            <td> <?php echo $row['end_date']; ?> </td>
+                                                            <td> <?php echo $row['name']; ?> </td>
+                                                            <td> <?php echo $row['descrption'] ?> </td>
                                                            
-                                                             <?php
-                                                             echo "<td> <a href='../crud/update_exp.php?id=$row[0]' class='update'>Update</a></td>";
-                                                             ?>
-                                                           <td> <a type="buttan" class='deleteExp_btn delete'>Delete</a></td>
+                                                            <td> <?php 
+                                                            $state=$row['order_state'];
+                                                           
+                                                            if($state == -1){
+                                                                echo '<td> <button type="button" class="del  btn btn-secondary">Waiting</button></td>';
+                                                            }
+                                                            else if($state == 1){
+                                                                echo '<td> <button type="button" class="del btn btn-success">Accept</button></td>';
+                                                               
+                                                            }
+                                                            else{
+                                                                echo '<td> <button type="button" class=" del btn btn-danger">Reject</button></td>';
+                                                            }
+                                                            
+                                                            ?> </td>
+                                               
                                                         </tr>
                                                           <?php  
                                                        
@@ -295,7 +226,7 @@ tbody .bg-blue{
                                                 {
                                                     echo "thats problem is select $query.".mysqli_error($connect)."<br>";
                                                 }
-                                            }
+                                           
                                                 ?>
 
                                 
@@ -303,26 +234,6 @@ tbody .bg-blue{
                         </table>
                    
                 </div>
-<!-- Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Do you want delete data!</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form action="../crud/delete_exp.php" method='post'>   
-        <input type="hidden" name="deleteExpid" id="deleteExp_id" >    
-       
-     
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" name="delete_data" class="btn btn-danger">Delete</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
 
 
                  <!-- *************************** End Main****************************************** -->
@@ -335,20 +246,5 @@ tbody .bg-blue{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-    $(document).ready(function(){
-        $('.deleteExp_btn').on('click',function(){
-            $('#deleteModal').modal('show');
-
-            $tr=$(this).closest('tr');
-            var data=$tr.children("td").map(function(){
-                return $(this).text();
-            }).get();
-            console.log(data)
-            $('#deleteExp_id').val(data[0]);
-        });
-
-    });
-</script>
 </body>
 </html>

@@ -81,7 +81,8 @@
                   <?php
                                     }}
                                 ?> 
-                
+                <a href="add_order.php"><li>  <span class="ps-3 name">Order</span> </li></a>
+                <a href="myorder.php"><li>  <span class="ps-3 name">View Order</span> </li></a>
                 <a href="user_profile.php"><li> <span class="ps-3 name">Profile</span> </li></a>
                 <a href="../index.php"><li> <span class="ps-3 name">Logout</span> </li></a>
             </ul>
@@ -106,7 +107,7 @@
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"> <i class="fa fa-signal" aria-hidden="true"></i> </div>
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
-                                                        <h6>Today Income</h6>
+                                                        <h6 class="text-uppercase">Today Income</h6>
                                                         <?php
                                                             include('../database/connect.php');
                                                             $userid=$_SESSION['user_id'];
@@ -140,7 +141,7 @@
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fa fa-money-bill-transfer"></i></div>
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
-                                                        <h6>Today Exponse</h6>
+                                                        <h6 class="text-uppercase">Today Expense</h6>
                                                         <?php
                                                             include('../database/connect.php');
                                                             $userid=$_SESSION['user_id'];
@@ -173,7 +174,7 @@
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fas fa-sack-dollar"></i> </div>
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
-                                                        <h6>Total Income</h6>
+                                                        <h6 class="text-uppercase">Total Income</h6>
                                                         <?php
                                                             include('../database/connect.php');
                                                             $userid=$_SESSION['user_id'];
@@ -202,7 +203,7 @@
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fas fa-sack-dollar"></i> </div>
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
-                                                        <h6>Total Saving</h6>
+                                                        <h6 class="text-uppercase">Total Saving</h6>
                                                         <?php
                                                             include('../database/connect.php');
                                                             $userid=$_SESSION['user_id'];
@@ -232,7 +233,7 @@
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fa fa-money-bill-transfer"></i> </div>
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
-                                                        <h6>Total Expense</h6>
+                                                        <h6 class="text-uppercase">Total Expense</h6>
                                                         <?php
                                                             include('../database/connect.php');
                                                             $userid=$_SESSION['user_id'];
@@ -262,7 +263,7 @@
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fa-sharp fa-solid fa-people-group"></i> </div>
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
-                                                        <h6>Groups </h6>
+                                                        <h6 class="text-uppercase">Groups </h6>
                                                         <?php
                                                             include('../database/connect.php');
                                                             $userid=$_SESSION['user_id'];

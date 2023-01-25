@@ -109,6 +109,8 @@
                   <?php
                                     }}
                                 ?> 
+                                <a href="add_order.php"><li>  <span class="ps-3 name">Order</span> </li></a>
+                <a href="myorder.php"><li>  <span class="ps-3 name">View Order</span> </li></a>
                 <a href="user_profile.php"><li class="active"> <span class="ps-3 name">Profile</span> </li></a>
                 <a href="../index.php"><li> <span class="ps-3 name">Logout</span> </li></a>
             </ul>
