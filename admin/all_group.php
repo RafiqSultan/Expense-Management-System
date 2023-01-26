@@ -90,6 +90,7 @@ tbody .bg-blue{
                 <a href="all_user.php"> <li  > <span class="ps-3 name">All USER</span> </li></a>
                 <a href="all_income.php"><li>  <span class="ps-3 name">ALL INCOME</span> </li></a>
                 <a href="all_expense.php"><li>  <span class="ps-3 name">ALL EXPENSE</span> </li></a>
+                <a href="all_order.php"><li>  <span class="ps-3 name">ALL ORDERS</span> </li></a>
                 <a href="all_group.php"><li class="active">  <span class="ps-3 name">ALL GROUP</span> </li></a>      
                 <a href="add_group.php"><li> <span class="ps-3 name">ADD GROUP</span> </li></a>
                 <a href="index.php"><li> <span class="ps-3 name">Logout</span> </li></a>

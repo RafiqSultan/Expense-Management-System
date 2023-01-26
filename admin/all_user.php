@@ -121,6 +121,7 @@ tbody .bg-blue{
                 <a href="all_user.php"> <li class="active" > <span class="ps-3 name">All USER</span> </li></a>
                 <a href="all_income.php"><li>  <span class="ps-3 name">ALL INCOME</span> </li></a>
                 <a href="all_expense.php"><li>  <span class="ps-3 name">ALL EXPENSE</span> </li></a>
+                <a href="all_order.php"><li>  <span class="ps-3 name">ALL ORDERS</span> </li></a>
                 <a href="all_group.php"><li>  <span class="ps-3 name">ALL GROUP</span> </li></a>      
                 <a href="add_group.php"><li> <span class="ps-3 name">ADD GROUP</span> </li></a>
                 <a href="index.php"><li> <span class="ps-3 name">Logout</span> </li></a>
@@ -258,8 +259,7 @@ tbody .bg-blue{
                                                         echo "</tr>";
                                                         $i++;
                                                         }
-                                                        // echo"</table>";
-                                                        // mysqli_free_result($result);
+                                                       
                                                     }
                                                     
                                                     else
@@ -280,7 +280,7 @@ tbody .bg-blue{
                    
                 </div>
 <!-- Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteuser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -314,7 +314,7 @@ tbody .bg-blue{
     <script>
     $(document).ready(function(){
         $('.delete_btn').on('click',function(){
-            $('#deleteModal').modal('show');
+            $('#deleteuser').modal('show');
 
             $tr=$(this).closest('tr');
             var data=$tr.children("td").map(function(){

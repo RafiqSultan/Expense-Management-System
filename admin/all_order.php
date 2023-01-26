@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Income</title>
+    <title>All order</title>
     <link rel="stylesheet" href="../css/style.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
@@ -59,13 +59,10 @@ tbody .bg-blue{
     color: #fff;
     font-weight: 500;
 }
-.delete{
-    background-color: rgb(224, 45, 45);
-    padding: 5px 15px;
-    line-height: 30px;
-    color: #fff;
-    font-weight: 500;
-    margin-left: 10px;
+.del_1{
+   
+    margin-left: -80px;
+    /* margin-right: 50px; */
 }
 @media(max-width:575px){
     .container{
@@ -88,16 +85,16 @@ tbody .bg-blue{
             <ul id="navbar-items" class="p-0">
                 <a href="admin_dashboard.php"><li > <span class="ps-3 name ">Dashboard</span> </li></a>
                 <a href="all_user.php"> <li  > <span class="ps-3 name">All USER</span> </li></a>
-                <a href="all_income.php"><li class="active">  <span class="ps-3 name">ALL INCOME</span> </li></a>
+                <a href="all_income.php"><li >  <span class="ps-3 name">ALL INCOME</span> </li></a>
                 <a href="all_expense.php"><li>  <span class="ps-3 name">ALL EXPENSE</span> </li></a>
-                <a href="all_order.php"><li>  <span class="ps-3 name">ALL ORDERS</span> </li></a>
+                <a href="all_order.php"><li class="active">  <span class="ps-3 name">ALL ORDERS</span> </li></a>
                 <a href="all_group.php"><li>  <span class="ps-3 name">ALL GROUP</span> </li></a>      
                 <a href="add_group.php"><li> <span class="ps-3 name">ADD GROUP</span> </li></a>
                 <a href="index.php"><li> <span class="ps-3 name">Logout</span> </li></a>
             </ul>
             <div id="topnavbar">
                 <div class="topnav mb-3">
-                    <div class="d-flex px-1"> <a href="#home" class="active">All Income</a>  </div>
+                    <div class="d-flex px-1"> <a href="#home" class="active">All Expense</a>  </div>
                 </div>
 
                 <!-- *************************** Start Main****************************************** -->
@@ -143,10 +140,12 @@ tbody .bg-blue{
                                     <th scope="col">#</th>                    
                                     <th scope="col">ID</th>                    
                                     <th scope="col">User Name</th>                    
-                                    <th scope="col">Inc_name</th> 
-                                    <th scope="col">Amount</th>    
-                                    <th scope="col">Group</th> 
-                                    <th scope="col">data</th>               
+                                    <th scope="col">Order Name</th> 
+                                    <th scope="col">Describe</th>    
+                                    <th scope="col">date</th>
+                                    <th scope="col">Status</th>  
+                                    <th scope="col"></th>       
+                                    <th scope="col"></th>          
                                 </tr>
                             </thead>
                             <tbody>
@@ -157,7 +156,7 @@ tbody .bg-blue{
                                 if (isset($_POST['submit_filter'])){
                                     $formDate=$_POST['from_date'];
                                     $toDate=$_POST['to_date'];
-                                    $query="SELECT * FROM income WHERE date between '$formDate' and '$toDate'";
+                                    $query="SELECT * FROM orders WHERE date_create between '$formDate' and '$toDate'";
                                     if($result=mysqli_query($connect,$query))
                                        {
                                         if(mysqli_num_rows($result)>0)
@@ -178,9 +177,17 @@ tbody .bg-blue{
                                                                echo $username['full_name'];
                                                               ?> </td>
                                                               <td> <?php echo $row['name']; ?> </td>
-                                                              <td> <?php echo $row['amount']; ?> </td>
-                                                              <td> <?php echo $row['group_id']; ?> </td>
-                                                              <td> <?php echo $row['date']; ?> </td>
+                                                              <td> <?php echo $row['descrption']; ?> </td>
+                                                              <td> <?php echo $row['date_create']; ?> </td>
+                                                              <td> <?php 
+                                                            
+                                                                echo '<td> <button type="button" class="del btn btn-success">Accept</button></td>';
+                                                               
+                                                          
+                                                                echo '<td> <button type="button" class=" btn btn-danger">Reject</button></td>';
+                                                            
+                                                            
+                                                            ?> </td>
                                                           </tr>
                                                             <?php  
                                                          
@@ -207,51 +214,82 @@ tbody .bg-blue{
                             
 
                               else if(isset($_POST['close']) or $i==1) {
-                                  $query="SELECT * FROM income";
-                                  if($result=mysqli_query($connect,$query))
-                                     {
-                                      if(mysqli_num_rows($result)>0)
-                                        {
-                                            
-                                         while($row=mysqli_fetch_array($result))
-                                                        {
-                                                            ?>
-                                                            <tr class='bg-blue'>
-                                                            <td> <?php echo $i ?> </td>
-                                                            <td> <?php echo $row['user_id']; ?> </td>
-                                                            <td> <?php
-                                                            $userid=$row['user_id'];
-                                                            
-                                                             $query="SELECT full_name FROM users where id=$userid";
-                                                             $res=mysqli_query($connect,$query);
-                                                             $username=mysqli_fetch_array($res);
-                                                             echo $username['full_name'];
-                                                            ?> </td>
-                                                            <td> <?php echo $row['name']; ?> </td>
-                                                            <td> <?php echo $row['amount']; ?> </td>
-                                                            <td> <?php echo $row['group_id']; ?> </td>
-                                                            <td> <?php echo $row['date']; ?> </td>
-                                                        </tr>
-                                                          <?php  
-                                                       
-                                                        echo "<tr id='spacing-row'>";
-                                                        echo "<td></td>";
-                                                        echo "</tr>";
-                                                        $i++;
+                                $query="SELECT * FROM orders";
+                                if($result=mysqli_query($connect,$query))
+                                   {
+                                    if(mysqli_num_rows($result)>0)
+                                      {
+                                          
+                                       while($row=mysqli_fetch_array($result))
+                                                      {
+                                                          ?>
+                                                          <tr class='bg-blue'>
+                                                          <td> <?php echo $i ?> </td>
+                                                          <td> <?php echo $row['user_id']; ?> </td>
+                                                          <td> <?php
+                                                          $userid=$row['user_id'];
+                                                          
+                                                           $query="SELECT full_name FROM users where id=$userid";
+                                                           $res=mysqli_query($connect,$query);
+                                                           $username=mysqli_fetch_array($res);
+                                                           echo $username['full_name'];
+                                                          ?> </td>
+                                                          <td> <?php echo $row['name']; ?> </td>
+                                                          <td> <?php echo $row['descrption']; ?> </td>
+                                                          <td> <?php echo $row['date_create']; ?> </td>
+                                                          <td>
+                                                             <?php 
+                                                          $s=$row['order_state'];
+                                                          
+                                                          if($s == -1){
+
+                                                           
+                                                       echo '<td > <a href="check_order.php?id='.$row["id"].'&user='.$row["user_id"].'&state=1" type="button" name="submit_accept"  class=" btn btn-success">Accept</a></td>';
+
+                                                    echo ' <td  > <a type="button" href="check_order.php?id='.$row["id"].'&user='.$row["user_id"].'&state=0" name="submit_reject" class="del_2 btn btn-danger">Reject</a></td>';
+
+                                                    }
+                                                    else{
+                                                         if($s == 1){
+                                                           
+                                                           
+                                                            echo '<td > <a  type="button" name="submit_accept"  class="  btn btn-success">Accept</a></td>';
+                                                            echo '<td ></td>';
                                                         }
-                                                        // echo"</table>";
-                                                        // mysqli_free_result($result);
+                                                        else{
+                                                            echo '<td ></td>';
+                                                            echo ' <td > <a type="button" name="submit_reject" class="del_2 btn btn-danger">Reject</a></td>';
+                                                           
+                                                        }
+                                                        
                                                     }
-                                                    
-                                                    else
-                                                    {
-                                                    echo "null record";    
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    echo "thats problem is select $query.".mysqli_error($connect)."<br>";
-                                                }
+                                                           
+                                                    ?>  
+                                                          
+                                                        
+                                                        
+                                                         </td>
+                                                      </tr>
+                                                        <?php  
+                                                     
+                                                      echo "<tr id='spacing-row'>";
+                                                      echo "<td></td>";
+                                                      echo "</tr>";
+                                                      $i++;
+                                                      }
+                                                      // echo"</table>";
+                                                      // mysqli_free_result($result);
+                                                  }
+                                                  
+                                                  else
+                                                  {
+                                                  echo "null record";    
+                                                  }
+                                              }
+                                              else
+                                              {
+                                                  echo "thats problem is select $query.".mysqli_error($connect)."<br>";
+                                              }
                                             }
                                                 ?>
 
@@ -272,6 +310,8 @@ tbody .bg-blue{
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+
+
 
 
 </body>

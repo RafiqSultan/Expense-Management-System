@@ -149,13 +149,12 @@ if(isset($_POST['submit'])){
 
     $name=$_POST['name'] ;
     $desc=$_POST['describe'] ;
-    $fullname=$_SESSION['full_name'];
     $user=$_SESSION['user_id'];
     
 
-    $query= "INSERT INTO  orders (name, descrption,user_id,order_of_user)
+    $query= "INSERT INTO  orders (name, descrption,user_id)
     VALUES
-    ('$name' , '$desc' ,$user, '$fullname')";
+    ('$name' , '$desc' ,$user)";
     echo $query;
     if($result=mysqli_query($connect,$query))
     {
@@ -165,7 +164,7 @@ if(isset($_POST['submit'])){
                 echo "<div class='$class' role='$role'>
                ADD Successful
               </div>";
-               header("location:../php/myorder.php");
+               header("location:myorder.php");
     }
     else{
         echo "thats problem in insert $query.".mysqli_error($connect)."<br>";
