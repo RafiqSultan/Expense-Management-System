@@ -47,10 +47,10 @@ $type=" ";
                 $query= "INSERT INTO  income (name, descrption, date, amount,type, user_id)
                 VALUES
                 ('$name_inc' , '$describe' , '$date_inc' , $amount , '$type_inc' ,$userid)";
-                echo $query;
+               
                 if($result=mysqli_query($connect , $query))
                 {
-                    if($type== 'saving')
+                    if($type_inc == 'saving')
                     {
                         header("location:../php/show_saving.php");
                     }
@@ -71,7 +71,7 @@ $type=" ";
             echo $query;
             if($result=mysqli_query($connect , $query))
             {
-                if($type== 'saving')
+                if($type_inc== 'saving')
                     {
                         header("location:../php/show_saving.php");
                     }

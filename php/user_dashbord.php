@@ -102,7 +102,7 @@
                         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <div class="row" style="padding: 10px;">
                                 <div class="col-md-12">
-                                    <div class="card cssanimation2 fadeInBottom2"> <a href="#" target="_blank">
+                                    <div class="card cssanimation2 fadeInBottom2"> <a>
                                             <div class="card-body">
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"> <i class="fa fa-signal" aria-hidden="true"></i> </div>
@@ -136,7 +136,7 @@
                          <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <div class="row" style="padding: 10px;">
                                 <div class="col-md-12">
-                                    <div class="card cssanimation2 fadeInBottom2"> <a href="#" target="_blank">
+                                    <div class="card cssanimation2 fadeInBottom2"> <a >
                                             <div class="card-body">
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fa fa-money-bill-transfer"></i></div>
@@ -169,7 +169,7 @@
                          <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <div class="row" style="padding: 10px;">
                                 <div class="col-md-12">
-                                    <div class="card cssanimation2 fadeInBottom2"> <a href="#" target="_blank">
+                                    <div class="card cssanimation2 fadeInBottom2"> <a >
                                             <div class="card-body">
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fas fa-sack-dollar"></i> </div>
@@ -198,7 +198,7 @@
                         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <div class="row" style="padding: 10px;">
                                 <div class="col-md-12">
-                                    <div class="card cssanimation2 fadeInBottom2"> <a href="#" target="_blank">
+                                    <div class="card cssanimation2 fadeInBottom2"> <a >
                                             <div class="card-body">
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fas fa-sack-dollar"></i> </div>
@@ -228,7 +228,7 @@
                          <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <div class="row" style="padding: 10px;">
                                 <div class="col-md-12">
-                                    <div class="card cssanimation2 fadeInBottom2"> <a href="#" target="_blank">
+                                    <div class="card cssanimation2 fadeInBottom2"> <a >
                                             <div class="card-body">
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fa fa-money-bill-transfer"></i> </div>
@@ -258,7 +258,7 @@
                          <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <div class="row" style="padding: 10px;">
                                 <div class="col-md-12">
-                                    <div class="card cssanimation2 fadeInBottom2"> <a href="#" target="_blank">
+                                    <div class="card cssanimation2 fadeInBottom2"> <a >
                                             <div class="card-body">
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fa-sharp fa-solid fa-people-group"></i> </div>

@@ -226,6 +226,8 @@ tbody .bg-blue{
                             header("location:all_group.php");
                         }
              }
+
+
              $qq="UPDATE groups SET name='$name',capacity=$capacity  WHERE id=$g_id";
              if($q=mysqli_query($connect,$qq)){
                  echo '
@@ -233,16 +235,29 @@ tbody .bg-blue{
                  Update Successful
                  </div>';
                  header("location:all_group.php");
-             }
 
-       
-
-     
- 
-    else{
-        echo "thats problem is select $query.".mysqli_error($connect)."<br>";
+                
         }
-    }
+        else{
+            $qq="UPDATE groups SET name='$name',capacity=$capacity  WHERE id=$g_id";
+            if($q=mysqli_query($connect,$qq)){
+                // echo '
+                // <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
+                // Update Successful
+                // </div>';
+                $redirect = "http://localhost/exp/admin/all_group.php";
+                header("Location: $redirect");
+
+             }
+         }
+
+    
+    // else{
+    //     echo "thats problem is select $query.".mysqli_error($connect)."<br>";
+    //     }
+   
+
+}
      ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
