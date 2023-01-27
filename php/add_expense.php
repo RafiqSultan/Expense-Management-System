@@ -113,7 +113,7 @@
                            
                             <div class="col-lg-6 col-md-12 mb-3">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="amount" placeholder="FLYING TO" required>
+                                    <input type="number" class="form-control" name="amount" placeholder="FLYING TO" required>
                                     <label>Amount</label>
                                 </div>
                             </div>

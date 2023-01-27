@@ -101,7 +101,7 @@
                                           {
             echo ' <div class="container">
                     <div class="card p-4 mt-5">
-                    <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;">UPDATE EXPENSE</h4>
+                    <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;color:#21214e;text-decoration: underline;">update Expense</h4>
                         <div class="row g-3">
                             <div class="col-12 mb-4 balance">
                               
@@ -117,7 +117,7 @@
                            
                             <div class="col-lg-6 col-md-12 mb-3">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="amount" placeholder="FLYING TO" value='.$row['amount'].' requird>
+                                    <input type="number" class="form-control" name="amount" placeholder="FLYING TO" value='.$row['amount'].' requird>
                                     <label>Amount</label>
                                 </div>
                             </div>
@@ -137,8 +137,8 @@
                         
                             <div class="col-12 mt-4">
                                
-                                <button class="btn btn-primary text-uppercase" type="submit" name="submit">Update Expense</button>
-                                <button class="btn btn-secondary text-uppercase" type="button">Reset</button>
+                                <button class="btn btn-primary text-uppercase" style="padding-left:25px !important; padding-right:25px !important;" type="submit" name="submit">Update</button>
+                                
                             </div>
                             </div>
                             
@@ -163,6 +163,12 @@
                                                 <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
                                                 Update Successful
                                               </div>';
+                                              echo '
+                                              <script>
+                                             
+                                              window.location.href="http://localhost/exp/php/show_expense.php";
+                                              </script>
+                                              ';
                                              }
                                             
                                           }

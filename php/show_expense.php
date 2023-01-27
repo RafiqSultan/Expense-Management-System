@@ -67,7 +67,7 @@ tbody .bg-blue{
     line-height: 30px;
     color: #fff;
     font-weight: 500;
-    margin-left: -140px;
+    margin-left: -100px;
 }
 @media(max-width:575px){
     .container{
@@ -217,7 +217,12 @@ tbody .bg-blue{
                                     if (isset($_POST['submit_filter'])){
                                         $formDate=$_POST['from_date'];
                                         $toDate=$_POST['to_date'];
-                                        $query="SELECT * FROM expense WHERE start_date between '$formDate' and '$toDate' and user_id= $userid";
+                                        if(empty($toDate)){
+                                            date_default_timezone_set('Asia/Riyadh');
+                                            $toDate = date('Y-m-d');
+                                         }
+                                       
+                                        $query="SELECT * FROM expense WHERE start_date between '$formDate' and '$toDate' or end_date between '$formDate' and '$toDate' and  user_id= $userid";
                                      if($result=mysqli_query($connect,$query))
                                         {
                                          if(mysqli_num_rows($result)>0)
@@ -252,7 +257,9 @@ tbody .bg-blue{
                                                echo "null record";    
                                                }                  
                                             }
-                                            else if(isset($_POST['close']) or $i==1) {   
+                                            else if(isset($_POST['close']) or $i==1)
+                                            
+                                            {   
                                   $query="SELECT * FROM expense WHERE user_id=$userid ";
                                   if($result=mysqli_query($connect,$query))
                                      {

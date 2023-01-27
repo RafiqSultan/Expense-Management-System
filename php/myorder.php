@@ -196,12 +196,14 @@ tbody .bg-blue{
                                                                 echo '<td> <button type="button" class="del  btn btn-secondary">Waiting</button></td>';
                                                             }
                                                             else if($state == 1){
-                                                                echo '<td> <button type="button" class="del btn btn-success">Accept</button></td>';
+                                                                echo '  <td class=" pt-3 mt-1"><i class= "del far fa-circle-check" style="color:rgb(10, 167, 18) ; font-size: 24px;"></i></td>';
                                                                
                                                             }
                                                             else{
-                                                                echo '<td> <button type="button" class=" del btn btn-danger">Reject</button></td>';
+                                                                echo ' <td class="pt-3 mt-1"><i class="del fa-regular fa-circle-xmark" style="color:rgb(235, 35,20) ; font-size: 24px;"></i></td>';
                                                             }
+
+              
                                                             
                                                             ?> </td>
                                                

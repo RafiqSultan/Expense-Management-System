@@ -164,7 +164,13 @@ if(isset($_POST['submit'])){
                 echo "<div class='$class' role='$role'>
                ADD Successful
               </div>";
-               header("location:myorder.php");
+              
+               echo '
+               <script>
+              
+               window.location.href="http://localhost/exp/php/myorder.php";
+               </script>
+               ';
     }
     else{
         echo "thats problem in insert $query.".mysqli_error($connect)."<br>";

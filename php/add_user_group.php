@@ -159,7 +159,12 @@
             $sql = "UPDATE users SET type='member' WHERE id=$member_id";
             if (mysqli_query($connect,$sql))
              {
-                header("location:user_dashbord.php");  
+                echo '
+                <script>
+               
+                window.location.href="http://localhost/exp/php/show_all_member.php";
+                </script>
+                '; 
               }
         }
         }
