@@ -16,6 +16,11 @@ $type=" ";
             $ty=$res->fetch_assoc();
            $type=$ty['type'];
         }
+
+        if(empty($date_inc)){
+            date_default_timezone_set('Asia/Riyadh');
+            $date_inc = date('Y-m-d');
+         }
 // ------------------------------
         if($type == 'user'){
             
@@ -25,7 +30,7 @@ $type=" ";
             echo $query;
             if($result=mysqli_query($connect , $query))
             {
-                if($type== 'saving')
+                if($type_inc== 'saving')
                 {
                     header("location:../php/show_saving.php");
                 }

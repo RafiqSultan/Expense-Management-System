@@ -65,7 +65,7 @@ tbody .bg-blue{
     line-height: 30px;
     color: #fff;
     font-weight: 500;
-    margin-left: -120px;
+    margin-left: -100px;
 }
 @media(max-width:575px){
     .container{
@@ -219,6 +219,10 @@ tbody .bg-blue{
                      if (isset($_POST['submit_filter'])){
                                      $formDate=$_POST['from_date'];
                                      $toDate=$_POST['to_date'];
+                                     if(empty($toDate)){
+                                        date_default_timezone_set('Asia/Riyadh');
+                                        $toDate = date('Y-m-d');
+                                     }
                                      $query="SELECT * FROM income WHERE date between '$formDate' and '$toDate' and user_id= $userid and type='income'";
                                   if($result=mysqli_query($connect,$query))
                                      {
@@ -359,7 +363,13 @@ tbody .bg-blue{
 
          if($query_run = mysqli_query($connect, $query))
          {
-            header('location:show_income.php'); // 0 = seconds
+           
+            echo '
+            <script>
+           
+            window.location.href="http://localhost/exp/php/show_income.php";
+            </script>
+            ';
          }
          else
          {

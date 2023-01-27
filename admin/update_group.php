@@ -238,7 +238,8 @@ tbody .bg-blue{
 
                 
         }
-        else{
+        
+    else{
             $qq="UPDATE groups SET name='$name',capacity=$capacity  WHERE id=$g_id";
             if($q=mysqli_query($connect,$qq)){
                 // echo '

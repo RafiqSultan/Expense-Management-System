@@ -218,6 +218,10 @@ tbody .bg-blue{
                                 if (isset($_POST['submit_filter'])){
                                     $formDate=$_POST['from_date'];
                                     $toDate=$_POST['to_date'];
+                                    if(empty($toDate)){
+                                        date_default_timezone_set('Asia/Riyadh');
+                                        $toDate = date('Y-m-d');
+                                     }
                                     $query="SELECT * FROM income WHERE date between '$formDate' and '$toDate' and user_id= $userid and type='income'";
                                  if($result=mysqli_query($connect,$query))
                                     {
@@ -340,7 +344,7 @@ tbody .bg-blue{
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form method='post' action="#" >   
-        <input type="" name="deleteIncid" id="deleteInc_id" >
+        <input type="hidden" name="deleteIncid" id="deleteInc_id" >
         <?php
        
        include('../database/connect.php');
@@ -351,7 +355,12 @@ tbody .bg-blue{
          $query = "DELETE FROM income WHERE id=$item_id";
 
          if($query_run = mysqli_query($connect, $query)){
-            header('location:show_saving.php'); // 0 = seconds
+            echo '
+            <script>
+           
+            window.location.href="http://localhost/exp/php/show_saving.php";
+            </script>
+            ';
          }
          else
          {

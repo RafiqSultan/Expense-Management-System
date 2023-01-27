@@ -114,7 +114,7 @@
 
                        echo ' <div class="container">
                        <div class="card p-4 mt-5">
-                       <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;">UPDATE INCOME</h4>
+                       <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;color:#21214e;text-decoration: underline;">update income | saving</h4>
                            <div class="row g-3">
                                <div class="col-12 mb-4 balance">
                                
@@ -196,7 +196,7 @@
                            
                                <div class="col-12 mt-4">
                                   
-                                   <button onClick="update_inc()"class="btn btn-primary text-uppercase" type="submit" name="submit">Update Income</button>
+                                   <button onClick="update_inc()"class="btn btn-primary text-uppercase " style="padding-left:25px !important; padding-right:25px !important;" type="submit" name="submit">Update</button>
                                    
                                </div>
                                </div>
@@ -211,34 +211,120 @@
 
             if( isset($_POST['submit']))
          {
+            $type_user=" ";
             $nameinc=$_POST['name_inc'] ;
             $describe=$_POST['describe'] ;
             $amount=$_POST['amount'] ;
             $date_inc=$_POST['date_inc'] ;
             $type=$_POST['type_inc'];
-            $groupid=$_POST['group_name'];
+            if(empty($date_inc)){
+                date_default_timezone_set('Asia/Riyadh');
+                $date_inc = date('Y-m-d');
+             }
+            
+                $qt="SELECT type from users WHERE id=$userid";
+                $res = $connect->query($qt);
+                if($res->num_rows> 0){
+                    $ty=$res->fetch_assoc();
+                $type_user=$ty['type'];
+                }
 
-            if($groupid =='null'){
-            $query="UPDATE income  SET name='$nameinc',descrption='$describe',amount='$amount',date='$date_inc',type='$type' WHERE id=$income_id";
-            if($qq=mysqli_query($connect,$query)){
-                echo '
-                                                <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
-                                                Update Successful
-                                              </div>';
+            if($type_user == 'user'){
+            
+                $que="UPDATE income  SET name='$nameinc',descrption='$describe',amount='$amount',date='$date_inc',type='$type',group_id=NULL WHERE id=$income_id";
+                if($q=mysqli_query($connect,$que)){
+                    echo '
+                                                    <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
+                                                    Update Successful
+                                                  </div>';
+                                                  if($type== 'saving')
+                                                  {
+                                                   
+                                                      echo '
+                                                      <script>
+                                                     
+                                                      window.location.href="http://localhost/exp/php/show_saving.php";
+                                                      </script>
+                                                      ';
+                                                  }
+                                                  else{
+                                                   
+                                                      echo '
+                                                      <script>
+                                                     
+                                                      window.location.href="http://localhost/exp/php/show_income.php";
+                                                      </script>
+                                                      ';
+                                                  }
+                }
+    
+            }
+            else{
+
+                $groupid=$_POST['group_name'];
+
+                if($groupid =='null'){
+                $query="UPDATE income  SET name='$nameinc',descrption='$describe',amount='$amount',date='$date_inc',type='$type',group_id=NULL WHERE id=$income_id";
+                if($qq=mysqli_query($connect,$query)){
+                    echo '
+                                                    <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
+                                                    Update Successful
+                                                  </div>';
+                                                  if($type== 'saving')
+                                                  {
+                                                   
+                                                      echo '
+                                                      <script>
+                                                     
+                                                      window.location.href="http://localhost/exp/php/show_saving.php";
+                                                      </script>
+                                                      ';
+                                                  }
+                                                  else{
+                                                   
+                                                      echo '
+                                                      <script>
+                                                     
+                                                      window.location.href="http://localhost/exp/php/show_income.php";
+                                                      </script>
+                                                      ';
+                                                  }
+                }
+                
+            }
+          
+            else{
+                $q="UPDATE income  SET name='$nameinc',descrption='$describe',amount='$amount',date='$date_inc',type='$type',group_id=$groupid WHERE id=$income_id";
+                if($qu=mysqli_query($connect,$q)){
+                    echo '
+                                                    <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
+                                                    Update Successful
+                                                  </div>';
+                                                  if($type== 'saving')
+                                                  {
+                                                      echo '
+                                                      <script>
+                                                     
+                                                      window.location.href="http://localhost/exp/php/show_saving.php";
+                                                      </script>
+                                                      ';
+                                                  }
+                                                  else{
+                                                   
+                                                      echo '
+                                                      <script>
+                                                      
+                                                      window.location.href="http://localhost/exp/php/show_income.php";
+                                                      </script>
+                                                      ';
+                                                  }
+                }
+            }
+    
             }
             
-        }
-      
-        else{
-            $q="UPDATE income  SET name='$nameinc',descrption='$describe',amount='$amount',date='$date_inc',type='$type',group_id=$groupid WHERE id=$income_id";
-            if($qu=mysqli_query($connect,$q)){
-                echo '
-                                                <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
-                                                Update Successful
-                                              </div>';
-            }
-        }
 
+         
     }
                 
                 
