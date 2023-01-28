@@ -16,12 +16,18 @@ a{
 	color: #4444ee !important;
 	
 }
-/* .adminstyle{
-	display: flex !important;
-	align-items: center;
-	justify-content: center;
-	background-color: aqua !important;
-} */
+.full_name_type{
+	position: relative;
+	top: 17px;
+}
+.full_name_type span{
+	width: 100%;
+	margin-left: 15%;
+	margin-top: 10px !important;
+	color: rgb(199, 199, 201);
+	font-style: italic;
+
+}
 .card-body{
 	box-shadow: 0 0 5px #6e6ed8 !important;
 }

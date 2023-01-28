@@ -194,7 +194,7 @@ tbody .bg-blue{
                                 
                             </tbody>
                         </table>
-                        <div class="card-head border border-info p-2"><h5> <span style="color:#0b7dda;">Total Amount : </span> <?php echo $total_amount; ?></h5></div>;
+                        <div class="card-head border border-info p-2"><h5> <span style="color:#0b7dda;">Total Amount : </span> <?php echo $total_amount; ?></h5></div>
                 </div>
 
 

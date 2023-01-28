@@ -83,16 +83,27 @@ tbody .bg-blue{
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
                 <img src="../img/user.png" width="40" height="40">
-                <h4>  <?php
+                <h4 class="full_name_type">
+                    <?php
+                    $mem_type='';
+                    include('../database/connect.php');
                     session_start();
+                   
                     if($_SESSION["loggedIn"] != true){
                        
                         header("Location:../index.php");
                         exit;
                     }
                     echo $_SESSION['full_name'];
-                   
-                    ?></h4>
+                    $userid=$_SESSION['user_id'];
+                             $query ="SELECT type from users WHERE id=$userid";
+                            $result = $connect->query($query);
+                            if($result->num_rows> 0){
+                                $type=$result->fetch_assoc();
+                                $mem_type=$type;
+                    ?>
+                     <span><?php echo $type['type']; ?></span>
+                </h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>
@@ -105,12 +116,7 @@ tbody .bg-blue{
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
                 <a href="show_expense.php"><li >  <span class="ps-3 name">View Expense</span> </li></a>
                 <?php
-                include('../database/connect.php');
-                             $userid=$_SESSION['user_id'];
-                             $query ="SELECT type from users WHERE id=$userid";
-                            $result = $connect->query($query);
-                            if($result->num_rows> 0){
-                                $type=$result->fetch_assoc();
+               
                             if( ($type['type']=='leader') || ($type['type']=='member')){
                             
                             ?>
@@ -168,11 +174,17 @@ tbody .bg-blue{
                                     <th scope="col">#</th>                                    
                                     <th scope="col">ID</th>                    
                                     <th scope="col">User Name</th>
-                           
+                                    <th scope="col">Name</th> 
+                                    <th scope="col">Describe</th> 
                                     <th scope="col">Amount</th> 
                                     <th scope="col">Group</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Action</th>                   
+                                    <?php
+                                            if($type == 'leader'){
+                                                echo ' <th scope="col">Action</th> ';
+                                            }
+                                    ?>
+                                                   
                                 </tr>
                             </thead>
                             <tbody>
@@ -186,7 +198,7 @@ tbody .bg-blue{
                                 if($result->num_rows> 0){
                                     while($g_id=$result->fetch_assoc()){ 
                                         $all_group=$g_id['id'];
-                                        $sql="SELECT ug.user_id,u.type,u.full_name,ug.group_id,g.name ,SUM(i.amount) AS amount
+                                        $sql="SELECT ug.user_id,u.type,u.full_name,ug.group_id,g.name ,i.name ,i.descrption ,SUM(i.amount) AS amount
                                         from user_group ug
                                         inner join users u on ug.user_id=u.id
                                         inner join groups g on ug.group_id=g.id
@@ -205,7 +217,8 @@ tbody .bg-blue{
                                                             <td> <?php echo $i ?> </td>
                                                             <td> <?php echo $row['user_id']; ?> </td>
                                                             <td> <?php echo $row['full_name']; ?> </td>
-                                    
+                                                            <td> <?php echo $row['name']; ?> </td>
+                                                            <td> <?php echo $row['descrption']; ?> </td>
                                                             <td> <?php echo $row['amount'] ?> </td>
                                                             <td> <?php echo $row['name'] ?> </td>
                                                             <?php
@@ -218,14 +231,22 @@ tbody .bg-blue{
                                                                 echo '  <td class="pt-3 mt-1"><i class="far fa-circle-check" style="color:rgb(10, 167, 18) ; font-size: 24px;"></i></td>';
                                                             }
 
-                                                            $member_id=$row['user_id'];
-                                                            if($member_id != $userid ){
-                                                            echo '<td> <a type="buttan" class="deleteMember_btn delete">Delete</a></td>';
+
+                                                            
+                                                            if($mem_type['type'] =='leader'){
+                                                                $member_id=$row['user_id'];
+                                                                    if($member_id != $userid ){
+                                                                    echo '<td> <a type="buttan" class="deleteMember_btn delete">Delete</a></td>';
+                                                                    }
+                                                                    else{
+                                                                    echo '<td></td>';
+                                                                   
+                                                                     }
                                                             }
-                                                            else{
-                                                                echo '<td></td>';
+                                                            else{ 
+                                                                 
+                                                                   echo '<td></td>';
                                                             }
-                                                           
 
                                                             ?>
                                                           

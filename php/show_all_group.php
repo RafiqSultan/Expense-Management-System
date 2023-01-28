@@ -83,16 +83,27 @@ tbody .bg-blue{
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
                 <img src="../img/user.png" width="40" height="40">
-                <h4>  <?php
+                <h4 class="full_name_type">
+                    <?php
+
+                    include('../database/connect.php');
                     session_start();
+                   
                     if($_SESSION["loggedIn"] != true){
                        
                         header("Location:../index.php");
                         exit;
                     }
                     echo $_SESSION['full_name'];
-                   
-                    ?></h4>
+                    $userid=$_SESSION['user_id'];
+                             $query ="SELECT type from users WHERE id=$userid";
+                            $result = $connect->query($query);
+                            if($result->num_rows> 0){
+                                $type=$result->fetch_assoc();
+                            
+                    ?>
+                     <span><?php echo $type['type']; ?></span>
+                </h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>
@@ -105,12 +116,7 @@ tbody .bg-blue{
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name">View Expense</span> </li></a>
                 <?php
-                include('../database/connect.php');
-                             $userid=$_SESSION['user_id'];
-                             $query ="SELECT type from users WHERE id=$userid";
-                            $result = $connect->query($query);
-                            if($result->num_rows> 0){
-                                $type=$result->fetch_assoc();
+            
                             if( ($type['type']=='leader') || ($type['type']=='member')){
                             
                             ?>
@@ -168,6 +174,7 @@ tbody .bg-blue{
                                     <th scope="col">Group Name</th>
                                     <th scope="col">Capacity</th>
                                     <th scope="col">Member</th>
+                                    <th scope="col">Action</th>
                                                  
                                 </tr>
                             </thead>
@@ -205,6 +212,7 @@ tbody .bg-blue{
                                                             
                                                             
                                                              </td>
+                                                             <td> <a type="buttan" class='delete_income delete'>Delete</a></td>
                                                             
                                                         </tr>
                                                           <?php  
@@ -235,6 +243,47 @@ tbody .bg-blue{
                    
                 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="deletemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Do you want delete data!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method='post' action="#" >   
+        <input type="hidden" name="deleteg_id" id="delete_id" >
+        <?php 
+      
+       include('../database/connect.php');
+      
+       if(isset($_POST['delete_income'])){
+        $g_id=$_POST['deleteg_id'];
+            $query= "INSERT INTO  orders (name, descrption,user_id)
+            VALUES
+            ('delete Group', '$g_id' ,$userid)";
+           
+            if($result=mysqli_query($connect,$query))
+            {
+                echo '
+                <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
+                Request has been Sent 
+              </div>';
+            }
+            else{
+                echo "thats problem in insert $query.".mysqli_error($connect)."<br>";
+            }
+       }
+       ?>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" name="delete_income" class="btn btn-danger">Delete</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 
                  <!-- *************************** End Main****************************************** -->
@@ -246,6 +295,25 @@ tbody .bg-blue{
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('.delete_income').on('click',function(){
+            $('#deletemodal').modal('show');
 
+            $tr=$(this).closest('tr');
+            var data=$tr.children("td").map(function(){
+                return $(this).text();
+            }).get();
+            console.log(data)
+            $('#delete_id').val(data[1]);
+        });
+
+
+    });
+    setTimeout(function () {
+
+$('#alert_notf').alert('close');
+}, 3000);
+</script>
 </body>
 </html>

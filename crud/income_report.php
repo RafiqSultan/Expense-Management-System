@@ -98,7 +98,26 @@ tbody .bg-blue{
                                     <th scope="col">Describe</th>                    
                                     <th scope="col">Amount</th>                    
                                     <th scope="col">Date</th> 
-                                    <th scope="col">Group</th> 
+                                    <?php
+                                     include('../database/connect.php');
+                                    $type='';
+                                        $userid=$_SESSION['user_id'];
+                                        $qul="SELECT type FROM users WHERE id=$userid";
+                                        if($resu=mysqli_query($connect,$qul))
+                                        {
+                                            
+                                            $row = mysqli_fetch_assoc($resu);                                     
+                                            $type = $row['type'];
+                                        }
+
+                                        if($type == 'member' or $type == 'leader'){
+                                            echo ' <th scope="col">Group</th>';
+                                        }
+                                        else{
+                                            echo ' <th scope="col"></th>';
+                                        }
+
+                                ?>
                                                        
                                 </tr>
                             </thead>

@@ -80,17 +80,26 @@ tbody .bg-blue{
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
             <img src="../img/user.png" width="40" height="40">
-                <h4>
+            <h4 class="full_name_type">
                     <?php
+
+                    include('../database/connect.php');
                     session_start();
+                   
                     if($_SESSION["loggedIn"] != true){
                        
                         header("Location:../index.php");
                         exit;
                     }
                     echo $_SESSION['full_name'];
-                    
+                    $userid=$_SESSION['user_id'];
+                             $query ="SELECT type from users WHERE id=$userid";
+                            $result = $connect->query($query);
+                            if($result->num_rows> 0){
+                                $type=$result->fetch_assoc();
+                            
                     ?>
+                     <span><?php echo $type['type']; ?></span>
                 </h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
@@ -104,12 +113,7 @@ tbody .bg-blue{
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name">View Expense</span> </li></a>
                 <?php
-                include('../database/connect.php');
-                             $userid=$_SESSION['user_id'];
-                             $query ="SELECT type from users WHERE id=$userid";
-                            $result = $connect->query($query);
-                            if($result->num_rows> 0){
-                                $type=$result->fetch_assoc();
+              
                             if( ($type['type']=='leader') || ($type['type']=='member')){
                             
                             ?>
@@ -157,10 +161,19 @@ tbody .bg-blue{
 
                 <!-- *************************** Start Main****************************************** -->
                 <div class="container rounded mt-5 bg-white p-md-5">
-                    
-                        <div>
-                            <div class=" row" ><a href="../crud/income_report.php" class="print" title="print"><i class="fa-solid fa-print"></i></a></div>
-                        </div>
+                <?php
+
+if (isset($_POST['submit_filter'])){
+ 
+          echo '<div></div>';
+
+          }
+          else{
+            echo '  <div>
+              <div class=" row" ><a href="../crud/income_report.php" class="print" title="print"><i class="fa-solid fa-print"></i></a></div>
+          </div>';
+          }
+          ?>
                     <div class="card-body">
                                     
                 <form class="form" action="#" method="post">
@@ -206,7 +219,25 @@ tbody .bg-blue{
                                     <th scope="col">Describe</th>                    
                                     <th scope="col">Amount</th>                    
                                     <th scope="col">Date</th> 
-                                    <th scope="col">Group</th> 
+                                    <?php
+                                    $type='';
+                                        $userid=$_SESSION['user_id'];
+                                        $qul="SELECT type FROM users WHERE id=$userid";
+                                        if($resu=mysqli_query($connect,$qul))
+                                        {
+                                            
+                                            $row = mysqli_fetch_assoc($resu);                                     
+                                            $type = $row['type'];
+                                        }
+
+                                        if($type == 'member' or $type == 'leader'){
+                                            echo ' <th scope="col">Group</th>';
+                                        }
+                                        else{
+                                            echo ' <th scope="col"></th>';
+                                        }
+
+                                ?>
                                     <th scope="col">Action</th>                   
                                 </tr>
                             </thead>
@@ -219,6 +250,15 @@ tbody .bg-blue{
                      if (isset($_POST['submit_filter'])){
                                      $formDate=$_POST['from_date'];
                                      $toDate=$_POST['to_date'];
+                                     if(empty($formDate) and empty($toDate))
+                                     {
+                                         echo '
+                                         <div class="fixed-top  alert alert-warning" role="alert" id="alert_notf">
+                                         Enter date to Filter
+                                       </div>';
+                                      
+                                     }
+                                     else{
                                      if(empty($toDate)){
                                         date_default_timezone_set('Asia/Riyadh');
                                         $toDate = date('Y-m-d');
@@ -273,6 +313,7 @@ tbody .bg-blue{
                                             echo "null record";    
                                             }                  
                                          }
+                                        }
                              
 
                                else if(isset($_POST['close']) or $i==1) {
@@ -413,7 +454,10 @@ tbody .bg-blue{
 
 
     });
+    setTimeout(function () {
 
+$('#alert_notf').alert('close');
+}, 3000);
 </script>
 
 </body>
