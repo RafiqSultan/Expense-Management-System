@@ -7,7 +7,7 @@
     <title>All order</title>
     <link rel="stylesheet" href="../css/style.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <style>
         .h2{
     color: #111;
@@ -77,7 +77,21 @@ tbody .bg-blue{
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
                 <img src="../img/user.png" width="40" height="40">
-                <h4>Admin</h4>
+                <h4 class="full_name_type">
+                    <?php
+
+                    include('../database/connect.php');
+                    session_start();
+                   
+                    if($_SESSION["loggedIn"] != true){
+                       
+                        header("Location:index.php");
+                        exit;
+                    }
+                    echo $_SESSION['admin_name'];
+                ?>
+                     <span>Admin</span>
+                </h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>
@@ -156,6 +170,19 @@ tbody .bg-blue{
                                 if (isset($_POST['submit_filter'])){
                                     $formDate=$_POST['from_date'];
                                     $toDate=$_POST['to_date'];
+                                    if(empty($formDate) and empty($toDate))
+                                     {
+                                         echo '
+                                         <div class="fixed-top  alert alert-warning" role="alert" id="alert_notf">
+                                         Enter date to Filter
+                                       </div>';
+                                      
+                                     }
+                                     else{
+                                        if(empty($toDate)){
+                                            date_default_timezone_set('Asia/Riyadh');
+                                            $toDate = date('Y-m-d');
+                                         }
                                     $query="SELECT * FROM orders WHERE date_create between '$formDate' and '$toDate'";
                                     if($result=mysqli_query($connect,$query))
                                        {
@@ -209,7 +236,7 @@ tbody .bg-blue{
                                                   {
                                                       echo "thats problem is select $query.".mysqli_error($connect)."<br>";
                                                   }
-                                              }                 
+                                              }    }             
                                         
                             
 
@@ -253,13 +280,14 @@ tbody .bg-blue{
                                                          if($s == 1){
                                                            
                                                            
-                                                            echo '<td > <a  type="button" name="submit_accept"  class="  btn btn-success">Accept</a></td>';
+                                                            echo '  <td class=" pt-3 mt-1"><i class= "del far fa-circle-check" style="color:rgb(10, 167, 18) ; font-size: 24px;"></i></td>';
+                                                               
                                                             echo '<td ></td>';
                                                         }
                                                         else{
+                                                          
+                                                            echo ' <td class="pt-3 mt-1"><i class="del fa-regular fa-circle-xmark" style="color:rgb(235, 35,20) ; font-size: 24px;"></i></td>';
                                                             echo '<td ></td>';
-                                                            echo ' <td > <a type="button" name="submit_reject" class="del_2 btn btn-danger">Reject</a></td>';
-                                                           
                                                         }
                                                         
                                                     }

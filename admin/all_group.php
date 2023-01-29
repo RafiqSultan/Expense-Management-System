@@ -80,7 +80,21 @@ tbody .bg-blue{
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
                 <img src="../img/user.png" width="40" height="40">
-                <h4>Admin</h4>
+                <h4 class="full_name_type">
+                    <?php
+
+                    include('../database/connect.php');
+                    session_start();
+                   
+                    if($_SESSION["loggedIn"] != true){
+                       
+                        header("Location:index.php");
+                        exit;
+                    }
+                    echo $_SESSION['admin_name'];
+                ?>
+                     <span>Admin</span>
+                </h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>
@@ -295,7 +309,7 @@ tbody .bg-blue{
         <h1 class="modal-title fs-5" id="exampleModalLabel">Do you want delete data!</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method='post' action="../crud/delete_income.php" >   
+      <form method='post' action="delete_group.php" >   
         <input type="hidden" name="deleteIncid" id="deleteInc_id" >
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -327,7 +341,7 @@ tbody .bg-blue{
                 return $(this).text();
             }).get();
             console.log(data)
-            $('#deleteInc_id').val(data[0]);
+            $('#deleteInc_id').val(data[1]);
         });
 
     });

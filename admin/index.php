@@ -19,10 +19,36 @@
             <p>Email</p> <input type="text" name="email" placeholder="Enter Email" required>
             <p>Password</p> <input type="password" name="pass" placeholder="Enter Password" required>
              <input type="submit" name="submit" value="Login"> <a href="#">Lost your password?</a><br>
-          <a href="admin_dashboard.php">Don't have an account?</a>
+      
         </form>
     </div>
-
+    <?php
+session_start();
+if(isset($_POST['submit']))
+{
+    $email =($_POST['email']);
+    $pass =($_POST['pass']);
+   
+   include('../database/connect.php');
+   
+$sql = "SELECT * from admin where email = '$email' and password='$pass'";  
+        $result = mysqli_query($connect, $sql); 
+        $row = mysqli_fetch_array($result);  
+        $count = mysqli_num_rows($result);  
+       
+        if($count == 1){  
+            echo "<h1><center> Login successful </center></h1>";
+            $name = $row["full_name"]; 
+            
+            $_SESSION['admin_name']=$name;
+            $_SESSION['loggedIn']=true;
+            header("location:admin_dashboard.php");
+                }  
+        else{  
+            echo "<h1> Login failed. Invalid username or password.</h1>";  
+        }  
+}
+?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>    
 </body>
 </html>

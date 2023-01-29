@@ -16,19 +16,24 @@
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
             <img src="../img/user.png" width="40" height="40">
-                <h4>Admin</h4>
+            <h4 class="full_name_type">
+                    <?php
+
+                    include('../database/connect.php');
+                    session_start();
+                   
+                    if($_SESSION["loggedIn"] != true){
+                       
+                        header("Location:index.php");
+                        exit;
+                    }
+                    echo $_SESSION['admin_name'];
+                ?>
+                     <span>Admin</span>
+                </h4>
             </div> </div>
                
-            <!-- </div class="adminstyle">
-            <div>
-            <img src="../img/user.png" width="40" height="40">
-            </div>
-           <div>
-           <h4>Rafiq Sultan</h4>
-              <span>Admin</span>
-           </div>
-           
-        </div> -->
+         
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>
         <div class="d-md-flex">
@@ -58,7 +63,7 @@
                         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <div class="row" style="padding: 10px;">
                                 <div class="col-md-12">
-                                    <div class="card cssanimation2 fadeInBottom2"> <a href="#" target="_blank">
+                                    <div class="card cssanimation2 fadeInBottom2"> <a target="_blank">
                                             <div class="card-body">
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fa-solid fa-user"></i></div>
@@ -88,7 +93,7 @@
                            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <div class="row" style="padding: 10px;">
                                 <div class="col-md-12">
-                                    <div class="card cssanimation2 fadeInBottom2"> <a href="#" target="_blank">
+                                    <div class="card cssanimation2 fadeInBottom2"> <a target="_blank">
                                             <div class="card-body">
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"> <i class="fa fa-signal" aria-hidden="true"></i> </div>
@@ -122,7 +127,7 @@
                          <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <div class="row" style="padding: 10px;">
                                 <div class="col-md-12">
-                                    <div class="card cssanimation2 fadeInBottom2"> <a href="#" target="_blank">
+                                    <div class="card cssanimation2 fadeInBottom2"> <a  target="_blank">
                                             <div class="card-body">
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fa fa-money-bill-transfer"></i></div>
@@ -155,7 +160,7 @@
                          <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <div class="row" style="padding: 10px;">
                                 <div class="col-md-12">
-                                    <div class="card cssanimation2 fadeInBottom2"> <a href="#" target="_blank">
+                                    <div class="card cssanimation2 fadeInBottom2"> <a  target="_blank">
                                             <div class="card-body">
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fas fa-sack-dollar"></i></i> </div>
@@ -185,7 +190,7 @@
                          <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <div class="row" style="padding: 10px;">
                                 <div class="col-md-12">
-                                    <div class="card cssanimation2 fadeInBottom2"> <a href="#" target="_blank">
+                                    <div class="card cssanimation2 fadeInBottom2"> <a  target="_blank">
                                             <div class="card-body">
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fa fa-money-bill-transfer"></i></div>
@@ -215,7 +220,7 @@
                          <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <div class="row" style="padding: 10px;">
                                 <div class="col-md-12">
-                                    <div class="card cssanimation2 fadeInBottom2"> <a href="#" target="_blank">
+                                    <div class="card cssanimation2 fadeInBottom2"> <a  target="_blank">
                                             <div class="card-body">
                                                 <div class="row" id="blockitems">
                                                     <div class="col-sm-3 col-md-1 col-lg-1 col-xl-1" id="icons_section"><i class="fa-sharp fa-solid fa-people-group"></i></div>

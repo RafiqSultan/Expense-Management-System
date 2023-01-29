@@ -111,7 +111,21 @@ tbody .bg-blue{
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
                 <img src="../img/user.png" width="40" height="40">
-                <h4>Admin</h4>
+                <h4 class="full_name_type">
+                    <?php
+
+                    include('../database/connect.php');
+                    session_start();
+                   
+                    if($_SESSION["loggedIn"] != true){
+                       
+                        header("Location:index.php");
+                        exit;
+                    }
+                    echo $_SESSION['admin_name'];
+                ?>
+                     <span>Admin</span>
+                </h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>

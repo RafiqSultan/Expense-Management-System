@@ -5,12 +5,13 @@ include('../database/connect.php');
 if(isset($_POST['delete_data'])){
 
   $item_id = $_POST['deleteIncid'];
-  $query = "DELETE FROM income WHERE id=$item_id";
+  $query = "DELETE FROM groups WHERE id=$item_id";
   $query_run = mysqli_query($connect, $query);
 
   if($query_run)
   {
-      header("Location:../php/show_income.php");
+    
+      header("Location:all_group.php");
   }
   else
   {

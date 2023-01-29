@@ -12,6 +12,31 @@
     
 </head>
 <body>
+<?php
+include('../database/connect.php');
+session_start();
+$userid=$_SESSION['user_id'];
+$count_group=0;
+  $quv ="SELECT count(user_id) as count from user_group WHERE user_id=$userid";
+  $resv = $connect->query($quv);
+  if($resv->num_rows> 0){
+      $tyv=$resv->fetch_assoc();
+     $count_group=$tyv['count'];
+  }
+  if($count_group == 0){
+  
+        $qu ="UPDATE users SET type='user' WHERE id=$userid";
+        $re = $connect->query($qu);
+      }
+      else
+      {
+          echo '<script> alert("Data Not Deleted"); </script>';
+      }
+
+
+
+
+?>
     <div class="px-0 bg-light">
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
@@ -20,7 +45,7 @@
                     <?php
 
                     include('../database/connect.php');
-                    session_start();
+                   
                    
                     if($_SESSION["loggedIn"] != true){
                        

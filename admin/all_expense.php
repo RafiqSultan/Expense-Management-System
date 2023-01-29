@@ -80,7 +80,21 @@ tbody .bg-blue{
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
                 <img src="../img/user.png" width="40" height="40">
-                <h4>Admin</h4>
+                <h4 class="full_name_type">
+                    <?php
+
+                    include('../database/connect.php');
+                    session_start();
+                   
+                    if($_SESSION["loggedIn"] != true){
+                       
+                        header("Location:index.php");
+                        exit;
+                    }
+                    echo $_SESSION['admin_name'];
+                ?>
+                     <span>Admin</span>
+                </h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>
@@ -156,7 +170,20 @@ tbody .bg-blue{
                                 if (isset($_POST['submit_filter'])){
                                     $formDate=$_POST['from_date'];
                                     $toDate=$_POST['to_date'];
-                                    $query="SELECT * FROM expense WHERE start_date between '$formDate' and '$toDate' and  end_date between '$formDate' and '$toDate'";
+                                    if(empty($formDate) and empty($toDate))
+                                     {
+                                         echo '
+                                         <div class="fixed-top  alert alert-warning" role="alert" id="alert_notf">
+                                         Enter date to Filter
+                                       </div>';
+                                      
+                                     }
+                                     else{
+                                        if(empty($toDate)){
+                                            date_default_timezone_set('Asia/Riyadh');
+                                            $toDate = date('Y-m-d');
+                                         }
+                                         $query="SELECT * FROM expense WHERE start_date between '$formDate' and '$toDate' and  end_date between '$formDate' and '$toDate'";
                                     if($result=mysqli_query($connect,$query))
                                        {
                                         if(mysqli_num_rows($result)>0)
@@ -201,7 +228,7 @@ tbody .bg-blue{
                                                   {
                                                       echo "thats problem is select $query.".mysqli_error($connect)."<br>";
                                                   }
-                                              }                 
+                                              }   }              
                                         
                             
 

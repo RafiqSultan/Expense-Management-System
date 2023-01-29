@@ -80,7 +80,21 @@ tbody .bg-blue{
         <div class="d-flex">
             <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <div class="d-flex topdashboard">
                 <img src="../img/user.png" width="40" height="40">
-                <h4>Admin</h4>
+                <h4 class="full_name_type">
+                    <?php
+
+                    include('../database/connect.php');
+                    session_start();
+                   
+                    if($_SESSION["loggedIn"] != true){
+                       
+                        header("Location:index.php");
+                        exit;
+                    }
+                    echo $_SESSION['admin_name'];
+                ?>
+                     <span>Admin</span>
+                </h4>
             </div> </div>
             <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> </div>
         </div>
@@ -193,70 +207,118 @@ tbody .bg-blue{
         $leader=$_POST['leader'] ;
        
         if($lead_user != $leader){
+            $qq="UPDATE groups SET name='$name',capacity=$capacity  WHERE id=$g_id";
+            if($q=mysqli_query($connect,$qq)){
 
-            $ql="SELECT type from users where id=$lead_user";
-                                  
-              if($re=mysqli_query($connect,$ql))
-                    {
-                        if(mysqli_num_rows($re)>0)
-                            {
- 
-                             $r=mysqli_fetch_array($re);
-                             $check_user=$r['type'];
-                             if($check_user=='member'){
-                                $ch="UPDATE users SET type='$check_user' WHERE id=$lead_user";
-                                mysqli_query($connect,$ch);
-                             }
-                             else if($check_user == 'user'){
-                                $ch="UPDATE users SET type='$check_user' WHERE id=$lead_user";
-                                mysqli_query($connect,$ch);
-                             }
-                             else{
-                                $ch="UPDATE users SET type='user' WHERE id=$lead_user";
-                                mysqli_query($connect,$ch);
-                             }
-                            }
-                        }
-                 $new_leader="UPDATE users SET type='leader' WHERE id=$leader";
-                        if($n=mysqli_query($connect,$new_leader)){
-                            echo '
-                            <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
-                            Update Successful
-                            </div>';
-                            header("location:all_group.php");
-                        }
+                       
+              
+
+                echo '
+                                                    <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
+                                                   GGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+                                                  </div>';
+
              }
 
+            $count_group=0;
+                $query ="SELECT count(user_id) as count from user_group WHERE user_id=$lead_user";
+                $res = $connect->query($query);
+                if($res->num_rows> 0){
+                    $ty=$res->fetch_assoc();
+                    $count_group=$ty['count'];
+                }
+                if($count_group == 1){
+                    echo '
+                                                    <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
+                                                  11111111111111111111111111111
+                                                  </div>';
+                    //     $quer = "UPDATE users SET type='user' WHERE id=$lead_user";
 
-             $qq="UPDATE groups SET name='$name',capacity=$capacity  WHERE id=$g_id";
-             if($q=mysqli_query($connect,$qq)){
-                 echo '
-                 <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
-                 Update Successful
-                 </div>';
-                 header("location:all_group.php");
+                    //     $query_run = mysqli_query($connect, $quer);
+
+                    //     //--------------------------------------
+                    //     $qu ="UPDATE user_group SET user_id=$leader WHERE group_id=$g_id";
+                    //     $re = $connect->query($qu);
+
+                    // $quer = "UPDATE users SET type='leader' WHERE id=$leader";
+
+                    // $query_run = mysqli_query($connect, $quer);
+
+                    // if($query_run)
+                    // {
+                
+                    //     echo '
+                    //     <script>
+                    
+                    //     window.location.href="http://localhost/exp/admin/all_group.php";
+                    //     </script>
+                    //     ';
+                    // }
+                    // else
+                    // {
+                    //     echo '<script> alert("Data Not Deleted"); </script>';
+                    // }
+           
+
+                }
+                else{
+                    // echo '
+                    //                                 <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
+                    //                                222222222222222222222222222222
+                    //                               </div>';
+                    $qul ="UPDATE user_group SET user_id=$leader WHERE group_id=$g_id";
+                            $rel = $connect->query($qul);
+
+                        $querl = "UPDATE users SET type='leader' WHERE id=$leader";
+
+                        $queryrun = mysqli_query($connect, $querl);
+
+                        if($queryrun)
+                        {
+                    
+                            echo '
+                            <script>
+                        
+                            window.location.href="http://localhost/exp/admin/all_group.php";
+                            </script>
+                            ';
+                        }
+                        else
+                        {
+                            echo '<script> alert("Data Not Deleted"); </script>';
+                        }
+                }
+
 
                 
         }
         
     else{
-            $qq="UPDATE groups SET name='$name',capacity=$capacity  WHERE id=$g_id";
-            if($q=mysqli_query($connect,$qq)){
-                // echo '
-                // <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
-                // Update Successful
-                // </div>';
-                $redirect = "http://localhost/exp/admin/all_group.php";
-                header("Location: $redirect");
+        echo '
+        <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
+      ffffffffffffffffffffffffffffffffff
+      </div>';
+            // $qq="UPDATE groups SET name='$name',capacity=$capacity  WHERE id=$g_id";
+            // if($q=mysqli_query($connect,$qq)){
 
-             }
+            //     echo '
+            //             <script>
+            //                window.location.href="http://localhost/exp/admin/all_group.php";
+            //              </script> ';
+              
+
+            //     echo '
+            //                                         <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
+            //                                         Update Successful
+            //                                       </div>';
+
+                                                
+
+            //  }
          }
-
-    
-    // else{
-    //     echo "thats problem is select $query.".mysqli_error($connect)."<br>";
-    //     }
-   
+        
+ 
+        
 
 }
      ?>
