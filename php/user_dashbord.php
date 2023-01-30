@@ -16,22 +16,22 @@
 include('../database/connect.php');
 session_start();
 $userid=$_SESSION['user_id'];
-$count_group=0;
-  $quv ="SELECT count(user_id) as count from user_group WHERE user_id=$userid";
-  $resv = $connect->query($quv);
-  if($resv->num_rows> 0){
-      $tyv=$resv->fetch_assoc();
-     $count_group=$tyv['count'];
-  }
-  if($count_group == 0){
+// $count_group=0;
+//   $quv ="SELECT count(user_id) as count from user_group WHERE user_id=$userid";
+//   $resv = $connect->query($quv);
+//   if($resv->num_rows> 0){
+//       $tyv=$resv->fetch_assoc();
+//      $count_group=$tyv['count'];
+//   }
+//   if($count_group == 0){
   
-        $qu ="UPDATE users SET type='user' WHERE id=$userid";
-        $re = $connect->query($qu);
-      }
-      else
-      {
-          echo '<script> alert("Data Not Deleted"); </script>';
-      }
+//         $qu ="UPDATE users SET type='user' WHERE id=$userid";
+//         $re = $connect->query($qu);
+//       }
+//       else
+//       {
+//           echo '<script> alert("Data Not Deleted"); </script>';
+//       }
 
 
 

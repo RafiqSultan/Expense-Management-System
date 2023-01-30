@@ -174,7 +174,13 @@ tbody .bg-blue{
                                     <th scope="col">Group Name</th>
                                     <th scope="col">Capacity</th>
                                     <th scope="col">Member</th>
-                                    <th scope="col">Action</th>
+                                    <?php
+
+                                    if($type =='leader'){
+                                        echo ' <th scope="col">Action</th>';
+                                    }
+                                    ?>
+                                    
                                                  
                                 </tr>
                             </thead>
@@ -212,7 +218,13 @@ tbody .bg-blue{
                                                             
                                                             
                                                              </td>
-                                                             <td> <a type="buttan" class='delete_income delete'>Delete</a></td>
+                                                             <?php
+
+                                                                if($type =='leader'){
+                                                                    echo ' <td> <a type="buttan" class="delete_income delete">Delete</a></td>';
+                                                                }
+                                                             ?>
+                                                            
                                                             
                                                         </tr>
                                                           <?php  

@@ -155,29 +155,68 @@
         include("../database/connect.php");
         $member_id=$_POST['member_id'] ;
         $group_id=$_POST['group_name'] ;
-   
-        $query= "INSERT INTO  user_group(user_id ,group_id)
-        VALUES
-        ($member_id ,$group_id)";
         
-        if($result=mysqli_query($connect,$query))
-        {
-            $sql = "UPDATE users SET type='member' WHERE id=$member_id";
-            if (mysqli_query($connect,$sql))
-             {
-                echo '
-                <script>
-               
-                window.location.href="http://localhost/exp/php/show_all_member.php";
-                </script>
-                '; 
-              }
-        }
-        }
- 
-    else{
-        echo "thats problem is select $query.".mysqli_error($connect)."<br>";
-        }
+        // 
+                                  $quer="SELECT type FROM users WHERE id=$member_id";
+                                  if($res=mysqli_query($connect,$quer))
+                                     {
+                                        
+                                        $row = mysqli_fetch_assoc($res);                                     
+                                        $type = $row['type'];
+                                     }
+                                        // 
+
+            if($type == 'user'){
+                $query= "INSERT INTO  user_group(user_id ,group_id)
+                VALUES
+                ($member_id ,$group_id)";
+                
+                if($result=mysqli_query($connect,$query))
+                {
+                    $sql = "UPDATE users SET type='member' WHERE id=$member_id";
+                    if (mysqli_query($connect,$sql))
+                     {
+                        echo '
+                        <script>
+                       
+                        window.location.href="http://localhost/exp/php/show_all_member.php";
+                        </script>
+                        '; 
+                      }
+                }
+                
+            else{
+                echo "thats problem is select $query.".mysqli_error($connect)."<br>";
+                }
+
+                }
+         
+                else{
+                    $query= "INSERT INTO  user_group(user_id ,group_id)
+                    VALUES
+                    ($member_id ,$group_id)";
+                    
+                    if($result=mysqli_query($connect,$query))
+                    {
+                        
+                            echo '
+                            <script>
+                           
+                            window.location.href="http://localhost/exp/php/show_all_member.php";
+                            </script>
+                            '; 
+                          }
+                    
+                        else{
+                            echo "thats problem is select $query.".mysqli_error($connect)."<br>";
+                            }
+    
+                    }
+                    
+                }
+                
+            
+       
      ?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

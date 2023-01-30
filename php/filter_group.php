@@ -164,11 +164,9 @@ tbody .bg-blue{
 
                 <!-- *************************** Start Main****************************************** -->
                 <div class="container rounded mt-5 bg-white p-md-5">
-                <!-- <div>
-                            <div class=" row" ><a href="../crud/member_group_report.php" class="print" title="print"><i class="fa-solid fa-print"></i></a></div>
-                        </div> -->
-          <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+             
+                        <div class="dropdown">
+                            <button   class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                All Group
                             </button>
                             <ul class="dropdown-menu">
@@ -192,9 +190,7 @@ tbody .bg-blue{
                               
                             </ul>
                 </div>
-                               
-                           
-                        
+                         
                       
                            
                        
@@ -225,25 +221,24 @@ tbody .bg-blue{
                             </thead>
                             <tbody>
                             <?php
+                              include('../database/connect.php');
                                 $i=1;
-                  
-                                include('../database/connect.php');
+                                $gr_id=$_GET['id'];
 
                                 $userid=$_SESSION['user_id'];
-   
-                                $query ="SELECT id FROM  groups inner join user_group on groups.id=user_group.group_id WHERE user_group.user_id=$userid";
+
+                                $query ="SELECT id FROM  groups inner join user_group on groups.id=user_group.group_id WHERE user_group.user_id=$userid and user_group.group_id=$gr_id";
                                 $result = $connect->query($query);
                                 if($result->num_rows> 0){
                                     while($g_id=$result->fetch_assoc()){ 
-                                        $all_group=$g_id['id'];
+                                        $all_group=$gr_id;
                                         $sql="SELECT ug.user_id,u.type,u.full_name,ug.group_id,g.name ,i.date,i.name as income_name ,i.descrption ,SUM(i.amount) AS amount
                                         from user_group ug
                                         inner join users u on ug.user_id=u.id
                                         inner join groups g on ug.group_id=g.id
                                         left join income i on i.user_id=ug.user_id AND i.group_id=ug.group_id
-                                        where ug.group_id IN($all_group)
+                                        where ug.group_id =$all_group
                                         group by ug.user_id, ug.group_id";
-                                      
                                          $res = $connect->query($sql);
                                          if($res->num_rows> 0){
                                              while($row=$res->fetch_assoc()){
@@ -375,18 +370,6 @@ tbody .bg-blue{
 
     });
 
-    // $(document).ready(function(){
-    //     $('.gselect option').on('click',function(){
-           
-    //         var dat=$(this).attr("value");
-    //            let sss= dat.val(dat);
-      
-    //         console.log(sss);
-            
-    //     });
-
-    // });
-   
     
 </script>
 </body>

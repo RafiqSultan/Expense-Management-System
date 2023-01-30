@@ -235,64 +235,64 @@ tbody .bg-blue{
                             
 
                               else if(isset($_POST['close']) or $i==1) {
-                                  $query="SELECT groups.id,groups.name,groups.capacity,groups.date_create,users.full_name 
-                                   FROM groups
-                                  inner join user_group on user_group.group_id=groups.id
-                                  inner join users on users.id=user_group.user_id 
-                                  WHERE users.type='leader'
-                                  group by user_group.group_id";
-                                  if($result=mysqli_query($connect,$query))
-                                     {
-                                      if(mysqli_num_rows($result)>0)
-                                        {
+                                //   $query="SELECT groups.id,groups.name,groups.capacity,groups.date_create,users.full_name 
+                                //    FROM groups
+                                //   inner join user_group on user_group.group_id=groups.id
+                                //   inner join users on users.id=user_group.user_id 
+                                //   WHERE users.type='leader'
+                                //   group by user_group.group_id";
+                                //   if($result=mysqli_query($connect,$query))
+                                //      {
+                                //       if(mysqli_num_rows($result)>0)
+                                //         {
                                            
                                             
-                                         while($row=mysqli_fetch_array($result))
-                                                        {
+                                //          while($row=mysqli_fetch_array($result))
+                                //                         {
                                                            
-                                                            $groupid=$row['id'];
+                                //                             $groupid=$row['id'];
                                                            
-                                                            $sql="SELECT COUNT(user_id) as count from user_group where group_id=$groupid";
-                                                                $res = mysqli_query($connect, $sql);
-                                                                $count = mysqli_fetch_assoc($res);
+                                //                             $sql="SELECT COUNT(user_id) as count from user_group where group_id=$groupid";
+                                //                                 $res = mysqli_query($connect, $sql);
+                                //                                 $count = mysqli_fetch_assoc($res);
                                                           
                                                     
-                                                            ?>
-                                                            <tr class='bg-blue'>
+                                //                             ?>
+                                //                             <tr class='bg-blue'>
                                                             
-                                                            <td> <?php echo $i ?> </td>
-                                                            <td> <?php echo $row['id']; ?> </td>
-                                                            <td> <?php echo $row['name'] ?> </td>
-                                                            <td> <?php echo $row['capacity']; ?> </td>
-                                                            <td> <?php echo $row['date_create']; ?> </td>
-                                                            <td> <?php echo $row['full_name']; ?> </td>
+                                //                             <td> <?php echo $i ?> </td>
+                                //                             <td> <?php echo $row['id']; ?> </td>
+                                //                             <td> <?php echo $row['name'] ?> </td>
+                                //                             <td> <?php echo $row['capacity']; ?> </td>
+                                //                             <td> <?php echo $row['date_create']; ?> </td>
+                                //                             <td> <?php echo $row['full_name']; ?> </td>
                                                             
-                                                            <td> <?php echo $count['count']; ?> </td>
-                                                             <?php
-                                                             echo "<td> <a href='update_group.php?id=$row[0]' class='update'>Update</a></td>";
-                                                             ?>
-                                                           <td> <a type="buttan" class='deleteInc_btn delete'>Delete</a></td>
-                                                        </tr>
-                                                          <?php  
+                                //                             <td> <?php echo $count['count']; ?> </td>
+                                //                              <?php
+                                //                              echo "<td> <a href='update_group.php?id=$row[0]' class='update'>Update</a></td>";
+                                //                              ?>
+                                //                            <td> <a type="buttan" class='deleteInc_btn delete'>Delete</a></td>
+                                //                         </tr>
+                                //                           <?php  
                                                        
-                                                        echo "<tr id='spacing-row'>";
-                                                        echo "<td></td>";
-                                                        echo "</tr>";
-                                                        $i++;
-                                                        }
-                                                        // echo"</table>";
-                                                        // mysqli_free_result($result);
-                                                    }
+                                //                         echo "<tr id='spacing-row'>";
+                                //                         echo "<td></td>";
+                                //                         echo "</tr>";
+                                //                         $i++;
+                                //                         }
+                                //                         // echo"</table>";
+                                //                         // mysqli_free_result($result);
+                                //                     }
                                                     
-                                                    else
-                                                    {
-                                                    echo "null record";    
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    echo "thats problem is select $query.".mysqli_error($connect)."<br>";
-                                                }
+                                //                     else
+                                //                     {
+                                //                     echo "null record";    
+                                //                     }
+                                //                 }
+                                //                 else
+                                //                 {
+                                //                     echo "thats problem is select $query.".mysqli_error($connect)."<br>";
+                                //                 }
                                             }
                                                 ?>
 
