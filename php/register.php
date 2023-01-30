@@ -12,6 +12,9 @@
 </head>
 </head>
 <body>
+<section class="home_banner">
+    <div class="overly"></div>
+
     <div class="loginbox"> 
         <h2>Create Account</h2>
         <form method="post" action="#">
@@ -45,13 +48,19 @@
 
          // Check Password
          if($pass != $rep_pass){
-            echo "Password not much";
+            echo '
+            <div class="fixed-top  alert alert-danger" role="alert" id="alert_notf">
+            Password Not much
+           </div>';
          }
         // Check email
         $check_email = mysqli_query($connect, "SELECT email FROM users where email = '$email' ");
         if(mysqli_num_rows($check_email) > 0){
-            echo('Email Already exists');
-        }
+            echo '
+            <div class="fixed-top  alert alert-danger" role="alert" id="alert_notf">
+            Email is exist !
+           </div>';
+            }
          
     else{
         $query= "INSERT INTO  users(full_name , email, password , phone , gender , img,admin_id)
@@ -79,7 +88,13 @@
      ?>
 
     
-       
+</section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>    
+    <script type="text/javascript">
+        setTimeout(function () {
+
+            $('#alert_notf').alert('close');
+        }, 3000);
+    </script>
 </body>
 </html>

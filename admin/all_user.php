@@ -149,7 +149,7 @@ tbody .bg-blue{
                 <div class="container rounded  bg-white p-md-5">
                     
               
-                    <div class="card-body">
+                <div class="card-body">
                                     
                 <form class="form" action="#" method="post">
                         <div class="row justify-content-center">

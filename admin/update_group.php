@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add group</title>
+    <title>update group</title>
     <link rel="stylesheet" href="../css/style.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
@@ -111,7 +111,7 @@ tbody .bg-blue{
             </ul>
             <div id="topnavbar">
                 <div class="topnav mb-3">
-                    <div class="d-flex px-1"> <a href="#home" class="active">Update Group</a>  </div>
+                    <div class="d-flex px-1"> <a  class="active">Update Group</a>  </div>
                 </div>
 
                 <!-- *************************** Start Main****************************************** -->
@@ -157,8 +157,7 @@ tbody .bg-blue{
                                      FROM users
                                      inner join user_group on users.id=user_group.user_id 
                                      WHERE users.type='leader' and user_group.group_id='.$g_id.'";
-                                    // --  inner join user_group on users.id=user_group.user_id 
-                                    // --  inner join groups on user_group.group_id='.$g_id.'
+                               
                                   
                                     if($res=mysqli_query($connect,$qu))
                                     {
@@ -204,120 +203,81 @@ tbody .bg-blue{
         include("../database/connect.php");
         $name=$_POST['g_name'] ;
         $capacity=$_POST['capacity'] ;
-        $leader=$_POST['leader'] ;
-       
-        if($lead_user != $leader){
-            $qq="UPDATE groups SET name='$name',capacity=$capacity  WHERE id=$g_id";
-            if($q=mysqli_query($connect,$qq)){
+        $new_leader=$_POST['leader'] ;
+        /*  
+            
+            
+            */
+        if($lead_user != $new_leader){
 
-                       
+
+             /*  
+            Check group of old leader.
+                
+            */
+                                $query ="SELECT count(id) as g_count,name FROM  groups inner join user_group on groups.id=user_group.group_id WHERE user_group.user_id=$lead_user";
+                                $res = $connect->query($query);
+                                if($res->num_rows> 0){
+                                    $ty=$res->fetch_assoc();
+                                    $count_group=$ty['g_count'];
+                                }
+
+
+                                if($count_group > 1){
+
+                                    $qul ="UPDATE user_group SET user_id=$new_leader WHERE group_id=$g_id and user_id=$lead_user";
+                                    $re = $connect->query($qul);
+
+                                    $querl = "UPDATE users SET type='leader' WHERE id=$new_leader";
+                                         $queryrun = mysqli_query($connect, $querl);
+
+                                }
+                                else{
+
+                                    $qleader = "UPDATE users SET type='member' WHERE id=$lead_user";
+                                    $querylead = mysqli_query($connect, $qleader);
+
+                                    $qul ="UPDATE user_group SET user_id=$new_leader WHERE group_id=$g_id and user_id=$lead_user";
+                                    $re = $connect->query($qul);
+
+                                    $querl = "UPDATE users SET type='leader' WHERE id=$new_leader";
+                                    $queryrun = mysqli_query($connect, $querl);
+
+   
+
+                
+                                }
+
+        $q_gr="UPDATE groups SET name='$name',capacity=$capacity  WHERE id=$g_id";
+            if($qgr=mysqli_query($connect,$q_gr)){
+
+            echo '
+             <script>
+             window.location.href="http://localhost/exp/admin/all_group.php";
+             </script>
+             ';
+         }
+   }   
               
+            
 
-                echo '
-                                                    <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
-                                                   GGGGGGGGGGGGGGGGGGGGGGGGGGGGG
-                                                  </div>';
-
-             }
-
-            $count_group=0;
-                $query ="SELECT count(user_id) as count from user_group WHERE user_id=$lead_user";
-                $res = $connect->query($query);
-                if($res->num_rows> 0){
-                    $ty=$res->fetch_assoc();
-                    $count_group=$ty['count'];
-                }
-                if($count_group == 1){
-                    echo '
-                                                    <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
-                                                  11111111111111111111111111111
-                                                  </div>';
-                    //     $quer = "UPDATE users SET type='user' WHERE id=$lead_user";
-
-                    //     $query_run = mysqli_query($connect, $quer);
-
-                    //     //--------------------------------------
-                    //     $qu ="UPDATE user_group SET user_id=$leader WHERE group_id=$g_id";
-                    //     $re = $connect->query($qu);
-
-                    // $quer = "UPDATE users SET type='leader' WHERE id=$leader";
-
-                    // $query_run = mysqli_query($connect, $quer);
-
-                    // if($query_run)
-                    // {
-                
-                    //     echo '
-                    //     <script>
-                    
-                    //     window.location.href="http://localhost/exp/admin/all_group.php";
-                    //     </script>
-                    //     ';
-                    // }
-                    // else
-                    // {
-                    //     echo '<script> alert("Data Not Deleted"); </script>';
-                    // }
-           
-
-                }
-                else{
-                    // echo '
-                    //                                 <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
-                    //                                222222222222222222222222222222
-                    //                               </div>';
-                    $qul ="UPDATE user_group SET user_id=$leader WHERE group_id=$g_id";
-                            $rel = $connect->query($qul);
-
-                        $querl = "UPDATE users SET type='leader' WHERE id=$leader";
-
-                        $queryrun = mysqli_query($connect, $querl);
-
-                        if($queryrun)
-                        {
-                    
-                            echo '
-                            <script>
-                        
-                            window.location.href="http://localhost/exp/admin/all_group.php";
-                            </script>
-                            ';
-                        }
-                        else
-                        {
-                            echo '<script> alert("Data Not Deleted"); </script>';
-                        }
-                }
-
-
-                
-        }
+        
         
     else{
-        echo '
-        <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
-      ffffffffffffffffffffffffffffffffff
-      </div>';
-            // $qq="UPDATE groups SET name='$name',capacity=$capacity  WHERE id=$g_id";
-            // if($q=mysqli_query($connect,$qq)){
 
-            //     echo '
-            //             <script>
-            //                window.location.href="http://localhost/exp/admin/all_group.php";
-            //              </script> ';
+            $qg="UPDATE groups SET name='$name',capacity=$capacity  WHERE id=$g_id";
+            if($q=mysqli_query($connect,$qg)){
+
+                echo '
+                        <script>
+                           window.location.href="http://localhost/exp/admin/all_group.php";
+                         </script> ';
               
-
-            //     echo '
-            //                                         <div class="fixed-top  alert alert-success" role="alert" id="alert_notf">
-            //                                         Update Successful
-            //                                       </div>';
 
                                                 
 
-            //  }
+             }
          }
-        
- 
         
 
 }
@@ -332,3 +292,4 @@ tbody .bg-blue{
     </script>
 </body>
 </html>
+

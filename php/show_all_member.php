@@ -159,7 +159,7 @@ tbody .bg-blue{
             </ul>
             <div id="topnavbar">
                 <div class="topnav mb-3">
-                    <div class="d-flex px-1"> <a href="#home" class="active">Show MEMBERS</a>  </div>
+                    <div class="d-flex px-1"> <a class="active">Show MEMBERS</a>  </div>
                 </div>
 
                 <!-- *************************** Start Main****************************************** -->

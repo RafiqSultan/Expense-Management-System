@@ -12,7 +12,9 @@
 </head>
 </head>
 <body>
-    <h2 class="title">Expense Management System</h2>
+<section class="home_banner">
+    <div class="overly"></div>
+
     <div class="loginbox">
         <h2>Login</h2>
         <form method="post" action="">
@@ -37,7 +39,7 @@ $sql = "SELECT * from admin where email = '$email' and password='$pass'";
         $count = mysqli_num_rows($result);  
        
         if($count == 1){  
-            echo "<h1><center> Login successful </center></h1>";
+           
             $name = $row["full_name"]; 
             
             $_SESSION['admin_name']=$name;
@@ -45,10 +47,20 @@ $sql = "SELECT * from admin where email = '$email' and password='$pass'";
             header("location:admin_dashboard.php");
                 }  
         else{  
-            echo "<h1> Login failed. Invalid username or password.</h1>";  
+            echo '
+            <div class="fixed-top  alert alert-danger" role="alert" id="alert_notf">
+            Error in email or password
+           </div>';
         }  
 }
 ?>
+</section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>    
+    <script type="text/javascript">
+        setTimeout(function () {
+
+            $('#alert_notf').alert('close');
+        }, 3000);
+    </script>
 </body>
 </html>

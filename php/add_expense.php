@@ -91,7 +91,7 @@
             </ul>
             <div id="topnavbar">
                 <div class="topnav mb-3">
-                    <div class="d-flex px-1"> <a href="#home" class="active">ADD EXPENSE</a>  </div>
+                    <div class="d-flex px-1"> <a  class="active">ADD EXPENSE</a>  </div>
                 </div>
 
                 <!-- *************************** Start Main****************************************** -->

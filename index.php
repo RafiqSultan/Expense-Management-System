@@ -12,7 +12,11 @@
 </head>
 </head>
 <body>
-    <h2 class="title">Expense Management System</h2>
+    <section class="home_banner">
+    <div class="overly"></div>
+
+   
+    <!-- <h2 class="title">Expense Management System</h2> -->
     <div class="loginbox">
         <h2>Login</h2>
         <form method="post" action="">
@@ -24,31 +28,34 @@
     </div>
     <?php
 session_start();
-if(isset($_POST['submit']))
-{
+if(isset($_POST['submit'])){
+
     $email =($_POST['email']);
     $pass =($_POST['pass']);
    
    include('database/connect.php');
    
-$sql = "SELECT * from users where email = '$email' and password='$pass'";
-echo $sql;  
+$sql = "SELECT * from users where email = '$email' and password='$pass'"; 
         $result = mysqli_query($connect, $sql); 
         $row = mysqli_fetch_array($result);  
         $count = mysqli_num_rows($result);  
        
         if($count == 1){  
-            echo "<h1><center> Login successful </center></h1>";
+           
             $name = $row["full_name"]; 
             $user_id =  $row['id'];
             $_SESSION['full_name']=$name;
             $_SESSION['loggedIn']=true;
             $_SESSION['user_id']=$user_id;
             header("location:php/user_dashbord.php");
+
                 }  
         else{  
-            echo "<h1> Login failed. Invalid username or password.</h1>";  
-        }  
+            echo '
+                    <div class="fixed-top  alert alert-danger" role="alert" id="alert_notf">
+                    Error in email or password
+                   </div>';
+            }
 }
 ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>    
@@ -58,11 +65,7 @@ echo $sql;
             $('#alert_notf').alert('close');
         }, 3000);
     </script>
+
+</section>
 </body>
 </html>
-echo '
-                                              <script>
-                                             
-                                              window.location.href="http://localhost/exp/php/show_expense.php";
-                                              </script>
-                                              ';

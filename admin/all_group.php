@@ -111,47 +111,47 @@ tbody .bg-blue{
             </ul>
             <div id="topnavbar">
                 <div class="topnav mb-3">
-                    <div class="d-flex px-1"> <a href="#home" class="active">All Groups</a>  </div>
+                    <div class="d-flex px-1"> <a class="active">All Groups</a>  </div>
                 </div>
 
                 <!-- *************************** Start Main****************************************** -->
                 <div class="container rounded mt-5 bg-white p-md-5">
                     
                
-                    <div class="card-body">
+                <div class="card-body">
                                     
-                <form class="form" action="#" method="post">
-                        <div class="row justify-content-center">
-                          
-
-                            
-                        <div class="col-md-8 ">
-
-                            <div class=" search">
-                            <i class="fa fa-search"></i>
-                            <input type="text" class="form-control" name="search" placeholder="Search">
-                           
-                            </div>
-                            
-                        </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                <label></label>
-                                    <button class="btn btn-primary form-control" type="submit" name="submit_search">Search</button>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="form-group">
-                                    <label></label>
-                                <button type="submit" name="close" class="btn-close form-control mt-1" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    </div>
+                                    <form class="form" action="#" method="post">
+                                            <div class="row justify-content-center">
+                                              
+                    
+                                                
+                                            <div class="col-md-8 ">
+                    
+                                                <div class=" search">
+                                                <i class="fa fa-search"></i>
+                                                <input type="text" class="form-control" name="search" placeholder="Search">
+                                               
+                                                </div>
+                                                
+                                            </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                    <label></label>
+                                                        <button class="btn btn-primary form-control" type="submit" name="submit_search">Search</button>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        <label></label>
+                                                    <button type="submit" name="close" class="btn-close form-control mt-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        </div>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -163,12 +163,13 @@ tbody .bg-blue{
                                     <th scope="col">Date_Create</th>  
                                     <th scope="col">Leader</th>
                                     <th scope="col">Number of User</th> 
-                                    <th scope="col">Action</th>                   
+                                    <th scope="col">Action</th>   
+                                    <th scope="col"></th>                 
                                 </tr>
                             </thead>
                             <tbody>
                             <tbody>
-                                <?php
+                                <?php 
                                 $i=1;
                     
                                 include('../database/connect.php');
@@ -235,64 +236,64 @@ tbody .bg-blue{
                             
 
                               else if(isset($_POST['close']) or $i==1) {
-                                //   $query="SELECT groups.id,groups.name,groups.capacity,groups.date_create,users.full_name 
-                                //    FROM groups
-                                //   inner join user_group on user_group.group_id=groups.id
-                                //   inner join users on users.id=user_group.user_id 
-                                //   WHERE users.type='leader'
-                                //   group by user_group.group_id";
-                                //   if($result=mysqli_query($connect,$query))
-                                //      {
-                                //       if(mysqli_num_rows($result)>0)
-                                //         {
+                                  $query="SELECT groups.id,groups.name,groups.capacity,groups.date_create,users.full_name 
+                                   FROM groups
+                                  inner join user_group on user_group.group_id=groups.id
+                                  inner join users on users.id=user_group.user_id 
+                                  WHERE users.type='leader'
+                                  group by user_group.group_id";
+                                  if($result=mysqli_query($connect,$query))
+                                     {
+                                      if(mysqli_num_rows($result)>0)
+                                        {
                                            
                                             
-                                //          while($row=mysqli_fetch_array($result))
-                                //                         {
+                                         while($row=mysqli_fetch_array($result))
+                                                        {
                                                            
-                                //                             $groupid=$row['id'];
+                                                            $groupid=$row['id'];
                                                            
-                                //                             $sql="SELECT COUNT(user_id) as count from user_group where group_id=$groupid";
-                                //                                 $res = mysqli_query($connect, $sql);
-                                //                                 $count = mysqli_fetch_assoc($res);
+                                                            $sql="SELECT COUNT(user_id) as count from user_group where group_id=$groupid";
+                                                                $res = mysqli_query($connect, $sql);
+                                                                $count = mysqli_fetch_assoc($res);
                                                           
                                                     
-                                //                             ?>
-                                //                             <tr class='bg-blue'>
+                                                            ?>
+                                                            <tr class='bg-blue'>
                                                             
-                                //                             <td> <?php echo $i ?> </td>
-                                //                             <td> <?php echo $row['id']; ?> </td>
-                                //                             <td> <?php echo $row['name'] ?> </td>
-                                //                             <td> <?php echo $row['capacity']; ?> </td>
-                                //                             <td> <?php echo $row['date_create']; ?> </td>
-                                //                             <td> <?php echo $row['full_name']; ?> </td>
+                                                            <td> <?php echo $i ?> </td>
+                                                            <td> <?php echo $row['id']; ?> </td>
+                                                            <td> <?php echo $row['name'] ?> </td>
+                                                            <td> <?php echo $row['capacity']; ?> </td>
+                                                            <td> <?php echo $row['date_create']; ?> </td>
+                                                            <td> <?php echo $row['full_name']; ?> </td>
                                                             
-                                //                             <td> <?php echo $count['count']; ?> </td>
-                                //                              <?php
-                                //                              echo "<td> <a href='update_group.php?id=$row[0]' class='update'>Update</a></td>";
-                                //                              ?>
-                                //                            <td> <a type="buttan" class='deleteInc_btn delete'>Delete</a></td>
-                                //                         </tr>
-                                //                           <?php  
+                                                            <td> <?php echo $count['count']; ?> </td>
+                                                             <?php
+                                                             echo "<td> <a href='update_group.php?id=$row[0]' class='update'>Update</a></td>";
+                                                             ?>
+                                                           <td> <a type="buttan" class='deleteInc_btn delete'>Delete</a></td>
+                                                        </tr>
+                                                          <?php  
                                                        
-                                //                         echo "<tr id='spacing-row'>";
-                                //                         echo "<td></td>";
-                                //                         echo "</tr>";
-                                //                         $i++;
-                                //                         }
-                                //                         // echo"</table>";
-                                //                         // mysqli_free_result($result);
-                                //                     }
+                                                        echo "<tr id='spacing-row'>";
+                                                        echo "<td></td>";
+                                                        echo "</tr>";
+                                                        $i++;
+                                                        }
+                                                        // echo"</table>";
+                                                        // mysqli_free_result($result);
+                                                    }
                                                     
-                                //                     else
-                                //                     {
-                                //                     echo "null record";    
-                                //                     }
-                                //                 }
-                                //                 else
-                                //                 {
-                                //                     echo "thats problem is select $query.".mysqli_error($connect)."<br>";
-                                //                 }
+                                                    else
+                                                    {
+                                                    echo "null record";    
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    echo "thats problem is select $query.".mysqli_error($connect)."<br>";
+                                                }
                                             }
                                                 ?>
 
