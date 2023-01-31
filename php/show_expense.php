@@ -95,6 +95,11 @@ tbody .bg-blue{
                     }
                     echo $_SESSION['full_name'];
                     $userid=$_SESSION['user_id'];
+                     /*
+    --------------------------------------------
+       * Check Type of user 
+    ---------------------------------------------
+    */
                              $query ="SELECT type from users WHERE id=$userid";
                             $result = $connect->query($query);
                             if($result->num_rows> 0){
@@ -229,6 +234,11 @@ tbody .bg-blue{
                     
                                 include('../database/connect.php');
                                     $userid=$_SESSION['user_id'];
+                                     /*
+    --------------------------------------------
+       *Display all expense data when using filter
+    ---------------------------------------------
+    */
                                     if (isset($_POST['submit_filter'])){
                                         $formDate=$_POST['from_date'];
                                         $toDate=$_POST['to_date'];
@@ -286,7 +296,11 @@ tbody .bg-blue{
                                             }
                                         }
                                             else if(isset($_POST['close']) or $i==1)
-                                            
+                                                                                 /*
+    --------------------------------------------
+       *Display all expense data auto
+    ---------------------------------------------
+    */
                                             {   
                                   $query="SELECT * FROM expense WHERE user_id=$userid ";
                                   if($result=mysqli_query($connect,$query))

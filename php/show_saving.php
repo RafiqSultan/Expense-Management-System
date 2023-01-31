@@ -82,7 +82,11 @@ tbody .bg-blue{
             <img src="../img/user.png" width="40" height="40">
             <h4 class="full_name_type">
                     <?php
-
+ /*
+    --------------------------------------------
+       * Check if any one use  url link to login without email and password 
+    ---------------------------------------------
+    */
                     include('../database/connect.php');
                     session_start();
                    
@@ -113,7 +117,11 @@ tbody .bg-blue{
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name">View Expense</span> </li></a>
                 <?php
-            
+                                 /*
+    --------------------------------------------
+       * Check type of user for any page load
+    ---------------------------------------------
+    */
                             if( ($type['type']=='leader') || ($type['type']=='member')){
                             
                             ?>
@@ -163,7 +171,11 @@ tbody .bg-blue{
                 <div class="container rounded mt-5 bg-white p-md-5">
                     
                 <?php
-
+                     /*
+    --------------------------------------------
+       * print data 
+    ---------------------------------------------
+    */
 if (isset($_POST['submit_filter'])){
  
           echo '<div></div>';
@@ -221,6 +233,11 @@ if (isset($_POST['submit_filter'])){
                                     <th scope="col">Date</th> 
 
                                     <?php
+                                                         /*
+    --------------------------------------------
+       * Display all saving in database 
+    ---------------------------------------------
+    */
                                     $type='';
                                         $userid=$_SESSION['user_id'];
                                         $qul="SELECT type FROM users WHERE id=$userid";
@@ -253,7 +270,11 @@ if (isset($_POST['submit_filter'])){
                                 if (isset($_POST['submit_filter'])){
                                     $formDate=$_POST['from_date'];
                                     $toDate=$_POST['to_date'];
-
+    /*
+    --------------------------------------------
+       * if don't insert end date . take auto local today
+    ---------------------------------------------
+    */
                                     if(empty($formDate) and empty($toDate))
                                     {
                                         echo '
@@ -269,6 +290,11 @@ if (isset($_POST['submit_filter'])){
                                         date_default_timezone_set('Asia/Riyadh');
                                         $toDate = date('Y-m-d');
                                      }
+                                         /*
+    --------------------------------------------
+       * Check data between two date
+    ---------------------------------------------
+    */
                                     $query="SELECT * FROM income WHERE date between '$formDate' and '$toDate' and user_id= $userid and type='saving'";
                                  if($result=mysqli_query($connect,$query))
                                     {
@@ -320,6 +346,12 @@ if (isset($_POST['submit_filter'])){
                                            }                  
                                         }
                                     }
+                                    
+     /*
+    --------------------------------------------
+       * load saving data auto 
+    ---------------------------------------------
+    */
                                         else if(isset($_POST['close']) or $i==1) {    
                                   $query="SELECT * FROM income WHERE user_id=$userid and type='saving'";
                                   if($result=mysqli_query($connect,$query))
@@ -395,6 +427,11 @@ if (isset($_POST['submit_filter'])){
         <input type="hidden" name="deleteIncid" id="deleteInc_id" >
         <?php
        
+     /*
+    --------------------------------------------
+       * Delete saving data
+    ---------------------------------------------
+    */
        include('../database/connect.php');
        if(isset($_POST['delete_data'])){
        
@@ -437,6 +474,12 @@ if (isset($_POST['submit_filter'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        
+     /*
+    --------------------------------------------
+       * Check item delete 
+    ---------------------------------------------
+    */
     $(document).ready(function(){
         $('.deleteInc_btn').on('click',function(){
             $('#deletemodal').modal('show');

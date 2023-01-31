@@ -25,7 +25,11 @@ $userid=$_SESSION['user_id'];
                 <img src="../img/user.png" width="40" height="40">
                 <h4 class="full_name_type">
                     <?php
-
+ /*
+    --------------------------------------------
+       * Check if any one use  url link to login without email and password 
+    ---------------------------------------------
+    */
                     include('../database/connect.php');
                    
                    
@@ -34,6 +38,11 @@ $userid=$_SESSION['user_id'];
                         header("Location:../index.php");
                         exit;
                     }
+                     /*
+    --------------------------------------------
+       * Check type of user for any page load
+    ---------------------------------------------
+    */
                     echo $_SESSION['full_name'];
                     $userid=$_SESSION['user_id'];
                              $query ="SELECT type from users WHERE id=$userid";
@@ -57,7 +66,11 @@ $userid=$_SESSION['user_id'];
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name">View Expense</span> </li></a>
                 <?php
-               
+                                  /*
+    --------------------------------------------
+       * Check type of user for any page load
+    ---------------------------------------------
+    */
                              
                             if( ($type['type']=='leader') || ($type['type']=='member')){
                             
@@ -122,6 +135,11 @@ $userid=$_SESSION['user_id'];
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6 class="text-uppercase">Today Income</h6>
                                                         <?php
+                                                           /*
+    --------------------------------------------
+       * Sum Today income in loacal date
+    ---------------------------------------------
+    */
                                                             include('../database/connect.php');
                                                             $userid=$_SESSION['user_id'];
                                                             date_default_timezone_set('Asia/Riyadh');
@@ -156,6 +174,11 @@ $userid=$_SESSION['user_id'];
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6 class="text-uppercase">Today Expense</h6>
                                                         <?php
+                                                           /*
+    --------------------------------------------
+       * Sum Today expense in loacal date
+    ---------------------------------------------
+    */
                                                             include('../database/connect.php');
                                                             $userid=$_SESSION['user_id'];
                                                             date_default_timezone_set('Asia/Riyadh');
@@ -189,6 +212,11 @@ $userid=$_SESSION['user_id'];
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6 class="text-uppercase">Total Income</h6>
                                                         <?php
+                                                           /*
+    --------------------------------------------
+       * Sum total income for user 
+    ---------------------------------------------
+    */
                                                             include('../database/connect.php');
                                                             $userid=$_SESSION['user_id'];
                                                             $query="SELECT SUM(amount) AS count FROM income WHERE user_id=$userid and type='income'";
@@ -218,6 +246,11 @@ $userid=$_SESSION['user_id'];
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6 class="text-uppercase">Total Saving</h6>
                                                         <?php
+                                                                                                                   /*
+    --------------------------------------------
+       * Sum total saving for user 
+    ---------------------------------------------
+    */
                                                             include('../database/connect.php');
                                                             $userid=$_SESSION['user_id'];
                                                             $query="SELECT SUM(amount) AS count FROM income WHERE user_id=$userid and type='saving'";
@@ -248,6 +281,11 @@ $userid=$_SESSION['user_id'];
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6 class="text-uppercase">Total Expense</h6>
                                                         <?php
+                                                                                                                   /*
+    --------------------------------------------
+       * Sum total expense for user 
+    ---------------------------------------------
+    */
                                                             include('../database/connect.php');
                                                             $userid=$_SESSION['user_id'];
                                                             $query="SELECT SUM(amount) AS count FROM expense WHERE user_id=$userid";
@@ -278,6 +316,11 @@ $userid=$_SESSION['user_id'];
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6 class="text-uppercase">Groups </h6>
                                                         <?php
+                                                                                                                   /*
+    --------------------------------------------
+       * number of group subscribe  
+    ---------------------------------------------
+    */
                                                             include('../database/connect.php');
                                                             $userid=$_SESSION['user_id'];
                                                             $query="SELECT COUNT(group_id) AS count FROM  user_group WHERE user_id=$userid";
@@ -310,6 +353,11 @@ $userid=$_SESSION['user_id'];
         </div>
     </div>
 <?php
+                     /*
+    --------------------------------------------
+       * Check type of user for any page load
+    ---------------------------------------------
+    */
 if($count == 0){
     $querl = "UPDATE users SET type='user' WHERE id=$userid";
     $queryrun = mysqli_query($connect, $querl);

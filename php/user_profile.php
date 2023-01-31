@@ -47,7 +47,11 @@
                 <img src="../img/user.png" width="40" height="40">
                 <h4 class="full_name_type">
                     <?php
-
+ /*
+    --------------------------------------------
+       * Check if any one use  url link to login without email and password 
+    ---------------------------------------------
+    */
                     include('../database/connect.php');
                     session_start();
                    
@@ -78,7 +82,11 @@
                 <a href="add_expense.php"><li>  <span class="ps-3 name">ADD Expense</span> </li></a>
                 <a href="show_expense.php"><li>  <span class="ps-3 name">View Expense</span> </li></a>
                 <?php
-            
+             /*
+    --------------------------------------------
+       * Check if user is leader or member to view group page
+    ---------------------------------------------
+    */
                             if( ($type['type']=='leader') || ($type['type']=='member')){
                             
                             ?>
@@ -126,6 +134,11 @@
 
                 <!-- *************************** Start Main****************************************** -->
    <?php
+              /*
+    --------------------------------------------
+       * load information data about user into input
+    ---------------------------------------------
+    */
      include('../database/connect.php');
     
          $id=$_SESSION['user_id'];

@@ -82,7 +82,11 @@ tbody .bg-blue{
             <img src="../img/user.png" width="40" height="40">
             <h4 class="full_name_type">
                     <?php
-
+    /*
+    --------------------------------------------
+       * Check if any one use  url link to login without email and password 
+    ---------------------------------------------
+    */
                     include('../database/connect.php');
                     session_start();
                    
@@ -93,6 +97,11 @@ tbody .bg-blue{
                     }
                     echo $_SESSION['full_name'];
                     $userid=$_SESSION['user_id'];
+                     /*
+    --------------------------------------------
+       * Check type of user
+    ---------------------------------------------
+    */
                              $query ="SELECT type from users WHERE id=$userid";
                             $result = $connect->query($query);
                             if($result->num_rows> 0){
@@ -220,6 +229,11 @@ if (isset($_POST['submit_filter'])){
                                     <th scope="col">Amount</th>                    
                                     <th scope="col">Date</th> 
                                     <?php
+                                     /*
+    --------------------------------------------
+       * Check data filter is empty
+    ---------------------------------------------
+    */
                                     $type='';
                                         $userid=$_SESSION['user_id'];
                                         $qul="SELECT type FROM users WHERE id=$userid";
@@ -247,6 +261,11 @@ if (isset($_POST['submit_filter'])){
                                
                                  include('../database/connect.php');
                                  $userid=$_SESSION['user_id'];
+                                  /*
+    --------------------------------------------
+       * Display all data when using filter
+    ---------------------------------------------
+    */
                      if (isset($_POST['submit_filter'])){
                                      $formDate=$_POST['from_date'];
                                      $toDate=$_POST['to_date'];
@@ -315,7 +334,11 @@ if (isset($_POST['submit_filter'])){
                                          }
                                         }
                              
-
+                                  /*
+    --------------------------------------------
+       * Display all data when load page auto
+    ---------------------------------------------
+    */
                                else if(isset($_POST['close']) or $i==1) {
                                
                                   $query="SELECT * FROM income WHERE user_id=$userid and type='income'";
@@ -394,7 +417,11 @@ if (isset($_POST['submit_filter'])){
       <form method='post' action="#" >   
         <input type="hidden" name="deleteIn_id" id="delete_id" >
        <?php
-       
+                                         /*
+    --------------------------------------------
+       * Delete item from income 
+    ---------------------------------------------
+    */
        include('../database/connect.php');
        if(isset($_POST['delete_income'])){
        

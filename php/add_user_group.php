@@ -17,7 +17,11 @@
                 <img src="../img/user.png" width="40" height="40">
                 <h4 class="full_name_type">
                     <?php
-
+ /*
+    --------------------------------------------
+       * Check if any one use  url link to login without email and password 
+    ---------------------------------------------
+    */
                     include('../database/connect.php');
                     session_start();
                    
@@ -28,6 +32,11 @@
                     }
                     echo $_SESSION['full_name'];
                     $userid=$_SESSION['user_id'];
+                     /*
+    --------------------------------------------
+       * Check type of user
+    ---------------------------------------------
+    */
                              $query ="SELECT type from users WHERE id=$userid";
                             $result = $connect->query($query);
                             if($result->num_rows> 0){
@@ -115,6 +124,11 @@
                             <div class="col-lg-6 col-md-12" >
                                 <select style="width:100%; padding:15px 0;border-radius: 8px;" name="group_name">
                                 <?php
+                                 /*
+    --------------------------------------------
+       * Display all group i subscribe it 
+    ---------------------------------------------
+    */
                                 include('../database/connect.php');
                                 $userid=$_SESSION['user_id'];
                                 $query ="SELECT id,name FROM  groups inner join user_group on groups.id=user_group.group_id WHERE user_group.user_id=$userid";
@@ -156,7 +170,7 @@
         $member_id=$_POST['member_id'] ;
         $group_id=$_POST['group_name'] ;
         
-        // 
+       
                                   $quer="SELECT type FROM users WHERE id=$member_id";
                                   if($res=mysqli_query($connect,$quer))
                                      {
@@ -167,6 +181,11 @@
                                         // 
 
             if($type == 'user'){
+                 /*
+    --------------------------------------------
+       * if type = user change into member
+    ---------------------------------------------
+    */
                 $query= "INSERT INTO  user_group(user_id ,group_id)
                 VALUES
                 ($member_id ,$group_id)";
@@ -192,6 +211,11 @@
                 }
          
                 else{
+                         /*
+    --------------------------------------------
+       * if type = member  just add into user_group
+    ---------------------------------------------
+    */
                     $query= "INSERT INTO  user_group(user_id ,group_id)
                     VALUES
                     ($member_id ,$group_id)";

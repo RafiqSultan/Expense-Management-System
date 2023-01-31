@@ -59,6 +59,11 @@
                   
                     <ul class="dropdown-menu">
                     <?php
+                     /*
+    --------------------------------------------
+       * Check type of user for load page 
+    ---------------------------------------------
+    */
                             
                             $userid=$_SESSION['user_id'];
                                   $query="SELECT type FROM users WHERE id=$userid";
@@ -136,6 +141,11 @@
                                 <select style="width:100%; padding:15px 0;border-radius: 8px;" name="group_name">
                                 <option value="null">Income into Group</option>
                                 <?php
+                                 /*
+    --------------------------------------------
+       * Show all group if user subscribe it 
+    ---------------------------------------------
+    */
                                 include('../database/connect.php');
                                 $userid=$_SESSION['user_id'];
                                 $query ="SELECT id,name FROM  groups inner join user_group on groups.id=user_group.group_id WHERE user_group.user_id=$userid";

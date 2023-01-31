@@ -85,6 +85,11 @@ tbody .bg-blue{
                 <img src="../img/user.png" width="40" height="40">
                 <h4 class="full_name_type">
                     <?php
+                     /*
+    --------------------------------------------
+       * Check if any one use  url link to login without email and password 
+    ---------------------------------------------
+    */
                     $mem_type='';
                     include('../database/connect.php');
                     session_start();
@@ -96,6 +101,11 @@ tbody .bg-blue{
                     }
                     echo $_SESSION['full_name'];
                     $userid=$_SESSION['user_id'];
+                     /*
+    --------------------------------------------
+       * Check type of user 
+    ---------------------------------------------
+    */
                              $query ="SELECT type from users WHERE id=$userid";
                             $result = $connect->query($query);
                             if($result->num_rows> 0){
@@ -172,6 +182,11 @@ tbody .bg-blue{
                             <ul class="dropdown-menu">
                             <li ><a class="dropdown-item" style="color:#fff;"  href="show_all_member.php">ALL</a></li>
                             <?php
+                             /*
+    --------------------------------------------
+       *Display all group
+    ---------------------------------------------
+    */
                                 include('../database/connect.php');
                                 $userid=$_SESSION['user_id'];
                                 $query ="SELECT id,name FROM  groups inner join user_group on groups.id=user_group.group_id WHERE user_group.user_id=$userid";
@@ -226,7 +241,11 @@ tbody .bg-blue{
                                 $gr_id=$_GET['id'];
 
                                 $userid=$_SESSION['user_id'];
-
+ /*
+    --------------------------------------------
+       * Dispaly all data about member 
+    ---------------------------------------------
+    */
                                 $query ="SELECT id FROM  groups inner join user_group on groups.id=user_group.group_id WHERE user_group.user_id=$userid and user_group.group_id=$gr_id";
                                 $result = $connect->query($query);
                                 if($result->num_rows> 0){
@@ -266,7 +285,11 @@ tbody .bg-blue{
                                                                 echo '  <td class="pt-3 mt-1"><i class="far fa-circle-check" style="color:rgb(10, 167, 18) ; font-size: 24px;"></i></td>';
                                                             }
 
-
+/*
+    --------------------------------------------
+       *if type of user = leader -> Add action delete member
+    ---------------------------------------------
+    */
                                                             
                                                             if($mem_type['type'] =='leader'){
                                                                 $member_id=$row['user_id'];

@@ -85,7 +85,11 @@ tbody .bg-blue{
                 <img src="../img/user.png" width="40" height="40">
                 <h4 class="full_name_type">
                     <?php
-
+ /*
+    --------------------------------------------
+       * Check if any one use  url link to login without email and password 
+    ---------------------------------------------
+    */
                     include('../database/connect.php');
                     session_start();
                    
@@ -96,6 +100,11 @@ tbody .bg-blue{
                     }
                     echo $_SESSION['full_name'];
                     $userid=$_SESSION['user_id'];
+                     /*
+    --------------------------------------------
+       * Check Type of user
+    ---------------------------------------------
+    */
                              $query ="SELECT type from users WHERE id=$userid";
                             $result = $connect->query($query);
                             if($result->num_rows> 0){
@@ -187,7 +196,11 @@ tbody .bg-blue{
                             <tbody>
                             <?php
                                 $i=1;
-                    
+                     /*
+    --------------------------------------------
+       *Display all information about group and member
+    ---------------------------------------------
+    */
                                 include('../database/connect.php');
                                 $userid=$_SESSION['user_id'];
       
@@ -266,7 +279,11 @@ tbody .bg-blue{
       <form method='post' action="#" >   
         <input type="hidden" name="deleteg_id" id="delete_id" >
         <?php 
-      
+       /*
+    --------------------------------------------
+       * Send Request into admin for deleted group
+    ---------------------------------------------
+    */
        include('../database/connect.php');
       
        if(isset($_POST['delete_income'])){

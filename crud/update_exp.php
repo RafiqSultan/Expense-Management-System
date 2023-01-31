@@ -100,7 +100,11 @@
                 $exp_id=$_GET['id'];
                 if($exp_id)
                 {
-                    
+                                                                                /*
+    --------------------------------------------
+       * import data into input to update it
+    ---------------------------------------------
+    */
                     $query="SELECT * FROM expense WHERE id=$exp_id";
                     if($result=mysqli_query($connect,$query))
                        {
@@ -165,7 +169,11 @@
                                              $amount=$_POST['amount'] ;
                                              $s_date=$_POST['start_date'] ;
                                              $e_date=$_POST['end_date'];
-                                 
+                                                                                                               /*
+    --------------------------------------------
+       * Update data expense
+    ---------------------------------------------
+    */
                                              $query="UPDATE expense SET item='$item',amount='$amount',start_date='$s_date',end_date='$e_date' WHERE id=$exp_id";
                                              $qq=mysqli_query($connect,$query);
                                              if($qq=mysqli_query($connect,$query)){

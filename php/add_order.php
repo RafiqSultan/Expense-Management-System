@@ -17,7 +17,11 @@
             <img src="../img/user.png" width="40" height="40">
             <h4 class="full_name_type">
                     <?php
-
+ /*
+    --------------------------------------------
+       * Check if any one use  url link to login without email and password 
+    ---------------------------------------------
+    */
                     include('../database/connect.php');
                     session_start();
                    
@@ -59,7 +63,11 @@
                   
                     <ul class="dropdown-menu">
                     <?php
-                            
+                             /*
+    --------------------------------------------
+       * Check type of user
+    ---------------------------------------------
+    */
                             $userid=$_SESSION['user_id'];
                                   $query="SELECT type FROM users WHERE id=$userid";
                                   if($result=mysqli_query($connect,$query))
@@ -151,7 +159,11 @@
     
 if(isset($_POST['submit'])){
 
-
+ /*
+    --------------------------------------------
+       * Insert order into admin as create group or any thing
+    ---------------------------------------------
+    */
     $name=$_POST['name'] ;
     $desc=$_POST['describe'] ;
     $user=$_SESSION['user_id'];

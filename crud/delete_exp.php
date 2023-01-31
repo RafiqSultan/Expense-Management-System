@@ -1,5 +1,10 @@
 
 <?php
+   /*
+    --------------------------------------------
+       * Delete expense item from database 
+    ---------------------------------------------
+    */
 include('../database/connect.php');
 
 if(isset($_POST['delete_data'])){

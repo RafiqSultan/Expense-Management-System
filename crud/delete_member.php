@@ -1,12 +1,21 @@
 
 <?php
+   /*
+    --------------------------------------------
+       * Delete member from group 
+    ---------------------------------------------
+    */
 include('../database/connect.php');
 
 if(isset($_POST['delete_data'])){
 
   $member_id = $_POST['deleteMid'];
   $memberG_id = $_POST['deleteMGid'];
-
+ /*
+    --------------------------------------------
+       * check number of group with user
+    ---------------------------------------------
+    */
 $count_group=0;
   $query ="SELECT count(user_id) as count from user_group WHERE user_id=$member_id";
   $res = $connect->query($query);
@@ -15,7 +24,11 @@ $count_group=0;
      $count_group=$ty['count'];
   }
 
- 
+  /*
+    --------------------------------------------
+       * Member has one group
+    ---------------------------------------------
+    */
   if($count_group == 1){
           $quer = "DELETE FROM user_group WHERE user_id=$member_id and group_id=$memberG_id";
 
@@ -41,6 +54,12 @@ $count_group=0;
 
   }
   else{
+    
+  /*
+    --------------------------------------------
+       * Member has many group
+    ---------------------------------------------
+    */
           $quer = "DELETE FROM user_group WHERE user_id=$member_id and group_id=$memberG_id";
 
           $query_run = mysqli_query($connect, $quer);

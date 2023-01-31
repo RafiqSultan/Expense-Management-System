@@ -99,6 +99,11 @@ tbody .bg-blue{
                                     <th scope="col">Amount</th>                    
                                     <th scope="col">Date</th> 
                                     <?php
+                                                            /*
+    --------------------------------------------
+       *Display all data to print 
+    ---------------------------------------------
+    */
                                      include('../database/connect.php');
                                     $type='';
                                         $userid=$_SESSION['user_id'];
@@ -129,7 +134,11 @@ tbody .bg-blue{
                                  $userid=$_SESSION['user_id'];
                      
 
-                               
+                                                                                        /*
+    --------------------------------------------
+       *Display all saving data to print 
+    ---------------------------------------------
+    */   
                                
                                   $query="SELECT * FROM income WHERE user_id=$userid and type='saving'";
                                   if($result=mysqli_query($connect,$query))

@@ -241,7 +241,11 @@
                 }
 
             if($type_user == 'user'){
-            
+                                                                                         /*
+    --------------------------------------------
+       * Update data if type = user not leader or member
+    ---------------------------------------------
+    */
                 $que="UPDATE income  SET name='$nameinc',descrption='$describe',amount='$amount',date='$date_inc',type='$type',group_id=NULL WHERE id=$income_id";
                 if($q=mysqli_query($connect,$que)){
                     echo '
@@ -271,7 +275,11 @@
     
             }
             else{
-
+                                                                              /*
+    --------------------------------------------
+       * Update data if group = null
+    ---------------------------------------------
+    */
                 $groupid=$_POST['group_name'];
 
                 if($groupid =='null'){
@@ -305,6 +313,11 @@
             }
           
             else{
+                                                                                              /*
+    --------------------------------------------
+       * Update data income
+    ---------------------------------------------
+    */
                 $q="UPDATE income  SET name='$nameinc',descrption='$describe',amount='$amount',date='$date_inc',type='$type',group_id=$groupid WHERE id=$income_id";
                 if($qu=mysqli_query($connect,$q)){
                     echo '

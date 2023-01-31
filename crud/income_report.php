@@ -128,7 +128,12 @@ tbody .bg-blue{
                                  include('../database/connect.php');
                                  $userid=$_SESSION['user_id'];
                    
-                               
+                                                                                        /*
+    --------------------------------------------
+       * Print all income in database 
+    ---------------------------------------------
+    */
+
                                   $query="SELECT * FROM income WHERE user_id=$userid and type='income'";
                                   if($result=mysqli_query($connect,$query))
                                      {

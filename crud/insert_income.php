@@ -1,4 +1,9 @@
 <?php
+ /*
+    --------------------------------------------
+       * Insert income data into database
+    ---------------------------------------------
+    */
 $type=" ";
 
         include("../database/connect.php");
@@ -23,6 +28,11 @@ $type=" ";
          }
 // ------------------------------
         if($type == 'user'){
+             /*
+    --------------------------------------------
+       * Insert income data into database if type is user 
+    ---------------------------------------------
+    */
             
             $query= "INSERT INTO  income (name, descrption, date, amount,type, user_id)
             VALUES
@@ -46,6 +56,7 @@ $type=" ";
         }
         
         else{
+ 
             $group_id=$_POST['group_name'];
             if ($group_id == 'null'){
             
@@ -70,6 +81,12 @@ $type=" ";
             }
     
            else{
+
+                                    /*
+    --------------------------------------------
+       * Insert income data into database if type is leader or member have group 
+    ---------------------------------------------
+    */
             $query= "INSERT INTO  income (name, descrption, date, amount,type, user_id,group_id)
             VALUES
             ('$name_inc' , '$describe' , '$date_inc' , $amount , '$type_inc' ,$userid,$group_id)";

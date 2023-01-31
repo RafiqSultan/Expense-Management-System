@@ -97,6 +97,11 @@ tbody .bg-blue{
                             </thead>
                             <tbody>
                             <?php
+     /*
+    --------------------------------------------
+       * Display all information data from income ,group ,user_group...........
+    ---------------------------------------------
+    */
                                 $i=1;
                                 $total_amount=0;
                                 include('../database/connect.php');

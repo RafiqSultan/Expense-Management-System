@@ -107,6 +107,12 @@ tbody .bg-blue{
                             </thead>
                             <tbody>
                             <?php
+                                                                                     /*
+    --------------------------------------------
+       * Print all expense Data into pdf 
+    ---------------------------------------------
+    */
+
                                 $i=1;
                                 $total_amount=0;
                                 include('../database/connect.php');

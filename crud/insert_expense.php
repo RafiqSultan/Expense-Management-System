@@ -1,5 +1,9 @@
 <?php
-    
+ /*
+    --------------------------------------------
+       * Insert expense data into database
+    ---------------------------------------------
+    */
         include("../database/connect.php");
         session_start();
         $item=$_POST['item'] ;
