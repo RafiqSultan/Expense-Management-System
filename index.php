@@ -15,8 +15,7 @@
     <section class="home_banner">
     <div class="overly"></div>
 
-   
-    <!-- <h2 class="title">Expense Management System</h2> -->
+
     <div class="loginbox">
         <h2>Login</h2>
         <form method="post" action="">
@@ -27,6 +26,12 @@
         </form>
     </div>
     <?php
+
+    /*
+    --------------------------------------------
+       * Check email and password
+    ---------------------------------------------
+    */
 session_start();
 if(isset($_POST['submit'])){
 
@@ -40,6 +45,11 @@ $sql = "SELECT * from users where email = '$email' and password='$pass'";
         $row = mysqli_fetch_array($result);  
         $count = mysqli_num_rows($result);  
        
+        /*
+        --------------------------------------------
+        * Save information user in a session
+        ---------------------------------------------
+        */
         if($count == 1){  
            
             $name = $row["full_name"]; 

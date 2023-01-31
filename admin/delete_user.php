@@ -1,5 +1,9 @@
 <?php
-
+   /*
+    --------------------------------------------
+       * Delete user from database
+    ---------------------------------------------
+    */
         include('../database/connect.php');
          $u_id = $_POST['deleteuser_id'];
          

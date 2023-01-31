@@ -113,7 +113,11 @@ tbody .bg-blue{
                 <img src="../img/user.png" width="40" height="40">
                 <h4 class="full_name_type">
                     <?php
-
+   /*
+    --------------------------------------------
+       * Check if any one use  url link to login without email and password 
+    ---------------------------------------------
+    */
                     include('../database/connect.php');
                     session_start();
                    
@@ -199,8 +203,13 @@ tbody .bg-blue{
                             <tbody>
                             <?php
                                 $i=1;
-                    
+ 
                                 include('../database/connect.php');
+      /*
+    --------------------------------------------
+       * Search about user in database 
+    ---------------------------------------------
+    */
                                 if (isset($_POST['submit_search'])){
                                     $name=$_POST['search'];
                                     $sql="SELECT * FROM users where full_name like '%$name%'";
@@ -229,14 +238,10 @@ tbody .bg-blue{
                                                         echo "</tr>";
                                                         $i++;
                                                         }
-                                                        // echo"</table>";
-                                                        // mysqli_free_result($result);
+                                        
                                                     }
                                                     
-                                                    else
-                                                    {
-                                                    echo "null record";    
-                                                    }
+                                                    
                                                 }
                                                 else
                                                 {
@@ -244,7 +249,12 @@ tbody .bg-blue{
                                                 }
                                     
                                         }
-                            
+       /*
+    --------------------------------------------
+       * Auto load data into datatable
+    ---------------------------------------------
+    */
+         
 
                               else if(isset($_POST['close']) or $i==1) {
                                   $query="SELECT * FROM users";
@@ -294,6 +304,7 @@ tbody .bg-blue{
                    
                 </div>
 <!-- Modal -->
+
 <div class="modal fade" id="deleteuser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -326,6 +337,12 @@ tbody .bg-blue{
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+              /*
+    --------------------------------------------
+       * Check value to delete ... user_id 
+    ---------------------------------------------
+    */
+         
     $(document).ready(function(){
         $('.delete_btn').on('click',function(){
             $('#deleteuser').modal('show');

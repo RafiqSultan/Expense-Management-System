@@ -1,5 +1,10 @@
 
 <?php
+   /*
+    --------------------------------------------
+       * Delete Group from database
+    ---------------------------------------------
+    */
 include('../database/connect.php');
 
 if(isset($_POST['delete_data'])){

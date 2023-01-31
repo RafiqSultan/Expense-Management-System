@@ -1,5 +1,9 @@
 <?php
-
+   /*
+    --------------------------------------------
+       *  Update order state if accept or reject
+    ---------------------------------------------
+    */
 include('../database/connect.php');
 $id=$_GET['id'];
 $user=$_GET['user'];

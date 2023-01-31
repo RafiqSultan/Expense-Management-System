@@ -16,6 +16,8 @@
 include('../database/connect.php');
 session_start();
 $userid=$_SESSION['user_id'];
+
+
 ?>
     <div class="px-0 bg-light">
         <div class="d-flex">
@@ -281,11 +283,11 @@ $userid=$_SESSION['user_id'];
                                                             $query="SELECT COUNT(group_id) AS count FROM  user_group WHERE user_id=$userid";
                                                             $res = mysqli_query($connect,$query); 
                                                             $row = mysqli_fetch_assoc($res); 
-                                                            $sum = $row['count'];
-                                                            if($sum==0){
-                                                                $sum=0;
+                                                            $count = $row['count'];
+                                                            if($count==0){
+                                                                $count=0;
                                                             }
-                                                            echo "<h1>$sum</h1>";
+                                                            echo "<h1>$count</h1>";
                                                             
                                                         ?>
                                                     </div>
@@ -307,7 +309,13 @@ $userid=$_SESSION['user_id'];
             </div>
         </div>
     </div>
+<?php
+if($count == 0){
+    $querl = "UPDATE users SET type='user' WHERE id=$userid";
+    $queryrun = mysqli_query($connect, $querl);
 
+}
+?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -25,6 +25,11 @@
         </form>
     </div>
     <?php
+       /*
+    --------------------------------------------
+       * Check email and password
+    ---------------------------------------------
+    */
 session_start();
 if(isset($_POST['submit']))
 {

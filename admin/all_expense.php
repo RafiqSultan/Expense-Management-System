@@ -82,7 +82,11 @@ tbody .bg-blue{
                 <img src="../img/user.png" width="40" height="40">
                 <h4 class="full_name_type">
                     <?php
-
+ /*
+    --------------------------------------------
+       * Check if any one use  url link to login without email and password 
+    ---------------------------------------------
+    */
                     include('../database/connect.php');
                     session_start();
                    
@@ -170,6 +174,11 @@ tbody .bg-blue{
                                 if (isset($_POST['submit_filter'])){
                                     $formDate=$_POST['from_date'];
                                     $toDate=$_POST['to_date'];
+                                     /*
+    --------------------------------------------
+       * Check if date filter is empty
+    ---------------------------------------------
+    */
                                     if(empty($formDate) and empty($toDate))
                                      {
                                          echo '
@@ -179,10 +188,20 @@ tbody .bg-blue{
                                       
                                      }
                                      else{
+                                            /*
+    --------------------------------------------
+       * if don't insert end date . take auto local today
+    ---------------------------------------------
+    */
                                         if(empty($toDate)){
                                             date_default_timezone_set('Asia/Riyadh');
                                             $toDate = date('Y-m-d');
                                          }
+                                              /*
+    --------------------------------------------
+       * load  ffilter data
+    ---------------------------------------------
+    */
                                          $query="SELECT * FROM expense WHERE start_date between '$formDate' and '$toDate' and  end_date between '$formDate' and '$toDate'";
                                     if($result=mysqli_query($connect,$query))
                                        {
@@ -230,7 +249,11 @@ tbody .bg-blue{
                                                   }
                                               }   }              
                                         
-                            
+                                 /*
+    --------------------------------------------
+       * load expense data from data base
+    ---------------------------------------------
+    */
 
                               else if(isset($_POST['close']) or $i==1) {
                                   $query="SELECT * FROM expense";

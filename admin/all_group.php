@@ -67,6 +67,37 @@ tbody .bg-blue{
     font-weight: 500;
     margin-left: 10px;
 }
+.search{
+       position: relative;
+       box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+       bottom:0 !important;
+       }
+
+    .search input{
+
+        height: 39px;
+    margin-top: 24px !important;
+    text-indent: 37px;
+    font-size:16px;
+    border: 2px solid #d6d4d4;
+   
+}
+
+       .search input:focus{
+
+        box-shadow: none;
+        border: 2px solid blue;
+
+
+       }
+
+       .search .fa-search{
+
+        position: absolute;
+        top: 12px;
+        left: 16px;
+
+       }
 @media(max-width:575px){
     .container{
         width: 125%;

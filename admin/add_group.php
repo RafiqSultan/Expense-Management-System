@@ -82,7 +82,11 @@ tbody .bg-blue{
                 <img src="../img/user.png" width="40" height="40">
                 <h4 class="full_name_type">
                     <?php
-
+ /*
+    --------------------------------------------
+       * Check if any one use  url link to login without email and password 
+    ---------------------------------------------
+    */
                     include('../database/connect.php');
                     session_start();
                    
@@ -160,6 +164,11 @@ tbody .bg-blue{
         </div>
     </div>
     <?php
+     /*
+    --------------------------------------------
+       * Create Groups 
+    ---------------------------------------------
+    */
     if( isset($_POST['submit'])){
         include("../database/connect.php");
         $name=$_POST['g_name'] ;

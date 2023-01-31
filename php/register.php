@@ -36,6 +36,11 @@
         </form>
     </div>
     <?php
+       /*
+    --------------------------------------------
+       * Insert information data to database 
+    ---------------------------------------------
+    */
     if( isset($_POST['submit'])){
         include("../database/connect.php");
         session_start();
@@ -46,14 +51,22 @@
         $pass=$_POST['password'] ;
         $rep_pass=$_POST['rep_password'] ;
 
-         // Check Password
+       /*
+    --------------------------------------------
+       * Check password is much
+    ---------------------------------------------
+    */
          if($pass != $rep_pass){
             echo '
             <div class="fixed-top  alert alert-danger" role="alert" id="alert_notf">
             Password Not much
            </div>';
          }
-        // Check email
+           /*
+    --------------------------------------------
+       * Check email  is exist
+    ---------------------------------------------
+    */
         $check_email = mysqli_query($connect, "SELECT email FROM users where email = '$email' ");
         if(mysqli_num_rows($check_email) > 0){
             echo '

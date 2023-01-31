@@ -18,7 +18,11 @@
             <img src="../img/user.png" width="40" height="40">
             <h4 class="full_name_type">
                     <?php
-
+ /*
+    --------------------------------------------
+       * Check if any one use  url link to login without email and password 
+    ---------------------------------------------
+    */
                     include('../database/connect.php');
                     session_start();
                    
@@ -70,6 +74,11 @@
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6>USERS</h6>
                                                         <?php
+                                                         /*
+    --------------------------------------------
+       * Count Number of user
+    ---------------------------------------------
+    */
                                                             include('../database/connect.php');
                                                             
                                                             $query="SELECT COUNT(id) AS count FROM users";
@@ -100,6 +109,11 @@
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6>Today Income</h6>
                                                         <?php
+        /*
+    --------------------------------------------
+       * Sum Today income in loacal date
+    ---------------------------------------------
+    */
                                                             include('../database/connect.php');
                                                             
                                                             date_default_timezone_set('Asia/Riyadh');
@@ -134,6 +148,11 @@
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6>Today Exponse</h6>
                                                         <?php
+                                                            /*
+    --------------------------------------------
+       * Sum Today expense in loacal date
+    ---------------------------------------------
+    */
                                                             include('../database/connect.php');
                                                            
                                                             date_default_timezone_set('Asia/Riyadh');
@@ -167,6 +186,11 @@
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6>TOTAL INCOME</h6>
                                                         <?php
+                                                            /*
+    --------------------------------------------
+       * Sum total income for all user
+    ---------------------------------------------
+    */
                                                             include('../database/connect.php');
                                                            
                                                             $query="SELECT SUM(amount) AS count FROM income";
@@ -197,6 +221,11 @@
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6>TOTAL EXPENSE</h6>
                                                         <?php
+                                                                                                                    /*
+    --------------------------------------------
+       * Sum total expense for all user
+    ---------------------------------------------
+    */
                                                             include('../database/connect.php');
                                                            
                                                             $query="SELECT SUM(amount) AS count FROM expense";
@@ -227,6 +256,11 @@
                                                     <div class="col-sm-8 col-md-9 col-lg-11 col-xl-11" id="heading_section">
                                                         <h6>GROUPS</h6>
                                                         <?php
+                                                                                                                    /*
+    --------------------------------------------
+       * Number  of Groups created 
+    ---------------------------------------------
+    */
                                                             include('../database/connect.php');
                     
                                                             $query="SELECT COUNT(id) AS count FROM groups";
